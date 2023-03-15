@@ -8,6 +8,9 @@ class World {
     clouds = [
         new Cloud()
     ];
+    backgroundObjects = [
+        new BackgroundObject('img/5_background/layers/3_third_layer/1.png', 0, )
+    ];
     canvas;
     ctx;
 
@@ -23,16 +26,10 @@ class World {
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-        this.ctx.drawImage(this.character.img, this.character.x, this.character.y, this.character.width, this.character.height);
-        this.enemies.forEach(enemy => {
-            this.ctx.drawImage(enemy.img, enemy.x, enemy.y, enemy.width, enemy.height);
-        });
-
-
-        this.clouds.forEach(cloud => {
-            this.ctx.drawImage(cloud.img, cloud.x, cloud.y, cloud.width, cloud.height);
-            
-        });
+        this.addToMap(this.character);// fügt den Character zur Welt.
+        this.addObjectsToMap(this.clouds);// fügt die Wolken zur Welt. 
+        this.addObjectsToMap(this.enemies);// fügt die Hühner zur Welt.
+        this.addObjectsToMap(this.backgroundObjects);// fügt die Hintergrundbilder zur Welt.
 
 
         // draw wird immer wieder aufgerufen.
@@ -40,5 +37,16 @@ class World {
         requestAnimationFrame(function () {
             self.draw();
         });
+    }
+
+    addObjectsToMap(objects) {
+        objects.forEach(o => {
+            this.addToMap(o);
+
+        });
+
+    }
+    addToMap(mo) {
+        this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height)
     }
 }
