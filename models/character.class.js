@@ -28,11 +28,11 @@ class Character extends MovableObject {
                 this.otherDirection = false;
             }
 
-            if (this.world.keyboard.Left) {
+            if (this.world.keyboard.Left && this.x > 0) {
                 this.x -= this.speed;
                 this.otherDirection = true;
             }
-            this.world.camera_x = -this.x;
+            this.world.camera_x = -this.x + 100;
 
            /* if (this.world.keyboard.Up) {
                 this.x += this.speed;
