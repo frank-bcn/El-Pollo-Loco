@@ -1,4 +1,4 @@
-/*class Endboss extends MovableObject {
+class Endboss extends MovableObject {
     height = 400;
     width = 250;
     y = 60;
@@ -12,7 +12,7 @@
 
     constructor() {
         super().loadImage('img/4_enemie_boss_chicken/1_walk/G1.png');
-        this.loadImage(this.IMAGES_WALKING);
+        this.loadImages(this.IMAGES_WALKING);
         this.x = 1200;
         this.animate();
     }
@@ -24,4 +24,4 @@
             this.playAnimation(this.IMAGES_WALKING);
         }, 150);
     }
-}*/
+}
