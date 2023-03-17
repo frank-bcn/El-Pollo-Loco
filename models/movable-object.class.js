@@ -22,7 +22,7 @@ class MovableObject {
     }
 
     isAboveGround() {
-        return this.y < 135 ;
+        return this.y < 135;
     }
 
     loadImage(path) {
@@ -47,13 +47,20 @@ class MovableObject {
     }
 
     moveRight() {
-        console.log('moving right');
+        this.x += this.speed;
+        this.otherDirection = false;
+        this.walking_sound.play();;
 
     }
 
     moveLeft() {
-        setInterval(() => {
-            this.x -= this.speed;
-        }, 1000 / 60);
+        this.x -= this.speed;
+        this.otherDirection = false;
+    }
+
+
+
+    jump() {
+        this.speedY = 30;
     }
 }
