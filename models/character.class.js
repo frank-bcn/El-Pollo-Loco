@@ -1,7 +1,7 @@
 class Character extends MovableObject {
 
     height = 280;
-    y = 145;
+    y = 10;
     speed = 10;
     IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-21.png',
@@ -52,16 +52,16 @@ class Character extends MovableObject {
             }
             this.world.camera_x = -this.x + 100;
 
-            if (this.world.keyboard.Up) {
-                this.x += this.speed;
+           /* if (this.world.keyboard.Up) {
+                
             }
 
             if (this.world.keyboard.Down) {
-                this.x += this.speed;
-            }
+                
+            }*/
 
-            if (this.world.keyboard.Space) {
-                this.x += this.speed;
+            if (this.world.keyboard.Space && !this.isAboveGround()) {
+                this.speedY = 30;
             }
 
         }, 1000 / 60);
