@@ -56,20 +56,29 @@ class World {
     //Eine Methode, die auf das Canavas-Element zeichnet.
     addToMap(mo) {
         if (mo.otherDirection) {
-            this.ctx.save();// speichert den aktuellen contex.
-            this.ctx.translate(mo.width, 0);//drehen das bild einmal.
-            this.ctx.scale(-1, 1);// hier wird das Bild verschoben um die breite des elements.
-            mo.x = mo.x * -1;// hier spiegeln wir die x coordinate
+            this.flipImage(mo);
         }
-        this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height)//ctx.drawImage ist eine Canvas-API-Methode, die ein Bild auf dem Canvas zeichnet. Die Methode erwartet vier Parameter:
+        mo.draw(this.ctx);
+        mo.drawFrame(this.ctx);
         if (mo.otherDirection) {
-            mo.x = mo.x * -1;
-            this.ctx.restore();
+            this.flipImageBack(mo);
         }
         //mo.img: das Bildobjekt, das auf dem Canvas gezeichnet werden soll
         // mo.x: die x-Position des Bildes auf dem Canvas
         // mo.y: die y-Position des Bildes auf dem Canvas
         //mo.width: die Breite des Bildes auf dem Canvas
         //mo.height: die Höhe des Bildes auf dem Canvas
+    }
+
+    flipImage(mo) {
+        this.ctx.save();// speichert den aktuellen contex.
+        this.ctx.translate(mo.width, 0);//drehen das bild einmal.
+        this.ctx.scale(-1, 1);// hier wird das Bild verschoben um die breite des elements.
+        mo.x = mo.x * -1;// hier spiegeln wir die x coordinate
+    }
+
+    flipImageBack(mo) {
+        mo.x = mo.x * -1;
+        this.ctx.restore();
     }
 }
