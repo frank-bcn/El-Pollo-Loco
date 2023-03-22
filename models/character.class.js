@@ -3,7 +3,7 @@ class Character extends MovableObject {
     height = 280;
     y = 10;
     speed = 10;
-    
+
     IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-21.png',
         'img/2_character_pepe/2_walk/W-22.png',
@@ -13,7 +13,7 @@ class Character extends MovableObject {
         'img/2_character_pepe/2_walk/W-26.png'
     ];
 
-   IMAGES_JUMPING = [
+    IMAGES_JUMPING = [
         'img/2_character_pepe/3_jump/J-31.png',
         'img/2_character_pepe/3_jump/J-32.png',
         'img/2_character_pepe/3_jump/J-33.png',
@@ -35,6 +35,12 @@ class Character extends MovableObject {
         'img/2_character_pepe/5_dead/D-57.png'
     ];
 
+    IMAGES_HURT = [
+        'img/2_character_pepe/4_hurt/H-41.png',
+        'img/2_character_pepe/4_hurt/H-42.png',
+        'img/2_character_pepe/4_hurt/H-43.png'
+    ];
+
     world;
     walking_sound = new Audio('audio/run.mp3')
 
@@ -43,6 +49,7 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_DEAD);
+        this.loadImages(this.IMAGES_HURT);
         this.applyGravity();
         this.animate();
     }
@@ -62,13 +69,13 @@ class Character extends MovableObject {
             }
             this.world.camera_x = -this.x + 100;
 
-           /* if (this.world.keyboard.Space) {
-                
-            }
-
-            if (this.world.keyboard.Down) {
-                
-            }*/
+            /* if (this.world.keyboard.Space) {
+                 
+             }
+ 
+             if (this.world.keyboard.Down) {
+                 
+             }*/
 
             if (this.world.keyboard.Up && !this.isAboveGround()) {
                 this.jump();
@@ -78,8 +85,10 @@ class Character extends MovableObject {
 
 
         setInterval(() => {
-            if(this.isDead()) {
+            if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
+            } else if (this.isHurt()) {
+                this.playAnimation(this.IMAGES_HURT);
             } else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
             } else {
