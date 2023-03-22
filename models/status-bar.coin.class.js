@@ -11,7 +11,7 @@ IMAGES_coin = [
 ];
 
 
-percentage = 100;
+percentage = 0;
 
 constructor() {
     super();
@@ -22,8 +22,8 @@ constructor() {
     this.height = 50;
 }
 
-setPercentage() {
-    this.percentage = this.percentage;
+setPercentage(percentage) {
+    this.percentage = percentage;
     let path = this.IMAGES_coin[this.resolveImageIndex()];
     this.img = this.imageCache[path];
 }
