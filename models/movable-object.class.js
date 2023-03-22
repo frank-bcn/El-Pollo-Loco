@@ -5,7 +5,7 @@ class MovableObject extends DrawableObject {
     acceleration = 2.5;
     energy = 100;
     lastHit = 0;
-
+   
 
     applyGravity() {
         setInterval(() => {
@@ -33,6 +33,10 @@ class MovableObject extends DrawableObject {
             this.x < mo.x &&
             this.y < mo.y + mo.height;
     }
+
+   /* isColliding(enemy) {
+        
+    }*/
 
     hit() {
         this.energy -= 5;
