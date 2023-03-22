@@ -8,6 +8,7 @@ class World {
     statusBarHealth = new StatusBar_Health();
     statusBarCoin = new StatusBar_Coin();
     statusBarBottle = new StatusBar_Bottle();
+    throwableObject = [];
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -15,23 +16,34 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
-        this.checkCollisions();
+        this.run();
     }
 
     setWorld() {
         this.character.world = this;
     }
 
-    checkCollisions() {
+    run() {
         setInterval(() => {
-            this.level.enemies.forEach((enemy) => {
-                if (this.character.isColliding(enemy)) {
-                    this.character.hit();
-                    this.statusBarHealth.setPercentage(this.character.energy)
-                }
-            });
+            this.checkCollisions();
+            this.checkThrowableObjects();
         }, 200);
+    }
 
+    checkThrowableObjects() {
+        if (this.keyboard.Space) {
+            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
+            this.throwableObject.push(bottle);
+        }
+    }
+
+    checkCollisions() {
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy)) {
+                this.character.hit();
+                this.statusBarHealth.setPercentage(this.character.energy)
+            }
+        });
     }
 
 
@@ -56,6 +68,8 @@ class World {
         this.addObjectsToMap(this.level.clouds);// fügt die Wolken zur Welt. 
 
         this.addObjectsToMap(this.level.enemies);// fügt die Hühner zur Welt.
+
+        this.addObjectsToMap(this.throwableObject);// fügt die Flaschen zur Welt.
 
         this.ctx.translate(-this.camera_x, 0);
 

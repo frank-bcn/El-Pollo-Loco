@@ -17,10 +17,14 @@ class MovableObject extends DrawableObject {
     }
 
     isAboveGround() {
-        return this.y < 135;
+        if (this instanceof ThrowableObject) {
+            return true;
+        } else {
+            return this.y < 135;
+        }
     }
 
-   
+
 
     // character coliding
     isColliding(mo) {
