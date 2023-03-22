@@ -12,7 +12,12 @@ class StatusBar_Bottle extends DrawableObject {
     percentage = 100;
 
     constructor() {
+        super();
         this.loadImages(this.IMAGES_bottle);
+        this.setPercentage(0);
+        this.x = 0;
+        this.y = 100;
+        this.height = 50;
     }
 
     setPercentage() {
@@ -32,7 +37,7 @@ class StatusBar_Bottle extends DrawableObject {
             return 2;
         } else if (this.percentage > 20) {
             return 1;
-        } else  {
+        } else {
             return 0;
         }
     }

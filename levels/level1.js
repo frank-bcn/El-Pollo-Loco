@@ -7,7 +7,7 @@ const level1 = new Level(
         new Chicken_small(),
         new Chicken_small(),
         new Chicken_small(),
-       /* new Eagle()*/
+       /*new Eagle()*/
     ],
 
     [
