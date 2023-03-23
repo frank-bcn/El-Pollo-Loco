@@ -32,10 +32,6 @@ class MovableObject extends DrawableObject {
             this.y < mo.y + mo.height;
     }
 
-    /*isCollidingEnemy(enemy) {
-            return this.character.y + this.character.height <=
-            enemy.y; 
-    }*/
 
     hit() {
         this.energy -= 5;
