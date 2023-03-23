@@ -24,8 +24,6 @@ class MovableObject extends DrawableObject {
         }
     }
 
-
-
     // character coliding
     isColliding(mo) {
         return this.x + this.width > mo.x &&
@@ -34,8 +32,9 @@ class MovableObject extends DrawableObject {
             this.y < mo.y + mo.height;
     }
 
-   /* isColliding(enemy) {
-        
+    /*isCollidingEnemy(enemy) {
+            return this.character.y + this.character.height <=
+            enemy.y; 
     }*/
 
     hit() {

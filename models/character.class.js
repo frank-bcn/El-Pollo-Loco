@@ -69,11 +69,11 @@ class Character extends MovableObject {
             }
             this.world.camera_x = -this.x + 100;
 
-            /* if (this.world.keyboard.Space) {
-                 
+             if (this.world.keyboard.Space) {
+                 this.checkThrowableObjects();
              }
  
-             if (this.world.keyboard.Down) {
+             /*if (this.world.keyboard.Down) {
                  
              }*/
 
