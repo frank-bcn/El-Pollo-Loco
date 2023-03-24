@@ -38,10 +38,18 @@ class World {
     }
 
     checkCollisions() {
-        this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
-                this.character.hit();
-                this.statusBarHealth.setPercentage(this.character.energy)
+        this.checkCollisionsEnemy();
+    }
+    
+    checkCollisionsEnemy() {
+        this.level.enemies.forEach((enemy, index) => {
+            if(this.character.isColliding(enemy)) {             
+                if(this.character.speedY < 0 && this.character.isAboveGround()) { 
+                    this.level.enemies[index].hit(5); 
+                } else if(!this.level.enemies[index].isDead()) {
+                    this.character.hit(5);
+                    this.statusBarHealth.setPercentage(this.character.energy) 
+                }
             }
         });
     }

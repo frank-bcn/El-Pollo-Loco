@@ -3,6 +3,8 @@ class Character extends MovableObject {
     height = 280;
     y = 10;
     speed = 10;
+    energy = 100;
+    offset = {top: 113, bottom: 15, left: 20, right: 20};
 
     IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-21.png',
@@ -41,6 +43,33 @@ class Character extends MovableObject {
         'img/2_character_pepe/4_hurt/H-43.png'
     ];
 
+    IMAGES_Idle = [
+        "img/2_character_pepe/1_idle/idle/I-1.png",
+        "img/2_character_pepe/1_idle/idle/I-2.png",
+        "img/2_character_pepe/1_idle/idle/I-3.png",
+        "img/2_character_pepe/1_idle/idle/I-4.png",
+        "img/2_character_pepe/1_idle/idle/I-5.png",
+        "img/2_character_pepe/1_idle/idle/I-6.png",
+        "img/2_character_pepe/1_idle/idle/I-7.png",
+        "img/2_character_pepe/1_idle/idle/I-8.png",
+        "img/2_character_pepe/1_idle/idle/I-9.png",
+        "img/2_character_pepe/1_idle/idle/I-10.png",
+    ];
+
+
+    IMAGES_Long_Idle = [
+        "img/2_character_pepe/1_idle/long_idle/I-11.png",
+        "img/2_character_pepe/1_idle/long_idle/I-12.png",
+        "img/2_character_pepe/1_idle/long_idle/I-13.png",
+        "img/2_character_pepe/1_idle/long_idle/I-14.png",
+        "img/2_character_pepe/1_idle/long_idle/I-15.png",
+        "img/2_character_pepe/1_idle/long_idle/I-16.png",
+        "img/2_character_pepe/1_idle/long_idle/I-17.png",
+        "img/2_character_pepe/1_idle/long_idle/I-18.png",
+        "img/2_character_pepe/1_idle/long_idle/I-19.png",
+        "img/2_character_pepe/1_idle/long_idle/I-20.png",
+    ];
+
     world;
     walking_sound = new Audio('audio/run.mp3')
 
@@ -50,13 +79,13 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_HURT);
+        this.loadImages(this.IMAGES_Idle);
+        this.loadImages(this.IMAGES_Long_Idle);
         this.applyGravity();
         this.animate();
     }
 
     animate() {
-
-        
 
         setInterval(() => {
             this.walking_sound.pause();
@@ -71,13 +100,9 @@ class Character extends MovableObject {
             }
             this.world.camera_x = -this.x + 100;
 
-             if (this.world.keyboard.Space) {
-                 this.checkThrowableObjects();
-             }
- 
-             /*if (this.world.keyboard.Down) {
-                 
-             }*/
+            if (this.world.keyboard.Space) {
+                this.checkThrowableObjects();
+            }
 
             if (this.world.keyboard.Up && !this.isAboveGround()) {
                 this.jump();
