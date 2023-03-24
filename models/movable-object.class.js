@@ -32,18 +32,7 @@ class MovableObject extends DrawableObject {
             this.y < mo.y + mo.height;
     }
 
-    // coliding enemy
-    isColidigEnemy(enemy) {
-        return this.character.isColliding(enemy) &&
-            this.character.isAboveGround();
-    }
-
-    isDeadEnemy() {
-        if (this.isColidigEnemy(enemy));
-        let enemyDead = enemy;
-        this.world.level.enemies[enemyDead].speed = 0;
-        this.world.level.enemies[enemyDead].energy = 0;
-    }
+    
 
     hit() {
         this.energy -= 5;
@@ -88,5 +77,4 @@ class MovableObject extends DrawableObject {
     jump() {
         this.speedY = 30;
     }
-
 }
