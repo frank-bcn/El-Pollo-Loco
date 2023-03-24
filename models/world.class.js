@@ -45,7 +45,7 @@ class World {
         this.level.enemies.forEach((enemy, index) => { //Schleife die durch das level enemies irretiert
             if(this.character.isColliding(enemy)) {   // prüft ob der character kontakt hat          
                 if(this.character.speedY < 0 && this.character.isAboveGround()) { //überprüft ob der character in der luft ist oder ob er sich auf den boden befindet
-                    this.level.enemies[index].hit(10); // gibt den gegner 10 schaden 
+                    this.level.enemies[index].hit(5); // gibt den gegner 10 schaden 
                 } else if(!this.level.enemies[index].isDead()) {// ab hier bekommt der character 5 schaden 
                     this.character.hit(5);
                     this.statusBarHealth.setPercentage(this.character.hp) 
