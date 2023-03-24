@@ -42,11 +42,11 @@ class World {
     }
     
     checkCollisionsEnemy() {
-        this.level.enemies.forEach((enemy, index) => {
-            if(this.character.isColliding(enemy)) {             
-                if(this.character.speedY < 0 && this.character.isAboveGround()) { 
-                    this.level.enemies[index].hit(5); 
-                } else if(!this.level.enemies[index].isDead()) {
+        this.level.enemies.forEach((enemy, index) => { //Schleife die durch das level enemies irretiert
+            if(this.character.isColliding(enemy)) {   // prüft ob der character kontakt hat          
+                if(this.character.speedY < 0 && this.character.isAboveGround()) { //überprüft ob der character in der luft ist oder ob er sich auf den boden befindet
+                    this.level.enemies[index].hit(5); // gibt den gegner 5 schaden 
+                } else if(!this.level.enemies[index].isDead()) {// ab hier bekommt der character 5 schaden 
                     this.character.hit(5);
                     this.statusBarHealth.setPercentage(this.character.energy) 
                 }
