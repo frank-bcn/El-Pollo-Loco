@@ -22,28 +22,21 @@ class Chicken_small extends MovableObject {
         this.loadImage(this.IMAGE_DIE);
 
         this.x = 300 + Math.random() * 500; // Zahl zwischen 300 und 700.
-        this.speed = 0.15 + Math.random() * 0.25;
+        this.speed = 0.5 + Math.random() * 0.25;
         this.animate();
     }
 
-
-
     animate() {
-        setInterval(() => {
-            this.moveLeft();
-        }, 1000 / 60);
-
-        setInterval(() => {
-            this.playAnimation(this.IMAGES_WALKING);
-        }, 140);
-
-
+       
         setInterval(() => {
             if(this.isDead()) {
                 this.offset = {top: 0, bottom: 0, left: 0, right: 0};
                 this.speed = 0;
                 this.loadImage(this.IMAGE_DIE);
+            } else {
+                this.moveLeft();
+                this.playAnimation(this.IMAGES_WALKING);
             }
-        }, 50);
+        },140);
     }
 }
