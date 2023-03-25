@@ -13,7 +13,7 @@ class Chicken_small extends MovableObject {
     ];
 
     IMAGE_DIE = [
-        'img/3_enemies_chicken/chicken_small/2_dead'
+        'img/3_enemies_chicken/chicken_small/2_dead/dead.png'
     ];
 
     constructor() {
@@ -44,6 +44,6 @@ class Chicken_small extends MovableObject {
                 this.speed = 0;
                 this.loadImage(this.IMAGE_DIE_);
             }
-        }, 50);
+        }, 60);
     }
 }
