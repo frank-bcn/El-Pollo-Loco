@@ -40,10 +40,10 @@ class Chicken_small extends MovableObject {
 
         setInterval(() => {
             if(this.isDead()) {
-                this.offset = {top: 1000, bottom: 1000, left: 1000, right: 1000};
+                this.offset = {top: 0, bottom: 0, left: 0, right: 0};
                 this.speed = 0;
-                this.loadImage(this.IMAGE_DIE_);
+                this.loadImage(this.IMAGE_DIE);
             }
-        }, 60);
+        }, 50);
     }
 }

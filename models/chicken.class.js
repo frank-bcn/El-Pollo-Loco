@@ -24,7 +24,7 @@ class Chicken extends MovableObject {
 
         this.x = 200 + Math.random() * 500; // Zahl zwischen 200 und 700.
         this.speed = 0.15 + Math.random() * 0.25;
-        this.animate()
+        this.animate();
     }
 
 
@@ -42,10 +42,10 @@ class Chicken extends MovableObject {
 
         setInterval(() => {
             if(this.isDead()) {
-                this.offset = {top: 1000, bottom: 1000, left: 1000, right: 1000};
+                this.offset = {top: 0, bottom: 0, left: 0, right: 0};
                 this.speed = 0;
-                this.loadImage(this.IMAGE_DIE_);
+                this.loadImage(this.IMAGE_DIE);
             }
-        }, 60);
+        }, 50);
     }
 }
