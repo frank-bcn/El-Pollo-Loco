@@ -32,7 +32,7 @@ class World {
 
     checkThrowableObjects() {
         if (this.keyboard.Space) {
-            let bottle = new ThrowableObject(this.character.x + 110, this.character.y + 120);
+            let bottle = new ThrowableObject(this.character.x + 50, this.character.y + 150);
             this.throwableObject.push(bottle);
         }
     }
@@ -40,6 +40,7 @@ class World {
     checkCollisions() {
         this.checkCollisionsEnemy();
         this.checkCollisionsThrowable();
+        this.checkCollisionsBottle();
     }
 
     checkCollisionsEnemy() {
@@ -64,6 +65,15 @@ class World {
                 }
             });
         });
+    }
+
+   checkCollisionsBottle() {
+        this.level.bottle.forEach((bottle) => {
+            if(this.character.isColliding(bottle)){
+                this.bottle++;
+            }
+        })
+
     }
 
 
