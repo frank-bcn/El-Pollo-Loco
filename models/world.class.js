@@ -89,7 +89,7 @@ class World {
 
         this.addObjectsToMap(this.level.enemies);// fügt die Hühner zur Welt.
 
-        this.addObjectsToMap(this.level.bottle);
+        this.addObjectsToMap(this.level.bottle);// fügt die Flaschen zur Welt.
        
         this.addObjectsToMap(this.throwableObject);// fügt die Flaschen zur Welt.   
 

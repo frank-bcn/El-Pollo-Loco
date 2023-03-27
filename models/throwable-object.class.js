@@ -30,9 +30,8 @@ class ThrowableObject extends MovableObject {
         this.x = x;
         this.y = y;
         
-        this.throw();
+        this.throw(); 
     }
-
 
     throw() {
         this.speedY = 20; // Geschwindigkeit vertikal

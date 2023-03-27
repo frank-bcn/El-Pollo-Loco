@@ -20,10 +20,10 @@ class Bottle extends MovableObject {
         this.loadImage(this.IMAGE_AIR);
 
         this.x = 200 + Math.random() * 1520;
-        this.setBottle();
+        this.placeBottle();
     }
 
-    setBottle() {// generiert Flaschen auf einer zufälligen Position in zwei Umgebungen(Boden/Luft)
+    placeBottle() {// generiert Flaschen auf einer zufälligen Position in zwei Umgebungen(Boden/Luft)
         let bottleground = Math.floor(Math.random() * 2);//Zuerst wird eine zufällige Zahl zwischen 0 und 1 erzeugt und gerundet.
         if (bottleground <= 0) { //Wenn die Variable kleiner oder gleich 0 ist, wird die Flasche auf dem Boden in einer der beiden Bodenbilder platziert.
           let i = Math.floor(Math.random() * 2);//Zufällige Auswahl eines der beiden Bodenbilder.
