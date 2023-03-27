@@ -8,7 +8,7 @@ class World {
     statusBarHealth = new StatusBar_Health();
     statusBarCoin = new StatusBar_Coin();
     statusBarBottle = new StatusBar_Bottle();
-    throwableObject = [new ThrowableObject()];
+    throwableObject = [];
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -39,18 +39,30 @@ class World {
 
     checkCollisions() {
         this.checkCollisionsEnemy();
+        this.checkCollisionsThrowable();
     }
-    
+
     checkCollisionsEnemy() {
         this.level.enemies.forEach((enemy, index) => { //Schleife die durch das level enemies irretiert
-            if(this.character.isColliding(enemy)) {   // prüft ob der character kontakt hat          
-                if(this.character.speedY < 0 && this.character.isAboveGround()) { //überprüft ob der character in der luft ist oder ob er sich auf den boden befindet
+            if (this.character.isColliding(enemy)) {   // prüft ob der character kontakt hat          
+                if (this.character.speedY < 0 && this.character.isAboveGround()) { //überprüft ob der character in der luft ist oder ob er sich auf den boden befindet
                     this.level.enemies[index].hit(5); // gibt den gegner 10 schaden 
-                } else if(!this.level.enemies[index].isDead()) {// ab hier bekommt der character 5 schaden 
+                } else if (!this.level.enemies[index].isDead()) {// ab hier bekommt der character 5 schaden 
                     this.character.hit(5);
-                    this.statusBarHealth.setPercentage(this.character.hp) 
+                    this.statusBarHealth.setPercentage(this.character.hp)
                 }
             }
+        });
+    }
+
+    checkCollisionsThrowable() {
+        this.throwableObject.forEach((bottle, i) => {// prüft ob Flaschen vorhanden sind.
+            this.level.enemies.forEach((enemy, index) => {//püft ob es ein Kontact zwischen Flasche und Gegner gibt
+                if (bottle.isColliding(enemy)) { // kontakt Gegener
+                    this.level.enemies[index].hit(5);// fügt ein Schaden von 5
+                    this.throwableObject[i].hit(5);
+                }
+            });
         });
     }
 
@@ -77,7 +89,9 @@ class World {
 
         this.addObjectsToMap(this.level.enemies);// fügt die Hühner zur Welt.
 
-        this.addObjectsToMap(this.throwableObject);// fügt die Flaschen zur Welt.
+        this.addObjectsToMap(this.level.bottle);
+       
+        this.addObjectsToMap(this.throwableObject);// fügt die Flaschen zur Welt.   
 
         this.ctx.translate(-this.camera_x, 0);
 
