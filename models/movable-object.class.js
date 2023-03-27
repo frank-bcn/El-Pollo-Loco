@@ -4,8 +4,11 @@ class MovableObject extends DrawableObject {
     speedY = 0;
     acceleration = 2.5;
     lastHit = 0;
-    
-    offset = {top: 0, bottom: 0, left: 0, right: 0};
+
+    timeout = null;
+    isIdle = false;
+
+    offset = { top: 0, bottom: 0, left: 0, right: 0 };
 
 
     applyGravity() {
@@ -35,7 +38,7 @@ class MovableObject extends DrawableObject {
 
     hit() {
         this.hp -= 5;
-        if(this.hp < 0) {
+        if (this.hp < 0) {
             this.hp = 0;
         } else {
             this.lastHit = new Date().getTime();
@@ -70,8 +73,6 @@ class MovableObject extends DrawableObject {
         this.x -= this.speed;
         this.otherDirection = false;
     }
-
-
 
     jump() {
         this.speedY = 30;

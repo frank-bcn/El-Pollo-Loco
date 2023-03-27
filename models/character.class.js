@@ -110,10 +110,15 @@ class Character extends MovableObject {
         setInterval(() => {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
+
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
+
             } else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
+
+            /*} else if (!this.world.keyboard.Right && this.world.keyboard.Left && this.world.keyboard.Space) {
+                this.playAnimation(this.IMAGES_Idle);*/
             } else {
 
                 if (this.world.keyboard.Right || this.world.keyboard.Left) {

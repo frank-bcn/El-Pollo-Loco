@@ -8,7 +8,7 @@ class World {
     statusBarHealth = new StatusBar_Health();
     statusBarCoin = new StatusBar_Coin();
     statusBarBottle = new StatusBar_Bottle();
-    throwableObject = [];
+    throwableObject = [new ThrowableObject()];
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
