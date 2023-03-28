@@ -43,6 +43,7 @@ class World {
         this.checkCollisionsEnemy();
         this.checkCollisionsThrowable();
         this.checkCollisionsBottle();
+        this.checkCollisionsCoin();
     }
 
     checkCollisionsEnemy() {
@@ -75,6 +76,16 @@ class World {
                 this.character.bottle++;
                 this.statusBarBottle.setPercentage(this.character.bottle);// füllt die Statusbar auf.
                 this.level.bottle.splice(this.level.bottle.indexOf(bottle), 1)//Entfernt die Flaschen aus der Welt.
+            }
+        });
+    }
+
+    checkCollisionsCoin() {
+        this.level.coin.forEach((coin) => {
+            if (this.character.isColliding(coin)) {
+                this.character.coin++;
+                this.statusBarCoin.setPercentage(this.character.coin);
+                this.level.coin.splice(this.level.coin.indexOf(coin), 1)
             }
         });
     }
