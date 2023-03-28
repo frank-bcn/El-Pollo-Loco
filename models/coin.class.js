@@ -7,7 +7,7 @@ class Coin extends MovableObject {
         'img/8_coin/coin_2.png'
     ];
 
-    offset = { top: 100, bottom: 100, left: 100, right: 100 };
+    offset = { top: 0, bottom: 0, left: 0, right: 0 };
 
 
     constructor() {
@@ -22,6 +22,6 @@ class Coin extends MovableObject {
     animate() {
         setInterval(() => {
             this.playAnimation(this.IMAGES_COIN);
-        }, 1000);
+        }, 500);
     }
 }

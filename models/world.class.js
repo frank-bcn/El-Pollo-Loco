@@ -86,7 +86,8 @@ class World {
                 this.character.coin++;
                 this.statusBarCoin.setPercentage(this.character.coin);
                 this.level.coin.splice(this.level.coin.indexOf(coin), 1)
-            }
+                console.log('treffer')
+            } 
         });
     }
 
