@@ -81,12 +81,11 @@ class World {
     }
 
     checkCollisionsCoin() {
-        this.level.coin.forEach((coin) => {
-            if (this.character.isColliding(coin)) {
+        this.level.coin.forEach((coin) => {// eine Schleife die durch alle Coins in der Welt irritiert.
+            if (this.character.isColliding(coin)) {// prüft ob des einen kontakt zwischen Character und Coin gibt.
                 this.character.coin++;
-                this.statusBarCoin.setPercentage(this.character.coin);
-                this.level.coin.splice(this.level.coin.indexOf(coin), 1)
-                console.log('treffer')
+                this.statusBarCoin.setPercentage(this.character.coin);//füllt die StatusBar auf.
+                this.level.coin.splice(this.level.coin.indexOf(coin), 1)// Entfernt die Coins aus der Welt.
             } 
         });
     }
