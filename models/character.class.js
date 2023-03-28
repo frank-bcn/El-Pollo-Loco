@@ -5,6 +5,7 @@ class Character extends MovableObject {
     speed = 10;
     hp = 100;
     bottle = 0;
+    coin = 0;
     offset = {top: 113, bottom: 15, left: 20, right: 20};
 
     IMAGES_WALKING = [

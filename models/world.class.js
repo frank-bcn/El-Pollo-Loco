@@ -35,8 +35,7 @@ class World {
             let bottle = new ThrowableObject(this.character.x + 50, this.character.y + 150);
             this.throwableObject.push(bottle);
             this.character.bottle --;
-            this.statusBarBottle.setPercentage(this.character.bottle);
-
+            this.statusBarBottle.setPercentage(this.character.bottle);// Aktualisiert die StatusBar.
         }
     }
 
@@ -75,7 +74,7 @@ class World {
             if (this.character.isColliding(bottle)) {// prüft ob es einen Kontakt zwischen Character und Flasche gibt.
                 this.character.bottle++;
                 this.statusBarBottle.setPercentage(this.character.bottle);// füllt die Statusbar auf.
-                this.level.bottle.splice(this.level.bottle.indexOf(bottle), 1)
+                this.level.bottle.splice(this.level.bottle.indexOf(bottle), 1)//Entfernt die Flaschen aus der Welt.
             }
         });
     }
@@ -103,6 +102,8 @@ class World {
         this.addObjectsToMap(this.level.enemies);// fügt die Hühner zur Welt.
 
         this.addObjectsToMap(this.level.bottle);// fügt die Flaschen zur Welt.
+
+        this.addObjectsToMap(this.level.coin);// fügt die Coins zur Welt.
 
         this.addObjectsToMap(this.throwableObject);// fügt die Flaschen zur Welt.   
 
