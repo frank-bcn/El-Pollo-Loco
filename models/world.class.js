@@ -31,9 +31,12 @@ class World {
     }
 
     checkThrowableObjects() {
-        if (this.keyboard.Space) {
+        if (this.character.bottle > 0 && this.keyboard.Space) {
             let bottle = new ThrowableObject(this.character.x + 50, this.character.y + 150);
             this.throwableObject.push(bottle);
+            this.character.bottle --;
+            this.statusBarBottle.setPercentage(this.character.bottle);
+
         }
     }
 
@@ -67,15 +70,15 @@ class World {
         });
     }
 
-   checkCollisionsBottle() {
-        this.level.bottle.forEach((bottle) => {
-            if(this.character.isColliding(bottle)){
-                this.bottle++;
+    checkCollisionsBottle() {
+        this.level.bottle.forEach((bottle) => {// eine Schleife die durch alle Flaschen in der Welt irritiert.
+            if (this.character.isColliding(bottle)) {// prüft ob es einen Kontakt zwischen Character und Flasche gibt.
+                this.character.bottle++;
+                this.statusBarBottle.setPercentage(this.character.bottle);// füllt die Statusbar auf.
+                this.level.bottle.splice(this.level.bottle.indexOf(bottle), 1)
             }
-        })
-
+        });
     }
-
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -100,7 +103,7 @@ class World {
         this.addObjectsToMap(this.level.enemies);// fügt die Hühner zur Welt.
 
         this.addObjectsToMap(this.level.bottle);// fügt die Flaschen zur Welt.
-       
+
         this.addObjectsToMap(this.throwableObject);// fügt die Flaschen zur Welt.   
 
         this.ctx.translate(-this.camera_x, 0);
