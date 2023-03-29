@@ -72,32 +72,31 @@ class Endboss extends MovableObject {
       if (this.hp < 15) this.firstHit = true;
 
       if (this.firstHit) {
-        this.playAnimation(this.IMAGES_HURT);
+        this.playAnimation(this.IMAGES_WALKING);
+        this.moveLeft();
+        this.speed = 10;
         setTimeout(() => {
           setInterval(() => {
-            if (this.checkCollisionEndboss() < 100) {
+            if (world.character.isHurt()) {
+              this.moveRight();
+              this.speed = 5;
+              this.otherDirection = true;
+              this.firstHit = false;
+
+            } else if (this.checkCollisionEndboss() < 100) {
               this.playAnimation(this.IMAGES_ATTACK);
               this.moveLeft();
               this.speed = 15;
               this.otherDirection = false;
+
             } else {
               this.playAnimation(this.IMAGES_WALKING);
               this.moveLeft();
               this.speed = 10;
             }
-            if (this.checkCollisionEndboss() < - 100) {
-              this.moveRight();
-              this.speed = 5;
-              this.otherDirection = true;
-            } else {
-              this.playAnimation(this.IMAGES_WALKING);
-              this.speed = 5;
-              
-            }
-
           }, 200);
         }, 1500);
-      } 
+      }
 
     }, 150);
   }
