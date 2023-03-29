@@ -62,9 +62,9 @@ class World {
     checkCollisionsThrowable() {
         this.throwableObject.forEach((bottle, i) => {// prüft ob Flaschen vorhanden sind.
             this.level.enemies.forEach((enemy, y) => {//püft ob es ein Kontact zwischen Flasche und Gegner gibt
-                if (bottle.isColliding(enemy)) { // kontakt Gegener
-                    this.level.enemies[y].hit(5);// fügt ein Schaden von 5
-                    this.throwableObject[i].hit(5);
+                if (bottle.isColliding(enemy)) {// kontakt Gegener
+                    this.throwableObject.splice(bottle); 
+                    this.level.enemies[y].hit();// fügt ein Schaden von 5
                 }
             });
         });
