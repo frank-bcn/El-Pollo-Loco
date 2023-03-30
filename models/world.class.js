@@ -9,6 +9,7 @@ class World {
     statusBarCoin = new StatusBar_Coin();
     statusBarBottle = new StatusBar_Bottle();
     statusBarEndboss = new StatusBar_Endboss();
+    statusBarEndbossImg = new StatusBar_Img_Endboss();
     throwableObject = [];
 
     constructor(canvas, keyboard) {
@@ -105,7 +106,8 @@ class World {
         this.addToMap(this.statusBarCoin);// fügt die Statusbar Coin in die Welt
         this.addToMap(this.statusBarBottle);// fügt die Statusbar Bottle in die Welt
         this.addToMap(this.statusBarEndboss);// fügt die StatusBar Endboss in die Welt
-
+        this.addToMap(this.statusBarEndbossImg);//fügt ein Img Endboss Bild ein
+        
         this.ctx.translate(this.camera_x, 0);
 
         this.addToMap(this.character);// fügt den Character zur Welt.
