@@ -82,7 +82,7 @@ class Endboss extends MovableObject {
         } else if (this.isHurt() ) {
           this.playAnimation(this.IMAGES_HURT);
           this.speed = 0;
-          this.firstHit = true;
+
         } else {
 
         }
