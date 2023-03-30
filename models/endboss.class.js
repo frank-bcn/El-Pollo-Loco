@@ -57,47 +57,82 @@ class Endboss extends MovableObject {
     this.loadImages(this.IMAGES_ATTACK);
     this.loadImages(this.IMAGES_HURT);
     this.loadImage(this.IMAGES_DEAD);
-    this.x = 1000;
+    this.x = 1950;
     this.animate();
   }
 
 
   checkCollisionEndboss() {
-    return (world.level.enemies[0].x - world.character.x)
+    return (this.x - world.character.x);
   }
 
   animate() {
 
     setInterval(() => {
-      if (this.hp < 15) this.firstHit = true;
+      setTimeout(() => {
+        if (this.checkCollisionEndboss() > 200) {
+          this.playAnimation(this.IMAGES_WALKING);
+          this.moveLeft();
+          this.speed = 5;
 
-      if (this.firstHit) {
+        } else if (this.checkCollisionEndboss() < 250) {
+          this.playAnimation(this.IMAGES_ALERT);
+          this.speed = 0; 
+
+        } else if (this.isHurt() ) {
+          this.playAnimation(this.IMAGES_HURT);
+          this.speed = 0;
+          this.firstHit = true;
+        } else {
+
+        }
+         
+        
+        
+        
+         
+        
+      },2000);
+
+
+
+    }, 200);
+    setInterval(() => {
+      
+    })
+  }
+}
+
+
+
+/*if (this.hp < 15) this.firstHit = true;
+
+if (this.firstHit) {
+  this.playAnimation(this.IMAGES_WALKING);
+  this.moveLeft();
+  this.speed = 10;
+  setTimeout(() => {
+    setInterval(() => {
+      if (world.character.isHurt()) {
+        this.moveRight();
+        this.speed = 5;
+        this.otherDirection = true;
+        this.firstHit = false;
+
+      } else if (this.checkCollisionEndboss() < 100) {
+        this.playAnimation(this.IMAGES_ATTACK);
+        this.moveLeft();
+        this.speed = 15;
+        this.otherDirection = false;
+
+      } else {
         this.playAnimation(this.IMAGES_WALKING);
         this.moveLeft();
         this.speed = 10;
-        setTimeout(() => {
-          setInterval(() => {
-            if (world.character.isHurt()) {
-              this.moveRight();
-              this.speed = 5;
-              this.otherDirection = true;
-              this.firstHit = false;
-
-            } else if (this.checkCollisionEndboss() < 100) {
-              this.playAnimation(this.IMAGES_ATTACK);
-              this.moveLeft();
-              this.speed = 15;
-              this.otherDirection = false;
-
-            } else {
-              this.playAnimation(this.IMAGES_WALKING);
-              this.moveLeft();
-              this.speed = 10;
-            }
-          }, 200);
-        }, 1500);
       }
-
-    }, 150);
-  }
+    }, 200);
+  }, 1500);
 }
+
+}, 150);
+}*/
