@@ -79,9 +79,9 @@ class Endboss extends MovableObject {
           this.playAnimation(this.IMAGES_ALERT);
           this.speed = 0; 
 
-        } else if (this.isHurt() ) {
+        } else if (this.checkCollisionsThrowable() ) {
           this.playAnimation(this.IMAGES_HURT);
-          this.speed = 0;
+          console.log('treffer');
 
         } else {
 

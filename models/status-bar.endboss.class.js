@@ -7,9 +7,6 @@ class StatusBar_Endboss extends DrawableObject {
         'img/7_statusbars/1_statusbar/2_statusbar_health/orange/100.png'
     ];
 
-   
-
-
     percentage = 100;
 
 
