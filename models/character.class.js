@@ -6,8 +6,9 @@ class Character extends MovableObject {
     hp = 100;
     bottle = 0;
     coin = 0;
-    
-    offset = {top: 113, bottom: 15, left: 20, right: 20};
+    longIdle = 0;
+
+    offset = { top: 113, bottom: 15, left: 20, right: 20 };
 
     IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-21.png',
@@ -124,13 +125,22 @@ class Character extends MovableObject {
             } else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
 
-            /*} else if (!this.world.keyboard.Right && this.world.keyboard.Left && this.world.keyboard.Space) {
-                this.playAnimation(this.IMAGES_Idle);*/
-            } else {
+            }
 
-                if (this.world.keyboard.Right || this.world.keyboard.Left) {
-                    this.playAnimation(this.IMAGES_WALKING);
+            if (!this.world.keyboard.Right && !this.world.keyboard.Left && !this.world.keyboard.Space && !this.world.keyboard.Up) {
+                if (this.longIdle > 70) {
+                    this.playAnimation(this.IMAGES_Long_Idle);
+                } else {
+                this.playAnimation(this.IMAGES_Idle);
+                this.longIdle++;
+                
                 }
+            } else {
+                this.longIdle = 0;
+            }
+
+            if (this.world.keyboard.Right || this.world.keyboard.Left) {
+                this.playAnimation(this.IMAGES_WALKING);
             }
         }, 50);
     }
