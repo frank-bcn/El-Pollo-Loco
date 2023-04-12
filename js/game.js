@@ -67,12 +67,12 @@ function startGameNow() {
   }
 
   function fullscreen() {
-    document.getElementById('canvas').style = "width:100%;height:100%";
+    document.getElementById('canvas').style = "width:100%;height:100vh";
     fullscreenIconExchange();
   }
 
   function closeFullscreen() {
-    document.getElementById('canvas').style = "width:100%,aspect-ratio:3/2";
+    document.getElementById('canvas').style = "width:720px;height:480px";
     closeFullscreenIconExchange();
   }
 
