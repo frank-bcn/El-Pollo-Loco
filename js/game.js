@@ -63,7 +63,6 @@ async function startGame() {
 function startGameNow() {
     canvas = document.getElementById("canvas");
     world = new World(canvas, keyboard);
-    gameOver();
 }
 
 function fullscreen() {

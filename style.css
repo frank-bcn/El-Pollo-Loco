@@ -331,10 +331,10 @@ canvas {
 /*******************************************/
 .startscreen {
   position: absolute;
-  margin-top: 10%;
+  margin-top: 14%;
   z-index: 1;
   width: 720px;
-  height: 481px;
+  height: 500px;
   background-image: url(img/background1.png);
   background-size: cover;
   background-repeat: no-repeat;
@@ -352,7 +352,6 @@ canvas {
   box-shadow: 0px 0px 25px 3px rgba(47, 154, 230, 0.8);
 }
 
-/* triangle */
 .play-btn::after {
   content: "";
   position: absolute;
@@ -371,7 +370,6 @@ canvas {
   transition: all 400ms cubic-bezier(0.55, 0.055, 0.675, 0.19);
 }
 
-/* pulse wave */
 .play-btn:before {
   content: "";
   position: absolute;
