@@ -65,7 +65,8 @@
     </span>
   </h1>
 
-  <div class="startscreen">
+  <div id="startscreen" class="startscreen">
+    <button onclick="startGame()" class="play-btn"></button>
     <div class='rooster'>
       <div class='body'>
         <div class='tail-container'>
@@ -93,10 +94,22 @@
       </div>
     </div>
   </div>
-  
+
   </div>
 
   <canvas id="canvas" width="720" height="480"></canvas>
+
+  <div class="panel">
+    <div class="iconMuteScreen">
+      <img src="img/mute.png" onclick="" id="mute" class="speaker">
+      <img src="img/speaker.png" onclick="" id="speaker" class="d-none speaker">
+      <img src="img/mute.png" onclick="" id="mute-game" class="speaker d-none">
+      <img src="img/speaker.png" onclick="" id="speaker-game" class="d-none speaker">
+
+      <img src="img/full.png" onclick="fullscreen()" id="fullscreen-icon" class="">
+      <img src="img/nofull.png" onclick="closeFullscreen()" id="nofullscreen-icon" class="d-none">
+    </div>
+  </div>
 
   <div class="discription">
 

@@ -53,3 +53,35 @@ window.addEventListener("keyup", (event) => {
         keyboard.Space = false;
     }
 });
+
+
+async function startGame() {
+    await setTimeout(startGameNow, 100);
+    document.getElementById('startscreen').classList.add('d-none');
+}
+
+function startGameNow() {
+    canvas = document.getElementById("canvas");
+    world = new World(canvas, keyboard);
+    gameOver();
+  }
+
+  function fullscreen() {
+    document.getElementById('canvas').style = "width:100%;height:100%";
+    fullscreenIconExchange();
+  }
+
+  function closeFullscreen() {
+    document.getElementById('canvas').style = "width:100%,aspect-ratio:3/2";
+    closeFullscreenIconExchange();
+  }
+
+  function fullscreenIconExchange() {
+    document.getElementById('fullscreen-icon').classList.add('d-none');
+    document.getElementById('nofullscreen-icon').classList.remove('d-none');
+}
+
+function closeFullscreenIconExchange() {
+    document.getElementById('fullscreen-icon').classList.remove('d-none');
+    document.getElementById('nofullscreen-icon').classList.add('d-none');
+}
