@@ -4,6 +4,10 @@ let level1 = new Level(
         new Chicken(),
         new Chicken(),
         new Chicken(),
+        new Chicken(),
+        new Chicken(),
+        new Chicken_small(),
+        new Chicken_small(),
         new Chicken_small(),
         new Chicken_small(),
         new Chicken_small(),
@@ -39,6 +43,10 @@ let level1 = new Level(
     ],
 
     [
+        new Bottle(),
+        new Bottle(),
+        new Bottle(),
+        new Bottle(),
         new Bottle(),
         new Bottle(),
         new Bottle(),
