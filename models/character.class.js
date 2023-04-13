@@ -116,31 +116,28 @@ class Character extends MovableObject {
 
 
         setInterval(() => {
-            if (this.isDead()) {
-                this.playAnimation(this.IMAGES_DEAD);
-
-            } else if (this.isHurt()) {
-                this.playAnimation(this.IMAGES_HURT);
-
-            } else if (this.isAboveGround()) {
-                this.playAnimation(this.IMAGES_JUMPING);
-            }
-
             if (!this.world.keyboard.Right && !this.world.keyboard.Left && !this.world.keyboard.Space && !this.world.keyboard.Up) {
-                if (this.longIdle > 100) {
-                    this.playAnimation(this.IMAGES_Long_Idle);
-                } else {
+              if (this.longIdle > 100) {
+                this.playAnimation(this.IMAGES_Long_Idle);
+              } else {
                 this.playAnimation(this.IMAGES_Idle);
                 this.longIdle++;
-        
-                }
+              }
             } else {
-                this.longIdle = 0;
+              this.longIdle = 0;
             }
-
+            
+            if (this.isDead()) {
+              this.playAnimation(this.IMAGES_DEAD);
+            } else if (this.isHurt()) {
+              this.playAnimation(this.IMAGES_HURT);
+            } else if (this.isAboveGround()) {
+              this.playAnimation(this.IMAGES_JUMPING);
+            }
+          
             if (this.world.keyboard.Right || this.world.keyboard.Left) {
-                this.playAnimation(this.IMAGES_WALKING);
+              this.playAnimation(this.IMAGES_WALKING);
             }
-        }, 50);
+          }, 50);
     }
 }
