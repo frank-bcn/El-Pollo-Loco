@@ -36,7 +36,7 @@ class World {
         if (this.character.bottle > 0 && this.keyboard.Space) {
             let bottle = new ThrowableObject(this.character.x + 50, this.character.y + 150);
             this.throwableObject.push(bottle);
-            this.character.bottle --;
+            this.character.bottle--;
             this.statusBarBottle.setPercentage(this.character.bottle);// Aktualisiert die StatusBar.
         }
     }
@@ -64,8 +64,13 @@ class World {
     checkCollisionsThrowable() {
         this.throwableObject.forEach((bottle, i) => {// prüft ob Flaschen vorhanden sind.
             this.level.enemies.forEach((enemy, y) => {//püft ob es ein Kontact zwischen Flasche und Gegner gibt
-                if (bottle.isColliding(enemy)) {// kontakt Gegener
-                    this.throwableObject.splice(bottle); 
+                if (bottle.isColliding(world.level.enemies[0])) { // kontakt endboss
+                    this.throwableObject.splice(bottle, 1);
+                    this.level.enemies[0].hit();// fügt ein Schaden von 5
+                    this.statusBarEndboss.setPercentage(world.level.enemies[0].hp)
+
+                } else if (bottle.isColliding(enemy)) { // kontakt Gegener
+                    this.throwableObject.splice(bottle, 1);
                     this.level.enemies[y].hit();// fügt ein Schaden von 5
                 }
             });
@@ -88,7 +93,7 @@ class World {
                 this.character.coin++;
                 this.statusBarCoin.setPercentage(this.character.coin);//füllt die StatusBar auf.
                 this.level.coin.splice(this.level.coin.indexOf(coin), 1)// Entfernt die Coins aus der Welt.
-            } 
+            }
         });
     }
 
@@ -107,7 +112,7 @@ class World {
         this.addToMap(this.statusBarBottle);// fügt die Statusbar Bottle in die Welt
         this.addToMap(this.statusBarEndboss);// fügt die StatusBar Endboss in die Welt
         this.addToMap(this.statusBarEndbossImg);//fügt ein Img Endboss Bild ein
-        
+
         this.ctx.translate(this.camera_x, 0);
 
         this.addToMap(this.character);// fügt den Character zur Welt.

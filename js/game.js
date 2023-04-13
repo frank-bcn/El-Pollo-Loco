@@ -61,7 +61,7 @@ async function startGame() {
 }
 
 function startGameNow() {
-    canvas = document.getElementById("canvas");
+    canvas = document.getElementById('canvas');
     document.getElementById('canvas').classList.remove('d-none');
     world = new World(canvas, keyboard);
 }
@@ -103,19 +103,13 @@ function closeFullscreenIconExchange() {
 }
 
 function sound() {
-    world.character.walking_sound.muted = false;
     world.character.walking_sound.play();
-
-    world.character.jump_sound.muted = false;
     world.character.jump_sound.play();
     muteExchange();
 }
 
 function soundMute() {
-    world.character.walking_sound.muted = true;
     world.character.walking_sound.pause();
-
-    world.character.jump_sound.muted = true;
     world.character.jump_sound.pause();
     soundExchange();
 }

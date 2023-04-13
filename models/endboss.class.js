@@ -3,7 +3,7 @@ class Endboss extends MovableObject {
   width = 250;
   y = 60;
   speed = 5;
-  hp = 15;
+  hp = 100;
   firstHit = false;
 
   offset = { top: 0, bottom: 0, left: 0, right: 0 };
@@ -69,31 +69,29 @@ class Endboss extends MovableObject {
   }
 
   animate() {
-
     setInterval(() => {
       setTimeout(() => {
-
         if (this.isDead()) {
           this.playAnimation(this.IMAGES_DEAD);
-
-         } if (this.checkCollisionEndboss() < 200) {
-          this.playAnimation(this.IMAGES_ATTACK)
-          this.moveLeft();
-          this.speed = 50;
-
         } else if (this.isHurt()) {
           this.playAnimation(this.IMAGES_HURT);
-          
-        } else if (this.checkCollisionEndboss() < 1000) {
-          this.playAnimation(this.IMAGES_WALKING);
-          this.moveLeft();
-          this.speed = 5;
-
-        } else if (this.checkCollisionEndboss() < 400) {
-          this.playAnimation(this.IMAGES_ALERT);
-          this.speed = 0;
+        } else {
+           if (this.checkCollisionEndboss() < 200) {
+            this.playAnimation(this.IMAGES_ATTACK);
+            this.moveLeft();
+            this.speed = 50;
+           }else if (this.checkCollisionEndboss() < 400) {
+            this.playAnimation(this.IMAGES_ALERT);
+            this.speed = 0;
+          }
+           else if (this.checkCollisionEndboss() < 1000) {
+            this.playAnimation(this.IMAGES_WALKING);
+            this.moveLeft();
+            this.speed = 5;
+          }
         }
       }, 2000);
-    }, 200); 
+    }, 200);
   }
+  
 }
