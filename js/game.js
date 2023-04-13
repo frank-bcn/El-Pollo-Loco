@@ -62,18 +62,35 @@ async function startGame() {
 
 function startGameNow() {
     canvas = document.getElementById("canvas");
+    document.getElementById('canvas').classList.remove('d-none');
     world = new World(canvas, keyboard);
 }
 
 function fullscreen() {
-    document.getElementById('canvas').style = "width:100%;height:100vh";
+    var canvasFull = document.getElementById('canvasFull');
+    if (canvasFull.requestFullscreen) {
+      canvasFull.requestFullscreen();
+    } else if (canvasFull.webkitRequestFullscreen) { 
+      canvasFull.webkitRequestFullscreen();
+    } else if (canvasFull.msRequestFullscreen) { 
+      canvasFull.msRequestFullscreen();
+    }
+    canvas.style = "width:100%;height:100%";
     fullscreenIconExchange();
-}
+  }
 
-function closeFullscreen() {
-    document.getElementById('canvas').style = "width:720px;height:480px";
+  function closeFullscreen() {
+    var canvas = document.getElementById('canvas');
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) { 
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { 
+      document.msExitFullscreen();
+    }
+    canvas.style = "width:720px;height:480px";
     closeFullscreenIconExchange();
-}
+  }
 
 function fullscreenIconExchange() {
     document.getElementById('fullscreen').classList.add('d-none');
