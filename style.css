@@ -344,7 +344,7 @@ canvas {
 .play-btn {
   width: 100px;
   height: 100px;
-  background: radial-gradient( rgba(47, 154, 230, 0.8) 60%, rgba(255, 255, 255, 1) 62%);
+  background: radial-gradient(rgba(47, 154, 230, 0.8) 60%, rgba(255, 255, 255, 1) 62%);
   border-radius: 50%;
   position: relative;
   display: block;
@@ -400,6 +400,7 @@ canvas {
     opacity: 1;
     box-shadow: inset 0px 0px 25px 3px rgba(255, 255, 255, 0.75), 0px 0px 25px 10px rgba(255, 255, 255, 0.75);
   }
+
   100% {
     -webkit-transform: scale(1);
     transform: scale(1);
@@ -416,6 +417,7 @@ canvas {
     opacity: 1;
     box-shadow: inset 0px 0px 25px 3px rgba(255, 255, 255, 0.75), 0px 0px 25px 10px rgba(255, 255, 255, 0.75);
   }
+
   100% {
     -webkit-transform: scale(1, 1);
     transform: scale(1);
@@ -434,6 +436,7 @@ canvas {
   z-index: 2;
   animation: rooster-moonwalk 7s infinite linear, rooster-bob 0.375s infinite alternate linear;
 }
+
 .rooster .body {
   position: absolute;
   top: 60%;
@@ -443,6 +446,7 @@ canvas {
   background: #383851;
   border-radius: 0 0 150px 150px;
 }
+
 .rooster .body:before {
   content: "";
   position: absolute;
@@ -454,6 +458,7 @@ canvas {
   transform: rotate(45deg);
   box-shadow: -10px 10px 0 #383851, -20px 20px 0 #383851, -30px 30px 0 #383851, -40px 40px 0 #383851;
 }
+
 .rooster .body-inner {
   position: absolute;
   top: 62%;
@@ -464,6 +469,7 @@ canvas {
   border-radius: 0 0 110px 110px;
   z-index: 2;
 }
+
 .rooster .tail-container {
   position: absolute;
   top: -120%;
@@ -471,6 +477,7 @@ canvas {
   height: 100px;
   left: -50%;
 }
+
 .rooster .tail-container .tail {
   position: absolute;
   top: 0;
@@ -481,6 +488,7 @@ canvas {
   border-radius: 0 100px 100px 0;
   transform-origin: 0 100%;
 }
+
 .rooster .tail-container .tail:before {
   content: "";
   position: absolute;
@@ -493,6 +501,7 @@ canvas {
   border-radius: inherit;
   transform: rotate(-40deg);
 }
+
 .rooster .tail-container .tail:after {
   content: "";
   position: absolute;
@@ -505,10 +514,13 @@ canvas {
   transform-origin: inherit;
   transform: rotate(-90deg);
 }
-.rooster .body, .rooster .body-inner {
+
+.rooster .body,
+.rooster .body-inner {
   transform: rotate(-8deg);
   animation: bodyanim 0.75s infinite ease-in-out;
 }
+
 .rooster .thigh {
   position: absolute;
   background: #2C2C45;
@@ -519,7 +531,9 @@ canvas {
   border-top-right-radius: 50%;
   transform: rotate(0deg) skewX(-30deg) scale(1, 0.866);
 }
-.rooster .thigh:before, .rooster .thigh:after {
+
+.rooster .thigh:before,
+.rooster .thigh:after {
   content: "";
   position: absolute;
   top: 0;
@@ -528,12 +542,15 @@ canvas {
   background: inherit;
   border-radius: inherit;
 }
+
 .rooster .thigh:before {
   transform: rotate(-135deg) skewX(-45deg) scale(1.414, 0.707) translate(0, -50%);
 }
+
 .rooster .thigh:after {
   transform: rotate(135deg) skewY(-45deg) scale(0.707, 1.414) translate(50%);
 }
+
 .rooster .leg {
   position: absolute;
   top: 45px;
@@ -544,7 +561,9 @@ canvas {
   transform-origin: 50% 0;
   border-radius: 0 0 50% 50%;
 }
-.rooster .leg:before, .rooster .leg:after {
+
+.rooster .leg:before,
+.rooster .leg:after {
   content: "";
   position: absolute;
   bottom: 0px;
@@ -552,17 +571,20 @@ canvas {
   height: 8px;
   background: inherit;
 }
+
 .rooster .leg:before {
   transform-origin: 100% 50%;
   left: -16px;
   border-radius: 10px 10px 0 10px;
 }
+
 .rooster .leg:after {
   transform-origin: 0% 50%;
   left: 4px;
   width: 30px;
   border-radius: 10px 10px 10px 0;
 }
+
 .rooster .front-leg-container {
   position: absolute;
   top: 75%;
@@ -574,18 +596,24 @@ canvas {
   z-index: 1;
   animation: front-thigh 1.5s infinite;
 }
+
 .rooster .front-leg-container .leg {
   animation: front-foot 1.5s infinite;
 }
-.rooster .front-leg-container .leg:before, .rooster .front-leg-container .leg:after {
+
+.rooster .front-leg-container .leg:before,
+.rooster .front-leg-container .leg:after {
   transform: rotate(-30deg);
 }
+
 .rooster .front-leg-container .leg:before {
   animation: front-small 1.5s infinite;
 }
+
 .rooster .front-leg-container .leg:after {
   animation: front-big 1.5s infinite;
 }
+
 .rooster .back-leg-container {
   position: absolute;
   top: 75%;
@@ -597,21 +625,28 @@ canvas {
   z-index: -1;
   animation: back-thigh 1.5s infinite;
 }
+
 .rooster .back-leg-container .thigh {
   background: #202034;
 }
+
 .rooster .back-leg-container .leg {
   animation: back-foot 1.5s infinite;
 }
-.rooster .back-leg-container .leg:before, .rooster .back-leg-container .leg:after {
+
+.rooster .back-leg-container .leg:before,
+.rooster .back-leg-container .leg:after {
   transform: rotate(30deg);
 }
+
 .rooster .back-leg-container .leg:before {
   animation: back-small 1.5s infinite;
 }
+
 .rooster .back-leg-container .leg:after {
   animation: back-big 1.5s infinite;
 }
+
 .rooster .neck {
   position: absolute;
   top: 12%;
@@ -625,6 +660,7 @@ canvas {
   transform: rotate(0deg) skew(-10deg);
   animation: neckanim 0.75s infinite ease-in-out;
 }
+
 .rooster .neck:before {
   content: "";
   position: absolute;
@@ -636,6 +672,7 @@ canvas {
   border-radius: 0 30% 30% 0;
   transform: skew(10deg);
 }
+
 .rooster .neck .comb-container {
   position: absolute;
   top: -20px;
@@ -645,6 +682,7 @@ canvas {
   transform: rotate(-45deg) skew(0deg);
   overflow: hidden;
 }
+
 .rooster .neck .comb {
   position: absolute;
   width: 20%;
@@ -655,7 +693,9 @@ canvas {
   border-radius: 10px 10px 10px 0;
   transform: rotate(0deg);
 }
-.rooster .neck .comb:before, .rooster .neck .comb:after {
+
+.rooster .neck .comb:before,
+.rooster .neck .comb:after {
   content: "";
   position: absolute;
   width: 100%;
@@ -663,16 +703,19 @@ canvas {
   bottom: 0;
   background: inherit;
 }
+
 .rooster .neck .comb:before {
   left: -89%;
   border-radius: 10px 10px 0 0;
   box-shadow: -15px 7px 0 #C52541, -30px 14px 0 #C52541;
 }
+
 .rooster .neck .comb:after {
   left: -360%;
   height: 50%;
   border-radius: 10px 10px 0 10px;
 }
+
 .rooster .neck .mouth-container {
   position: absolute;
   top: 0;
@@ -681,6 +724,7 @@ canvas {
   transform: skew(10deg);
   left: 8px;
 }
+
 .rooster .neck .wattle {
   position: absolute;
   top: 45px;
@@ -693,6 +737,7 @@ canvas {
   transform: rotate(-10deg);
   animation: wattleanim 1.5s infinite ease-in-out;
 }
+
 .rooster .neck .eye-semicircle {
   position: absolute;
   top: 25px;
@@ -702,6 +747,7 @@ canvas {
   right: 0;
   border-radius: 40px 0 0 40px;
 }
+
 .rooster .neck .eye-semicircle:before {
   content: "";
   position: absolute;
@@ -712,6 +758,7 @@ canvas {
   border-radius: 50%;
   right: 7px;
 }
+
 .rooster .neck .beak {
   position: absolute;
   top: 45px;
@@ -722,6 +769,7 @@ canvas {
   border-width: 12px 16px 0 8px;
   border-color: #FFAE20 transparent transparent transparent;
 }
+
 .rooster .neck .beak:before {
   content: "";
   position: absolute;
@@ -738,204 +786,263 @@ canvas {
   from {
     left: 100%;
   }
+
   to {
     left: -50%;
   }
 }
+
 @keyframes rooster-bob {
   0% {
     transform: translate(0, 0);
   }
+
   50% {
     transform: translate(1%, -4%);
   }
 }
+
 @keyframes bodyanim {
   0% {
     transform: rotate(-8deg);
   }
+
   50% {
     transform: rotate(0deg);
   }
 }
+
 @keyframes neckanim {
   0% {
     transform: rotate(0deg) skew(-10deg);
   }
+
   50% {
     transform: rotate(-15deg) skew(-10deg);
   }
 }
+
 @keyframes wattleanim {
   0% {
     transform: rotate(-10deg);
   }
+
   50% {
     transform: rotate(10deg);
   }
 }
+
 @keyframes front-thigh {
   0% {
     transform: rotate(30deg);
   }
+
   10% {
     transform: rotate(35deg);
   }
+
   30% {
     transform: rotate(-40deg);
   }
+
   50% {
     transform: rotate(-30deg);
   }
+
   60% {
     transform: rotate(-35deg);
   }
+
   80% {
     transform: rotate(40deg);
   }
+
   100% {
     transform: rotate(30deg);
   }
 }
+
 @keyframes front-foot {
   0% {
     transform: rotate(0deg);
   }
+
   17% {
     transform: rotate(-90deg);
   }
+
   30% {
     transform: rotate(-90deg);
   }
+
   50% {
     transform: rotate(0deg);
   }
+
   80% {
     transform: rotate(-40deg);
   }
+
   100% {
     transform: rotate(0deg);
   }
 }
+
 @keyframes front-small {
   0% {
     transform: rotate(-30deg);
   }
+
   10% {
     transform: rotate(60deg);
   }
+
   25% {
     transform: rotate(70deg);
   }
+
   50% {
     transform: rotate(30deg);
   }
+
   80% {
     transform: rotate(50deg);
   }
 }
+
 @keyframes front-big {
   0% {
     transform: rotate(-30deg);
   }
+
   10% {
     transform: rotate(0deg);
   }
+
   30% {
     transform: rotate(180deg);
   }
+
   45% {
     transform: rotate(30deg);
   }
+
   50% {
     transform: rotate(30deg);
   }
+
   80% {
     transform: rotate(0deg);
   }
 }
+
 @keyframes back-thigh {
   0% {
     transform: rotate(-30deg);
   }
+
   10% {
     transform: rotate(-35deg);
   }
+
   30% {
     transform: rotate(40deg);
   }
+
   50% {
     transform: rotate(30deg);
   }
+
   60% {
     transform: rotate(35deg);
   }
+
   80% {
     transform: rotate(-40deg);
   }
+
   100% {
     transform: rotate(-30deg);
   }
 }
+
 @keyframes back-foot {
   0% {
     transform: rotate(0deg);
   }
+
   30% {
     transform: rotate(-40deg);
   }
+
   50% {
     transform: rotate(0deg);
   }
+
   67% {
     transform: rotate(-90deg);
   }
+
   80% {
     transform: rotate(-90deg);
   }
+
   100% {
     transform: rotate(0deg);
   }
 }
+
 @keyframes back-small {
   0% {
     transform: rotate(30deg);
   }
+
   30% {
     transform: rotate(50deg);
   }
+
   50% {
     transform: rotate(-30deg);
   }
+
   60% {
     transform: rotate(60deg);
   }
+
   75% {
     transform: rotate(70deg);
   }
+
   100% {
     transform: rotate(30deg);
   }
 }
+
 @keyframes back-big {
   0% {
     transform: rotate(30deg);
   }
+
   30% {
     transform: rotate(0deg);
   }
+
   50% {
     transform: rotate(-30deg);
   }
+
   60% {
     transform: rotate(0deg);
   }
+
   80% {
     transform: rotate(180deg);
   }
+
   95% {
     transform: rotate(30deg);
   }
+
   100% {
     transform: rotate(30deg);
   }
@@ -952,7 +1059,7 @@ canvas {
   width: 700px;
 }
 
-.iconMuteScreen  img {
+.iconMuteScreen img {
   height: 25px;
   width: 25px;
   object-fit: contain;

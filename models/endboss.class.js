@@ -83,13 +83,13 @@ class Endboss extends MovableObject {
 
         } else if (this.isHurt()) {
           this.playAnimation(this.IMAGES_HURT);
-
+          
         } else if (this.checkCollisionEndboss() < 1000) {
           this.playAnimation(this.IMAGES_WALKING);
           this.moveLeft();
           this.speed = 5;
 
-        } else if (this.checkCollisionEndboss() < 350) {
+        } else if (this.checkCollisionEndboss() < 400) {
           this.playAnimation(this.IMAGES_ALERT);
           this.speed = 0;
         }
