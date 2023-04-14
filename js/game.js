@@ -126,7 +126,3 @@ function muteExchange() {
     document.getElementById('mute').classList.remove('d-none');
 }
 
-function characterIsDead() { 
-    world.character.dead = true;
-    document.getElementById('youLose').classList.remove('d-none');
-}
