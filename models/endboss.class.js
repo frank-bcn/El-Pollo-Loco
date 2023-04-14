@@ -3,7 +3,7 @@ class Endboss extends MovableObject {
   width = 250;
   y = 60;
   speed = 5;
-  hp = 100;
+  hp = 200;
   firstHit = false;
 
   offset = { top: 0, bottom: 0, left: 0, right: 0 };
@@ -12,7 +12,7 @@ class Endboss extends MovableObject {
     'img/4_enemie_boss_chicken/1_walk/G1.png',
     'img/4_enemie_boss_chicken/1_walk/G2.png',
     'img/4_enemie_boss_chicken/1_walk/G3.png',
-    'img/4_enemie_boss_chicken/1_walk/G4.png'
+    'img/4_enemie_boss_chicken/1_walk/G4.png',
   ];
 
   IMAGES_ALERT = [

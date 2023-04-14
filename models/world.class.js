@@ -65,12 +65,13 @@ class World {
         this.throwableObject.forEach((bottle, i) => {// prüft ob Flaschen vorhanden sind.
             this.level.enemies.forEach((enemy, y) => {//püft ob es ein Kontact zwischen Flasche und Gegner gibt
                 if (bottle.isColliding(world.level.enemies[0])) { // kontakt endboss
-                    this.throwableObject.splice(bottle, 1);
+                    console.log(bottle);
+                    this.throwableObject.splice(bottle);
                     this.level.enemies[0].hit();// fügt ein Schaden von 5
                     this.statusBarEndboss.setPercentage(world.level.enemies[0].hp)
 
                 } else if (bottle.isColliding(enemy)) { // kontakt Gegener
-                    this.throwableObject.splice(bottle, 1);
+                    this.throwableObject.splice(bottle);
                     this.level.enemies[y].hit();// fügt ein Schaden von 5
                 }
             });

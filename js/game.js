@@ -58,6 +58,8 @@ window.addEventListener("keyup", (event) => {
 async function startGame() {
     await setTimeout(startGameNow, 100);
     document.getElementById('startscreen').classList.add('d-none');
+    document.getElementById('panal').classList.remove('d-none');
+    document.getElementById('discription').style.marginTop = "0";
 }
 
 function startGameNow() {
@@ -122,4 +124,9 @@ function soundExchange() {
 function muteExchange() {
     document.getElementById('speaker').classList.add('d-none');
     document.getElementById('mute').classList.remove('d-none');
+}
+
+function characterIsDead() { 
+    world.character.dead = true;
+    document.getElementById('youLose').classList.remove('d-none');
 }

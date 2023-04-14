@@ -335,7 +335,6 @@ canvas {
   z-index: 1;
   width: 720px;
   height: 500px;
-  background-image: url(img/background1.png);
   background-size: cover;
   background-repeat: no-repeat;
   overflow: hidden;
@@ -429,7 +428,7 @@ canvas {
 
 .rooster {
   position: absolute;
-  top: 45%;
+  top: 35%;
   width: 50%;
   height: 50%;
   left: 25%;
@@ -1073,7 +1072,7 @@ canvas {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 30px;
+  margin-top: 50%;
   box-sizing: border-box;
   padding-left: 20px;
   padding-right: 20px;
@@ -1093,3 +1092,19 @@ canvas {
   margin-left: 10px;
   font-size: 25px;
 }
+
+
+/******************************************/
+/**************  Losescreen  **************/
+/******************************************/
+
+.youLose {
+  display: flex;
+  width: 720px;
+  height: 500px;
+  background-color: #383851;
+
+}
+/*****************************************/
+/**************  winscreen  **************/
+/*****************************************/

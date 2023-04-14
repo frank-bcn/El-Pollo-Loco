@@ -44,7 +44,7 @@ class ThrowableObject extends MovableObject {
             if(this.isDead() || this.y >= 370) {// wenn die Flasche tot ist oder die obere Grenze erreicht hat, wird die Splash Bilder aufgerufen. 
                 this.splash();
             }
-        }, 50);
+        }, 40);
     }
 
     splash() {
