@@ -349,6 +349,7 @@ canvas {
   display: block;
   margin: 100px auto;
   box-shadow: 0px 0px 25px 3px rgba(47, 154, 230, 0.8);
+  cursor: pointer;
 }
 
 .play-btn::after {
@@ -1098,13 +1099,17 @@ canvas {
 /**************  Losescreen  **************/
 /******************************************/
 
-.youLose {
-  display: flex;
+.gameOver {
+  position: absolute;
+  margin-top: 14%;
   width: 720px;
   height: 500px;
-  background-color: #383851;
-
+  background-position: -83px 83px;;
+  overflow: hidden;
+  background-image: url(img/game\ over.png);
+  background-size: cover;
 }
+
 /*****************************************/
 /**************  winscreen  **************/
 /*****************************************/

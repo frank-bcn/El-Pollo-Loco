@@ -130,3 +130,12 @@ function muteExchange() {
     audioFiles.forEach((e => e.muted = true));
 }
 
+function gameOver() {
+    document.getElementById('gameOver').classList.remove('d-none');
+    document.getElementById('startscreen').classList.add('d-none');
+    document.getElementById('panal').classList.add('d-none');
+    document.getElementById('discription').classList.add('d-none');
+    document.getElementById('canvas').classList.add('d-none');
+    document.getElementById('canvasFull').classList.add('d-none');
+}
+

@@ -73,6 +73,7 @@ class Endboss extends MovableObject {
       setTimeout(() => {
         if (this.isDead()) {
           this.playAnimation(this.IMAGES_DEAD);
+          setTimeout(gameOver, 2000);
         } else if (this.isHurt()) {
           this.playAnimation(this.IMAGES_HURT);
         } else {
