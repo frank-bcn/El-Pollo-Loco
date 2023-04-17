@@ -110,24 +110,23 @@ function closeFullscreenIconExchange() {
 }
 
 function sound() {
-    world.character.walking_sound.play();
-    world.character.jump_sound.play();
     muteExchange();
 }
 
 function soundMute() {
-    world.character.walking_sound.pause();
-    world.character.jump_sound.pause();
     soundExchange();
 }
 
 function soundExchange() {
     document.getElementById('mute').classList.add('d-none');
     document.getElementById('speaker').classList.remove('d-none');
+    audioFiles.forEach((e => e.muted = false));
+    audioFiles.volume = 0;
 }
 
 function muteExchange() {
     document.getElementById('speaker').classList.add('d-none');
     document.getElementById('mute').classList.remove('d-none');
+    audioFiles.forEach((e => e.muted = true));
 }
 

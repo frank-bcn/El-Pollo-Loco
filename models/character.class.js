@@ -89,6 +89,7 @@ class Character extends MovableObject {
     animate() {
 
         setInterval(() => {
+          audioFiles[0].pause();
             if (this.world.keyboard.Right && this.x < this.world.level.level_end_x) {
                 this.moveRight();
                 audioFiles[0].play();
