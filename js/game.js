@@ -2,13 +2,18 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 
+let audioFiles = [
+    walking_sound = new Audio('audio/run.mp3'),
+    jump_sound = new Audio('audio/jump.mp3'),
+    hit_enemies_sound = new Audio('audio/chicken.mp3'),
+    broken_glas_sound = new Audio('audio/glas.mp3'),
+    trow_sound = new Audio('audio/throw.mp3'),
+  ];
+
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
 }
-
-
-
 
 window.addEventListener("keydown", (event) => {
     if (event.keyCode == 39) {

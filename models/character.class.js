@@ -73,14 +73,7 @@ class Character extends MovableObject {
         "img/2_character_pepe/1_idle/long_idle/I-19.png",
         "img/2_character_pepe/1_idle/long_idle/I-20.png",
     ];
-
-    world;
-    walking_sound = new Audio('audio/run.mp3');
-    jump_sound = new Audio('audio/jump.mp3');
-    hit_enemies_sound = new Audio('audio/chicken.mp3');
-    broken_glas_sound = new Audio('audio/glas.mp3');
-    trow_sound = new Audio('audio/throw.mp3');
-
+    
     constructor() {
         super().loadImage('img/2_character_pepe/2_walk/W-21.png');
         this.loadImages(this.IMAGES_WALKING);
@@ -96,20 +89,21 @@ class Character extends MovableObject {
     animate() {
 
         setInterval(() => {
-            this.walking_sound.pause();
             if (this.world.keyboard.Right && this.x < this.world.level.level_end_x) {
                 this.moveRight();
+                audioFiles[0].play();
             }
 
             if (this.world.keyboard.Left && this.x > 0) {
                 this.moveLeft();
                 this.otherDirection = true;
-                this.walking_sound.play();
+                audioFiles[0].play();
             }
             this.world.camera_x = -this.x + 100;
 
             if (this.world.keyboard.Up && !this.isAboveGround()) {
                 this.jump();
+                audioFiles[1].play();
             }
 
         }, 1000 / 60);

@@ -62,7 +62,6 @@ class MovableObject extends DrawableObject {
     moveRight() {
         this.x += this.speed;
         this.otherDirection = false;
-        this.walking_sound.play();
 
     }
 
@@ -73,6 +72,5 @@ class MovableObject extends DrawableObject {
 
     jump() {
         this.speedY = 30;
-        this.jump_sound.play();
     }
 }

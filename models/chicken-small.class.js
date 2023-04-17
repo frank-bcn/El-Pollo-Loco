@@ -33,6 +33,7 @@ class Chicken_small extends MovableObject {
                 this.offset = {top: 0, bottom: 0, left: 0, right: 0};
                 this.speed = 0;
                 this.loadImage(this.IMAGE_DIE);
+                audioFiles[2].play();
             } else {
                 this.moveLeft();
                 this.playAnimation(this.IMAGES_WALKING);
