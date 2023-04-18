@@ -38,6 +38,7 @@ class World {
             this.throwableObject.push(bottle);
             this.character.bottle--;
             this.statusBarBottle.setPercentage(this.character.bottle);// Aktualisiert die StatusBar.
+            console.log(this.character.bottle, 'werfen');
         }
     }
 
@@ -66,7 +67,6 @@ class World {
         this.throwableObject.forEach((bottle, i) => {// prüft ob Flaschen vorhanden sind.
             this.level.enemies.forEach((enemy, y) => {//püft ob es ein Kontact zwischen Flasche und Gegner gibt
                 if (bottle.isColliding(world.level.enemies[0])) { // kontakt endboss
-                    console.log(bottle);
                     audioFiles[4].play();
                     this.throwableObject.splice(bottle);
                     this.level.enemies[0].hit();// fügt ein Schaden von 5
@@ -87,6 +87,7 @@ class World {
                 this.character.bottle++;
                 this.statusBarBottle.setPercentage(this.character.bottle);// füllt die Statusbar auf.
                 this.level.bottle.splice(this.level.bottle.indexOf(bottle), 1)//Entfernt die Flaschen aus der Welt.
+                console.log(this.character.bottle,'sammeln');
             }
         });
     }

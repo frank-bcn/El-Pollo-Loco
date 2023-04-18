@@ -61,6 +61,7 @@ window.addEventListener("keyup", (event) => {
 
 
 async function startGame() {
+    await initLevel();
     await setTimeout(startGameNow, 100);
     document.getElementById('startscreen').classList.add('d-none');
     document.getElementById('panal').classList.remove('d-none');
