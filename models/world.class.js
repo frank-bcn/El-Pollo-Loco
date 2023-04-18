@@ -69,7 +69,7 @@ class World {
             this.level.enemies.forEach((enemy, y) => {//püft ob es ein Kontact zwischen Flasche und Gegner gibt
                 if (bottle.isColliding(world.level.enemies[0])) { // kontakt endboss
                     this.throwableObject.splice(bottle);
-                    this.level.enemies[3].hit();// fügt ein Schaden von 5
+                    this.level.enemies[0].hit();// fügt ein Schaden von 5
                     this.statusBarEndboss.setPercentage(world.level.enemies[0].hp)
 
                 } else if (bottle.isColliding(enemy)) { // kontakt Gegener
