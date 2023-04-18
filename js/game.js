@@ -1,6 +1,7 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let intervalIds = [];
 
 let audioFiles = [
     music_sound = new Audio('audio/music.mp3'),
@@ -134,13 +135,3 @@ function muteExchange() {
     document.getElementById('mute').classList.remove('d-none');
     audioFiles.forEach((e => e.muted = true));
 }
-
-function gameOver() {
-    document.getElementById('gameOver').classList.remove('d-none');
-    document.getElementById('startscreen').classList.add('d-none');
-    document.getElementById('panal').classList.add('d-none');
-    document.getElementById('discription').classList.add('d-none');
-    document.getElementById('canvas').classList.add('d-none');
-    document.getElementById('canvasFull').classList.add('d-none');
-}
-

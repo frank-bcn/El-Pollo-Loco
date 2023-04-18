@@ -10,6 +10,7 @@ class World {
     statusBarBottle = new StatusBar_Bottle();
     statusBarEndboss = new StatusBar_Endboss();
     statusBarEndbossImg = new StatusBar_Img_Endboss();
+    gameOver = new GameOver();
     throwableObject = [];
 
     constructor(canvas, keyboard) {
@@ -131,6 +132,8 @@ class World {
         this.addObjectsToMap(this.throwableObject);// fügt die Flaschen zur Welt.   
 
         this.ctx.translate(-this.camera_x, 0);
+
+        this.addToMap(this.gameOver);
 
 
 
