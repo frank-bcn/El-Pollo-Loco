@@ -3,11 +3,21 @@ let world;
 let keyboard = new Keyboard();
 
 let audioFiles = [
-    walking_sound = new Audio('audio/run.mp3'),
+    music_sound = new Audio('audio/music.mp3'),
+    walking_sound = new Audio('audio/walking.mp3'),
     jump_sound = new Audio('audio/jump.mp3'),
-    hit_enemies_sound = new Audio('audio/chicken.mp3'),
+    hit_enemies_sound = new Audio('audio/hitChicken.mp3'),
     broken_glas_sound = new Audio('audio/glas.mp3'),
     trow_sound = new Audio('audio/throw.mp3'),
+    bottle_sound = new Audio('audio/bottles.mp3'),
+    coin_sound = new Audio('audio/collect-coins.mp3'),
+    dying_sound = new Audio('audio/dying.mp3'),
+    hit_endboss = new Audio('audio/hit_endboss.mp3'),
+    hit_enemies_sound = new Audio('audio/hitChicken.mp3'),
+    hurt_sound = new Audio('audio/hurt.mp3'),
+    loose_sound = new Audio('audio/loose.mp3'),
+    snooring_sound = new Audio('audio/snoring.mp3'),
+    win_sound = new Audio('audio/win.mp3')
 ];
 
 window.addEventListener("keydown", (event) => {

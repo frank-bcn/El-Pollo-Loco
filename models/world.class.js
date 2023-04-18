@@ -29,9 +29,10 @@ class World {
         setInterval(() => {
             this.checkThrowableObjects();
         }, 150);
+
         setInterval(() => {
             this.checkCollisions();
-        }, 40);
+        }, 60);
     }
 
     checkThrowableObjects() {
@@ -54,8 +55,7 @@ class World {
         this.level.enemies.forEach((enemy, y) => { //Schleife die durch das level enemies irretiert
             if (this.character.isColliding(enemy)) {   // prüft ob der character kontakt hat          
                 if (this.character.speedY < 0 && this.character.isAboveGround()) { //überprüft ob der character in der luft ist oder ob er sich auf den boden befindet
-                    this.level.enemies[y].hit(5); // gibt den gegner 5 schaden 
-                    audioFiles[2].play();
+                    this.level.enemies[y].hit(5); // gibt den gegner 5 schaden    
                 } else if (!this.level.enemies[y].isDead()) {// ab hier bekommt der character 5 schaden 
                     this.character.hit(5);
                     this.statusBarHealth.setPercentage(this.character.hp)
@@ -68,13 +68,11 @@ class World {
         this.throwableObject.forEach((bottle, i) => {// prüft ob Flaschen vorhanden sind.
             this.level.enemies.forEach((enemy, y) => {//püft ob es ein Kontact zwischen Flasche und Gegner gibt
                 if (bottle.isColliding(world.level.enemies[0])) { // kontakt endboss
-                    audioFiles[4].play();
                     this.throwableObject.splice(bottle);
-                    this.level.enemies[0].hit();// fügt ein Schaden von 5
+                    this.level.enemies[3].hit();// fügt ein Schaden von 5
                     this.statusBarEndboss.setPercentage(world.level.enemies[0].hp)
 
                 } else if (bottle.isColliding(enemy)) { // kontakt Gegener
-                    audioFiles[4].play();
                     this.throwableObject.splice(bottle);
                     this.level.enemies[y].hit();// fügt ein Schaden von 5
                 }

@@ -38,10 +38,10 @@ class ThrowableObject extends MovableObject {
         this.speedY = 20; // Geschwindigkeit vertikal
         this.applyGravity();
         setInterval(() => {
+            audioFiles[5].pause();
             if(this.y < 340 && !this.isDead()) {// wenn die Flasche unterhalb der oberen Grenze befindet(340) wird die Rotation Bilder aufgerufen.
                 this.x += 20;
                 this.playAnimation(this.IMAGES_ROTATION);
-                audioFiles[4].play();
             }
             if(this.isDead() || this.y >= 370) {// wenn die Flasche tot ist oder die obere Grenze erreicht hat, wird die Splash Bilder aufgerufen. 
                 this.splash();
@@ -55,7 +55,6 @@ class ThrowableObject extends MovableObject {
         setTimeout(() => {
             this.height = 0;
             this.width = 0;
-            audioFiles[3].play();
         }, 100);
     }
 }
