@@ -8,12 +8,7 @@ let audioFiles = [
     hit_enemies_sound = new Audio('audio/chicken.mp3'),
     broken_glas_sound = new Audio('audio/glas.mp3'),
     trow_sound = new Audio('audio/throw.mp3'),
-  ];
-
-/*function init() {
-    canvas = document.getElementById('canvas');
-    world = new World(canvas, keyboard);
-}*/
+];
 
 window.addEventListener("keydown", (event) => {
     if (event.keyCode == 39) {
@@ -60,8 +55,8 @@ window.addEventListener("keyup", (event) => {
 });
 
 
- function startGame() {
-    
+function startGame() {
+
     initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
@@ -76,28 +71,28 @@ window.addEventListener("keyup", (event) => {
 function fullscreen() {
     var canvasFull = document.getElementById('canvasFull');
     if (canvasFull.requestFullscreen) {
-      canvasFull.requestFullscreen();
-    } else if (canvasFull.webkitRequestFullscreen) { 
-      canvasFull.webkitRequestFullscreen();
-    } else if (canvasFull.msRequestFullscreen) { 
-      canvasFull.msRequestFullscreen();
+        canvasFull.requestFullscreen();
+    } else if (canvasFull.webkitRequestFullscreen) {
+        canvasFull.webkitRequestFullscreen();
+    } else if (canvasFull.msRequestFullscreen) {
+        canvasFull.msRequestFullscreen();
     }
     canvas.style = "width:100%;height:100%";
     fullscreenIconExchange();
-  }
+}
 
-  function closeFullscreen() {
+function closeFullscreen() {
     var canvas = document.getElementById('canvas');
     if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) { 
-      document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) { 
-      document.msExitFullscreen();
+        document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
     }
     canvas.style = "width:720px;height:480px";
     closeFullscreenIconExchange();
-  }
+}
 
 function fullscreenIconExchange() {
     document.getElementById('fullscreen').classList.add('d-none');

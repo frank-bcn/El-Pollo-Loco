@@ -28,8 +28,10 @@ class World {
     run() {
         setInterval(() => {
             this.checkThrowableObjects();
+        }, 150);
+        setInterval(() => {
             this.checkCollisions();
-        }, 200);
+        }, 40);
     }
 
     checkThrowableObjects() {
@@ -38,7 +40,6 @@ class World {
             this.throwableObject.push(bottle);
             this.character.bottle--;
             this.statusBarBottle.setPercentage(this.character.bottle);// Aktualisiert die StatusBar.
-            console.log(this.character.bottle, 'werfen');
         }
     }
 
@@ -87,7 +88,6 @@ class World {
                 this.character.bottle++;
                 this.statusBarBottle.setPercentage(this.character.bottle);// füllt die Statusbar auf.
                 this.level.bottle.splice(this.level.bottle.indexOf(bottle), 1)//Entfernt die Flaschen aus der Welt.
-                console.log(this.character.bottle,'sammeln');
             }
         });
     }
