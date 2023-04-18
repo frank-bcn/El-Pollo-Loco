@@ -10,10 +10,10 @@ let audioFiles = [
     trow_sound = new Audio('audio/throw.mp3'),
   ];
 
-function init() {
+/*function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-}
+}*/
 
 window.addEventListener("keydown", (event) => {
     if (event.keyCode == 39) {
@@ -60,19 +60,18 @@ window.addEventListener("keyup", (event) => {
 });
 
 
-async function startGame() {
-    await initLevel();
-    await setTimeout(startGameNow, 100);
+ function startGame() {
+    
+    initLevel();
+    canvas = document.getElementById('canvas');
+    world = new World(canvas, keyboard);
     document.getElementById('startscreen').classList.add('d-none');
     document.getElementById('panal').classList.remove('d-none');
     document.getElementById('discription').style.marginTop = "0";
+    document.getElementById('canvas').classList.remove('d-none');
 }
 
-function startGameNow() {
-    canvas = document.getElementById('canvas');
-    document.getElementById('canvas').classList.remove('d-none');
-    world = new World(canvas, keyboard);
-}
+
 
 function fullscreen() {
     var canvasFull = document.getElementById('canvasFull');
