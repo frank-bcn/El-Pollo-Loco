@@ -79,7 +79,7 @@ function startGame() {
 
 
 function fullscreen() {
-    var canvasFull = document.getElementById('canvasFull');
+    let canvasFull = document.getElementById('canvasFull');
     if (canvasFull.requestFullscreen) {
         canvasFull.requestFullscreen();
     } else if (canvasFull.webkitRequestFullscreen) {
@@ -92,7 +92,7 @@ function fullscreen() {
 }
 
 function closeFullscreen() {
-    var canvas = document.getElementById('canvas');
+    let canvas = document.getElementById('canvas');
     if (document.exitFullscreen) {
         document.exitFullscreen();
     } else if (document.webkitExitFullscreen) {

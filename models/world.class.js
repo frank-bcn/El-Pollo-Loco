@@ -10,7 +10,9 @@ class World {
     statusBarBottle = new StatusBar_Bottle();
     statusBarEndboss = new StatusBar_Endboss();
     statusBarEndbossImg = new StatusBar_Img_Endboss();
+    winGame = new WinGame();
     gameOver = new GameOver();
+    fullScreen = new FullIcon();
     throwableObject = [];
 
     constructor(canvas, keyboard) {
@@ -117,7 +119,9 @@ class World {
         this.addToMap(this.statusBarBottle);// fügt die Statusbar Bottle in die Welt
         this.addToMap(this.statusBarEndboss);// fügt die StatusBar Endboss in die Welt
         this.addToMap(this.statusBarEndbossImg);//fügt ein Img Endboss Bild ein
+        this.addToMap(this.fullScreen);
         this.drawGameOverScreen();
+        this.drawWinGameScreen();
         
         this.ctx.translate(this.camera_x, 0);
 
@@ -147,13 +151,24 @@ class World {
     /*startGameScreen() {
         if(this.)
     }*/
-
+    // spielt das Win Bild ein
+    drawWinGameScreen() {
+        if(this.level.enemies[0].hp == 0) {
+            this.addToMap(this.winGame);
+            document.getElementById('btnStart').style.display = '';
+        }
+    }
+    // spielt das GameOver Bild ein
     drawGameOverScreen() {
-        if (this.level.enemies[0].hp == 0) {
+        if (this.character.hp == 0) {
             this.addToMap(this.gameOver);
             document.getElementById('btnStart').style.display = '';
         }
     }
+
+    /*fullScreen() {
+        document.getElementById('fullScreen').style.display = 'none';
+    }*/
 
     // Die Funktion iteriert über jedes Objekt im Array (forEach-Schleife) und fügt es der Karte (Map) hinzu, indem es die Methode addToMap(o) aufruft.
     addObjectsToMap(objects) {
