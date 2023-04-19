@@ -18,6 +18,7 @@ class World {
         this.canvas = canvas;
         this.keyboard = keyboard;
         this.draw();
+        this.drawGameOverScreen();
         this.setWorld();
         this.run();
     }
@@ -133,8 +134,6 @@ class World {
 
         this.ctx.translate(-this.camera_x, 0);
 
-        this.addToMap(this.gameOver);
-
 
 
         // draw wird immer wieder aufgerufen.
@@ -142,6 +141,12 @@ class World {
         requestAnimationFrame(function () {//ruft eine Browser-API auf, um eine Animation zu starten. Das function () {...} wird als Rückruf-Funktion an die requestAnimationFrame-Funktion übergeben und wird ausgeführt, wenn die Animation bereit ist, ein neues Frame zu rendern.
             self.draw();
         });
+    }
+
+    drawGameOverScreen() {
+        if (this.level.enemies[0].hp == 0) {
+          this.addObjectsToMap(this.gameOver);
+        }
     }
 
     // Die Funktion iteriert über jedes Objekt im Array (forEach-Schleife) und fügt es der Karte (Map) hinzu, indem es die Methode addToMap(o) aufruft.
