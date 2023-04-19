@@ -1,4 +1,4 @@
-class GameOver extends DrawableObject {
+class StartGame extends DrawableObject {
     x = 0;
     y = 0;
     width = 720;
@@ -7,6 +7,6 @@ class GameOver extends DrawableObject {
   
     constructor() {
       super();
-      this.loadImage('img/gameOver.png');
+      this.loadImage('img/startscreen_1.png');
     }
   }

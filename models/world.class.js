@@ -10,6 +10,7 @@ class World {
     statusBarBottle = new StatusBar_Bottle();
     statusBarEndboss = new StatusBar_Endboss();
     statusBarEndbossImg = new StatusBar_Img_Endboss();
+    startGame = new StartGame();
     gameOver = new GameOver();
     throwableObject = [];
 
@@ -18,7 +19,6 @@ class World {
         this.canvas = canvas;
         this.keyboard = keyboard;
         this.draw();
-        this.drawGameOverScreen();
         this.setWorld();
         this.run();
     }
@@ -34,6 +34,7 @@ class World {
 
         setInterval(() => {
             this.checkCollisions();
+            this.drawGameOverScreen();
         }, 60);
     }
 
@@ -117,7 +118,7 @@ class World {
         this.addToMap(this.statusBarBottle);// fügt die Statusbar Bottle in die Welt
         this.addToMap(this.statusBarEndboss);// fügt die StatusBar Endboss in die Welt
         this.addToMap(this.statusBarEndbossImg);//fügt ein Img Endboss Bild ein
-
+        this.drawGameOverScreen();
         this.ctx.translate(this.camera_x, 0);
 
         this.addToMap(this.character);// fügt den Character zur Welt.
@@ -145,7 +146,7 @@ class World {
 
     drawGameOverScreen() {
         if (this.level.enemies[0].hp == 0) {
-          this.addObjectsToMap(this.gameOver);
+            this.addToMap(this.gameOver);
         }
     }
 
