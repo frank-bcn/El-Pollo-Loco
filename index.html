@@ -27,34 +27,17 @@
   <script src="models/throwable-object.class.js"></script>
   <script src="models/bottle.class.js"></script>
   <script src="models/coin.class.js"></script>
-  <script src="models/startGame.class.js"></script>
   <script src="models/gameOver.class.js"></script>
   <script src="levels/level1.js"></script>
   <script src="js/game.js"></script>
 </head>
 
 <body>
-  <div id="startscreen" class="startscreen">
-    <div class="container">
-      <div class="bird-container bird-container--one">
-        <div class="bird bird--one"></div>
-      </div>
-      <div class="bird-container bird-container--two">
-        <div class="bird bird--two"></div>
-      </div>
-      <div class="bird-container bird-container--three">
-        <div class="bird bird--three"></div>
-      </div>
-      <div class="bird-container bird-container--four">
-        <div class="bird bird--four"></div>
-      </div>
-    </div>
-    <img src="img/startscreen_1.png">
-    <button onclick="startGame()" class="play-btn"></button> 
-  </div>
-  <div id="canvasFull" class="canvasFull">
-    <canvas id="canvas" class="d-none" width="720" height="480"></canvas>
+    <button id="btnStart" onclick="startGame()" class="play-btn"></button> 
 
+  <div id="canvasFull" class="canvasFull">
+    <canvas id="canvas" width="720" height="480"></canvas>
+  </div>
     <div id="panal" class="panel d-none">
       <div class="iconMuteScreen">
         <img src="img/mute.png" onclick="soundMute()" id="mute" class="d-none">
