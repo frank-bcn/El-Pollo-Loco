@@ -151,6 +151,7 @@ class World {
     /*startGameScreen() {
         if(this.)
     }*/
+
     // spielt das Win Bild ein
     drawWinGameScreen() {
         if(this.level.enemies[0].hp == 0) {
@@ -184,7 +185,7 @@ class World {
             this.flipImage(mo);
         }
         mo.draw(this.ctx);
-        mo.drawFrame(this.ctx);
+        
         if (mo.otherDirection) {
             this.flipImageBack(mo);
         }
