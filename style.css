@@ -10,6 +10,7 @@ body {
   height: 100vh;
   width: 100%;
   font-family: 'chillingsabrina';
+  margin: 0;
 }
 
 .canvasFull {
@@ -151,7 +152,6 @@ canvas {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 84%;
   box-sizing: border-box;
   padding-left: 20px;
   padding-right: 20px;

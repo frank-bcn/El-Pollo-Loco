@@ -151,6 +151,7 @@ class World {
     drawGameOverScreen() {
         if (this.level.enemies[0].hp == 0) {
             this.addToMap(this.gameOver);
+            document.getElementById('btnStart').style.display = '';
         }
     }
 
