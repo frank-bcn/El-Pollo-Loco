@@ -3,7 +3,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-image: url(img/background1.png);
+  /*background-image: url(img/background1.png);*/
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -149,7 +149,7 @@ canvas {
 }
 
 .discription {
-  width: 720px;
+  width: 1000px;
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -7,7 +7,7 @@ class WalkLeft extends DrawableObject {
 
     constructor() {
         super();
-        this.loadImage('img/walkleft.png');
+        this.loadImage('img/LeftText.png');
     }
 
    

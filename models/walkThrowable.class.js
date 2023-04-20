@@ -7,7 +7,7 @@ class WalkTrowable extends DrawableObject {
 
     constructor() {
         super();
-        this.loadImage('img/throwable.png');
+        this.loadImage('img/thowableText.png');
     }
 
    
