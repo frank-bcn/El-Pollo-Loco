@@ -150,10 +150,6 @@ class World {
         });
     }
 
-    /*startGameScreen() {
-        if(this.)
-    }*/
-
     // spielt das Win Bild ein
     drawWinGameScreen() {
         if (this.level.enemies[0].hp == 0) {
@@ -168,10 +164,6 @@ class World {
             document.getElementById('btnStart').style.display = '';
         }
     }
-
-    /*fullScreen() {
-        document.getElementById('fullScreen').style.display = 'none';
-    }*/
 
     // Die Funktion iteriert über jedes Objekt im Array (forEach-Schleife) und fügt es der Karte (Map) hinzu, indem es die Methode addToMap(o) aufruft.
     addObjectsToMap(objects) {
@@ -211,12 +203,21 @@ class World {
     }
 
     clickToMap() {
-        this.canvas.addEventListener('click', (event) => {
-          let x = event.clientX - this.canvas.offsetLeft;
-          let y = event.clientY - this.canvas.offsetTop;
-          console.log(x, y);
-        });
-      }
-
-      
+        this.canvas.addEventListener('mousemove', (event) => {
+            let x = event.clientX - this.canvas.offsetLeft;
+            let y = event.clientY - this.canvas.offsetTop;
+          
+            let targetX = 311;
+            let targetY = 19;
+            let distance = 10;
+          
+            if (Math.abs(x - targetX) <= distance && Math.abs(y - targetY) <= distance) {
+              this.canvas.style.cursor = "pointer";
+            } else {
+              this.canvas.style.cursor = "default";
+            }
+          });
+        }
+          
+        
 }
