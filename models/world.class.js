@@ -214,7 +214,9 @@ class World {
         this.canvas.addEventListener('click', (event) => {
           let x = event.clientX - this.canvas.offsetLeft;
           let y = event.clientY - this.canvas.offsetTop;
-          console.log('läuft');
+          console.log(x, y);
         });
       }
+
+      
 }

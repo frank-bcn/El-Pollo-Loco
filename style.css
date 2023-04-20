@@ -25,6 +25,7 @@ canvas {
   border-radius: 5px;
   background-image: url(img/startscreen_1.png);
   background-size: cover;
+  background-position: center center;
 }
 
 .d-none {
