@@ -14,6 +14,7 @@ class World {
     gameOver = new GameOver();
     fullScreen = new FullIcon();
     throwableObject = [];
+    
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -36,6 +37,7 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.drawGameOverScreen();
+            this.clickToMap();
         }, 60);
     }
 
@@ -106,7 +108,7 @@ class World {
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        
+
         this.ctx.translate(this.camera_x, 0);
 
         this.addObjectsToMap(this.level.backgroundObjects);// fügt die Hintergrundbilder zur Welt.
@@ -122,7 +124,7 @@ class World {
         this.addToMap(this.fullScreen);
         this.drawGameOverScreen();
         this.drawWinGameScreen();
-        
+
         this.ctx.translate(this.camera_x, 0);
 
         this.addToMap(this.character);// fügt den Character zur Welt.
@@ -154,7 +156,7 @@ class World {
 
     // spielt das Win Bild ein
     drawWinGameScreen() {
-        if(this.level.enemies[0].hp == 0) {
+        if (this.level.enemies[0].hp == 0) {
             this.addToMap(this.winGame);
             document.getElementById('btnStart').style.display = '';
         }
@@ -185,7 +187,7 @@ class World {
             this.flipImage(mo);
         }
         mo.draw(this.ctx);
-        
+
         if (mo.otherDirection) {
             this.flipImageBack(mo);
         }
@@ -207,4 +209,12 @@ class World {
         mo.x = mo.x * -1;
         this.ctx.restore();
     }
+
+    clickToMap() {
+        this.canvas.addEventListener('click', (event) => {
+          let x = event.clientX - this.canvas.offsetLeft;
+          let y = event.clientY - this.canvas.offsetTop;
+          console.log('läuft');
+        });
+      }
 }
