@@ -15,6 +15,8 @@ class World {
     fullScreen = new FullIcon();
     arrowLeft = new ArrowLeft();
     walkLeft = new WalkLeft();
+    arrowRight = new ArrowRight();
+    walkRight = new WalkRight();
     sound = new SoundIcon();
     throwableObject = [];
 
@@ -129,6 +131,8 @@ class World {
         this.addToMap(this.sound);
         this.addToMap(this.arrowLeft);
         this.addToMap(this.walkLeft);
+        this.addToMap(this.arrowRight);
+        this.addToMap(this.walkRight);
         this.drawGameOverScreen();
         this.drawWinGameScreen();
 
