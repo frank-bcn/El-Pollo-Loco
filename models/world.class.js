@@ -13,8 +13,11 @@ class World {
     winGame = new WinGame();
     gameOver = new GameOver();
     fullScreen = new FullIcon();
+    arrowLeft = new ArrowLeft();
+    walkLeft = new WalkLeft();
+    sound = new SoundIcon();
     throwableObject = [];
-    
+
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -37,7 +40,8 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.drawGameOverScreen();
-            this.clickToMap();
+            this.curserPointerFull();
+            /*this.curserPointerSound();*/
         }, 60);
     }
 
@@ -122,6 +126,9 @@ class World {
         this.addToMap(this.statusBarEndboss);// fügt die StatusBar Endboss in die Welt
         this.addToMap(this.statusBarEndbossImg);//fügt ein Img Endboss Bild ein
         this.addToMap(this.fullScreen);
+        this.addToMap(this.sound);
+        this.addToMap(this.arrowLeft);
+        this.addToMap(this.walkLeft);
         this.drawGameOverScreen();
         this.drawWinGameScreen();
 
@@ -202,22 +209,21 @@ class World {
         this.ctx.restore();
     }
 
-    clickToMap() {
+    curserPointerFull() {
         this.canvas.addEventListener('mousemove', (event) => {
             let x = event.clientX - this.canvas.offsetLeft;
             let y = event.clientY - this.canvas.offsetTop;
-          
-            let targetX = 311;
+    
+            let targetX1 = 331;
+            let targetX2 = 381;
             let targetY = 19;
             let distance = 10;
-          
-            if (Math.abs(x - targetX) <= distance && Math.abs(y - targetY) <= distance) {
-              this.canvas.style.cursor = "pointer";
+    
+            if ((Math.abs(x - targetX1) <= distance && Math.abs(y - targetY) <= distance) || (Math.abs(x - targetX2) <= distance && Math.abs(y - targetY) <= distance)) {
+                this.canvas.style.cursor = "pointer";
             } else {
-              this.canvas.style.cursor = "default";
+                this.canvas.style.cursor = "default";
             }
-          });
-        }
-          
-        
+        });
+    }
 }

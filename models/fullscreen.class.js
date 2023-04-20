@@ -1,5 +1,5 @@
 class FullIcon extends DrawableObject {
-    x = 300;
+    x = 320;
     y = 10;
     height = 25;
     width = 25;
@@ -8,10 +8,5 @@ class FullIcon extends DrawableObject {
     constructor() {
         super();
         this.loadImage('img/full.png');
-        this.id = "fullscreen";
     }
-
-    onclick() {
-        console.log("funktioniert");
-      }
 }
