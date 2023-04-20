@@ -17,6 +17,10 @@ class World {
     walkLeft = new WalkLeft();
     arrowRight = new ArrowRight();
     walkRight = new WalkRight();
+    arrowJump = new ArrowJump();
+    walkJump = new WalkJump();
+    arrowThrow = new ArrowTrowable();
+    walkThrow = new WalkTrowable();
     sound = new SoundIcon();
     throwableObject = [];
 
@@ -133,6 +137,10 @@ class World {
         this.addToMap(this.walkLeft);
         this.addToMap(this.arrowRight);
         this.addToMap(this.walkRight);
+        this.addToMap(this.arrowJump);
+        this.addToMap(this.walkJump);
+        this.addToMap(this.arrowThrow);
+        this.addToMap(this.walkThrow);
         this.drawGameOverScreen();
         this.drawWinGameScreen();
 
