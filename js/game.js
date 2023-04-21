@@ -77,19 +77,18 @@ function startGame() {
 
 
 function fullscreen() {
-    let canvasFull = document.getElementById('canvasFull');
-    if (canvasFull.requestFullscreen) {
-        canvasFull.requestFullscreen();
-    } else if (canvasFull.webkitRequestFullscreen) {
-        canvasFull.webkitRequestFullscreen();
-    } else if (canvasFull.msRequestFullscreen) {
-        canvasFull.msRequestFullscreen();
-    }
-    canvas.style = "width:100%;height:100%";
-    fullscreenIconExchange();
+    document.getElementById('canvasFull').style = "width:100%;height:100%";
+    document.getElementById('canvas').style = "width:100%;height:100%";
+    world.fullscreen = true;
 }
 
+
 function closeFullscreen() {
+    document.getElementById('canvasFull').style = "width:720px;height:480px";
+    document.getElementById('canvas').style = "width:720px;height:480px";
+    world.fullscreen = false;
+}
+/*function closeFullscreen() {
     let canvas = document.getElementById('canvas');
     if (document.exitFullscreen) {
         document.exitFullscreen();
@@ -100,9 +99,9 @@ function closeFullscreen() {
     }
     canvas.style = "width:720px;height:480px";
     closeFullscreenIconExchange();
-}
+}*/
 
-function fullscreenIconExchange() {
+/*function fullscreenIconExchange() {
     document.getElementById('fullscreen').classList.add('d-none');
     document.getElementById('nofullscreen').classList.remove('d-none');
 }
@@ -131,4 +130,4 @@ function muteExchange() {
     document.getElementById('speaker').classList.add('d-none');
     document.getElementById('mute').classList.remove('d-none');
     audioFiles.forEach((e => e.muted = true));
-}
+}*/

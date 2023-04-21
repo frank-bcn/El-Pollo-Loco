@@ -13,6 +13,7 @@ class World {
     winGame = new WinGame();
     gameOver = new GameOver();
     fullScreen = new FullIcon();
+    nofullScreen = new NoFullIcon();
     arrowLeft = new ArrowLeft();
     walkLeft = new WalkLeft();
     arrowRight = new ArrowRight();
@@ -23,6 +24,7 @@ class World {
     walkThrow = new WalkTrowable();
     sound = new SoundIcon();
     throwableObject = [];
+    fullscreen = false;
 
 
     constructor(canvas, keyboard) {
@@ -32,6 +34,8 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
+        this.curserPointerNoFull();
+        this.curserPointerFull();
     }
 
     setWorld() {
@@ -46,8 +50,6 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.drawGameOverScreen();
-            this.curserPointerFull();
-            /*this.curserPointerSound();*/
         }, 60);
     }
 
@@ -115,54 +117,13 @@ class World {
             }
         });
     }
-
+    // draw wird immer wieder aufgerufen.
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
         this.ctx.translate(this.camera_x, 0);
-
         this.addObjectsToMap(this.level.backgroundObjects);// fügt die Hintergrundbilder zur Welt.
-
-
         this.ctx.translate(-this.camera_x, 0);
-        // fixed objects
-        this.addToMap(this.statusBarHealth);// fügt die Statusbar Health in die Welt
-        this.addToMap(this.statusBarCoin);// fügt die Statusbar Coin in die Welt
-        this.addToMap(this.statusBarBottle);// fügt die Statusbar Bottle in die Welt
-        this.addToMap(this.statusBarEndboss);// fügt die StatusBar Endboss in die Welt
-        this.addToMap(this.statusBarEndbossImg);//fügt ein Img Endboss Bild ein
-        this.addToMap(this.fullScreen);
-        this.addToMap(this.sound);
-        this.addToMap(this.arrowLeft);
-        this.addToMap(this.walkLeft);
-        this.addToMap(this.arrowRight);
-        this.addToMap(this.walkRight);
-        this.addToMap(this.arrowJump);
-        this.addToMap(this.walkJump);
-        this.addToMap(this.arrowThrow);
-        this.addToMap(this.walkThrow);
-        this.drawGameOverScreen();
-        this.drawWinGameScreen();
-
-        this.ctx.translate(this.camera_x, 0);
-
-        this.addToMap(this.character);// fügt den Character zur Welt.
-
-        this.addObjectsToMap(this.level.clouds);// fügt die Wolken zur Welt. 
-
-        this.addObjectsToMap(this.level.enemies);// fügt die Hühner zur Welt.
-
-        this.addObjectsToMap(this.level.bottle);// fügt die Flaschen zur Welt.
-
-        this.addObjectsToMap(this.level.coin);// fügt die Coins zur Welt.
-
-        this.addObjectsToMap(this.throwableObject);// fügt die Flaschen zur Welt.   
-
-        this.ctx.translate(-this.camera_x, 0);
-
-
-
-        // draw wird immer wieder aufgerufen.
+        this.drawFunctions();
         let self = this;//let self = this; definiert eine lokale Variable namens self, die auf das this-Objekt verweist, das normalerweise das Objekt ist, in dem die Funktion aufgerufen wird.
         requestAnimationFrame(function () {//ruft eine Browser-API auf, um eine Animation zu starten. Das function () {...} wird als Rückruf-Funktion an die requestAnimationFrame-Funktion übergeben und wird ausgeführt, wenn die Animation bereit ist, ein neues Frame zu rendern.
             self.draw();
@@ -182,6 +143,54 @@ class World {
             this.addToMap(this.gameOver);
             document.getElementById('btnStart').style.display = '';
         }
+    }
+
+    drawfullscreen() {
+        if (this.fullscreen) {
+            this.addToMap(this.nofullScreen);
+        } else
+            this.addToMap(this.fullScreen);
+    }
+
+
+    drawFunctions() {
+        this.drawStatusBars();
+        this.drawfullscreen();
+        this.addToMap(this.sound);
+        this.drawArrowsImg();
+        this.drawGameOverScreen();
+        this.drawWinGameScreen();
+        this.drawLevelItems();
+    }
+
+    drawStatusBars() {
+        this.addToMap(this.statusBarHealth);// fügt die Statusbar Health in die Welt
+        this.addToMap(this.statusBarCoin);// fügt die Statusbar Coin in die Welt
+        this.addToMap(this.statusBarBottle);// fügt die Statusbar Bottle in die Welt
+        this.addToMap(this.statusBarEndboss);// fügt die StatusBar Endboss in die Welt
+        this.addToMap(this.statusBarEndbossImg);//fügt ein Img Endboss Bild ein
+    }
+
+    drawArrowsImg() {
+        this.addToMap(this.arrowLeft);
+        this.addToMap(this.walkLeft);
+        this.addToMap(this.arrowRight);
+        this.addToMap(this.walkRight);
+        this.addToMap(this.arrowJump);
+        this.addToMap(this.walkJump);
+        this.addToMap(this.arrowThrow);
+        this.addToMap(this.walkThrow);
+    }
+
+    drawLevelItems() {
+        this.ctx.translate(this.camera_x, 0);
+        this.addToMap(this.character);// fügt den Character zur Welt.
+        this.addObjectsToMap(this.level.clouds);// fügt die Wolken zur Welt. 
+        this.addObjectsToMap(this.level.enemies);// fügt die Hühner zur Welt.
+        this.addObjectsToMap(this.level.bottle);// fügt die Flaschen zur Welt.
+        this.addObjectsToMap(this.level.coin);// fügt die Coins zur Welt.
+        this.addObjectsToMap(this.throwableObject);// fügt die Flaschen zur Welt.
+        this.ctx.translate(-this.camera_x, 0);
     }
 
     // Die Funktion iteriert über jedes Objekt im Array (forEach-Schleife) und fügt es der Karte (Map) hinzu, indem es die Methode addToMap(o) aufruft.
@@ -221,21 +230,56 @@ class World {
         this.ctx.restore();
     }
 
-    curserPointerFull() {
+    curserPointerNoFull() {
         this.canvas.addEventListener('mousemove', (event) => {
             let x = event.clientX - this.canvas.offsetLeft;
             let y = event.clientY - this.canvas.offsetTop;
     
             let targetX1 = 331;
             let targetX2 = 381;
-            let targetY = 19;
-            let distance = 10;
+            let targetY = 17;
+            let distance = 15;
     
             if ((Math.abs(x - targetX1) <= distance && Math.abs(y - targetY) <= distance) || (Math.abs(x - targetX2) <= distance && Math.abs(y - targetY) <= distance)) {
                 this.canvas.style.cursor = "pointer";
+                this.canvas.addEventListener('click', (event) => {
+                    if (Math.abs(event.clientX - this.canvas.offsetLeft - targetX1) <= distance && Math.abs(event.clientY - this.canvas.offsetTop - targetY) <= distance) {
+                        fullscreen(event);
+                    }
+                });
             } else {
                 this.canvas.style.cursor = "default";
+                this.canvas.removeEventListener('click', fullscreen);
             }
         });
     }
+
+    curserPointerFull() {
+        if (this.fullscreen) {
+            this.canvas.removeEventListener('mousemove', this.moveHandler);
+            this.canvas.addEventListener('mousemove', (event) => {
+                let x = event.clientX - this.canvas.offsetLeft;
+                let y = event.clientY - this.canvas.offsetTop;
+    
+                let targetX1 = 597;
+                let targetX2 = 687;
+                let targetY = 42;
+                let distance = 15;
+    
+                if ((Math.abs(x - targetX1) <= distance && Math.abs(y - targetY) <= distance) || (Math.abs(x - targetX2) <= distance && Math.abs(y - targetY) <= distance)) {
+                    this.canvas.style.cursor = "pointer";
+                    if (this.fullscreen) {
+                        this.canvas.addEventListener('click', (event) => {
+                            fullscreen(event);
+                        });
+                    }
+                } else {
+                    this.canvas.removeEventListener('click', fullscreen);
+                    console.log('Mouse position:', x, y);
+                }
+            });
+        }
+    }
+    
+    
 }
