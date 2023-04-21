@@ -80,6 +80,7 @@ function fullscreen() {
     document.getElementById('canvasFull').style = "width:100%;height:100%";
     document.getElementById('canvas').style = "width:100%;height:100%";
     world.fullscreen = true;
+    
 }
 
 

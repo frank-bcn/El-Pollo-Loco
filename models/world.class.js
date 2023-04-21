@@ -36,7 +36,6 @@ class World {
         this.setWorld();
         this.run();
         this.curserPointerNoFull();
-        this.curserPointerFull();
     }
 
     setWorld() {
@@ -149,8 +148,10 @@ class World {
     drawfullscreen() {
         if (this.fullscreen) {
             this.addToMap(this.nofullScreen);
-        } else
+            this.curserPointerFull();
+        } else {
             this.addToMap(this.fullScreen);
+        }
     }
 
 
@@ -272,10 +273,9 @@ class World {
 
                 if ((Math.abs(x - targetX1) <= distance && Math.abs(y - targetY) <= distance) || (Math.abs(x - targetX2) <= distance && Math.abs(y - targetY) <= distance)) {
                     this.canvas.style.cursor = "pointer";
-                    this.canvas.addEventListener('click', (event) => {
-                        fullscreen(event);
-                    });
-                }
+                  } else {
+                    this.canvas.style.cursor = "default";
+                  }
         });
     }
 }
