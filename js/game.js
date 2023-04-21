@@ -71,8 +71,6 @@ function startGame() {
     initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-    document.getElementById('panal').classList.add('d-none');
-    document.getElementById('discription').style.marginTop = "20";
     document.getElementById('btnStart').style.display = 'none';
 }
 
