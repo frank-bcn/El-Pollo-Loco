@@ -10,6 +10,7 @@ class World {
     statusBarBottle = new StatusBar_Bottle();
     statusBarEndboss = new StatusBar_Endboss();
     statusBarEndbossImg = new StatusBar_Img_Endboss();
+    startButton = new StartButton();
     winGame = new WinGame();
     gameOver = new GameOver();
     fullScreen = new FullIcon();
@@ -164,6 +165,7 @@ class World {
     }
 
     drawStatusBars() {
+        /*this.addToMap(this.startButton);*/
         this.addToMap(this.statusBarHealth);// fügt die Statusbar Health in die Welt
         this.addToMap(this.statusBarCoin);// fügt die Statusbar Coin in die Welt
         this.addToMap(this.statusBarBottle);// fügt die Statusbar Bottle in die Welt
@@ -234,12 +236,12 @@ class World {
         this.canvas.addEventListener('mousemove', (event) => {
             let x = event.clientX - this.canvas.offsetLeft;
             let y = event.clientY - this.canvas.offsetTop;
-    
+
             let targetX1 = 331;
             let targetX2 = 381;
             let targetY = 17;
             let distance = 15;
-    
+
             if ((Math.abs(x - targetX1) <= distance && Math.abs(y - targetY) <= distance) || (Math.abs(x - targetX2) <= distance && Math.abs(y - targetY) <= distance)) {
                 this.canvas.style.cursor = "pointer";
                 this.canvas.addEventListener('click', (event) => {
@@ -250,36 +252,31 @@ class World {
             } else {
                 this.canvas.style.cursor = "default";
                 this.canvas.removeEventListener('click', fullscreen);
+                console.log('Mouse position:', x, y);
             }
         });
     }
 
     curserPointerFull() {
         if (this.fullscreen) {
+            this.canvas.style.cursor = "pointer";
             this.canvas.removeEventListener('mousemove', this.moveHandler);
             this.canvas.addEventListener('mousemove', (event) => {
                 let x = event.clientX - this.canvas.offsetLeft;
                 let y = event.clientY - this.canvas.offsetTop;
-    
+
                 let targetX1 = 597;
                 let targetX2 = 687;
-                let targetY = 42;
+                let targetY = 19;
                 let distance = 15;
-    
+
                 if ((Math.abs(x - targetX1) <= distance && Math.abs(y - targetY) <= distance) || (Math.abs(x - targetX2) <= distance && Math.abs(y - targetY) <= distance)) {
                     this.canvas.style.cursor = "pointer";
-                    if (this.fullscreen) {
-                        this.canvas.addEventListener('click', (event) => {
-                            fullscreen(event);
-                        });
-                    }
-                } else {
-                    this.canvas.removeEventListener('click', fullscreen);
-                    console.log('Mouse position:', x, y);
+                    this.canvas.addEventListener('click', (event) => {
+                        fullscreen(event);
+                    });
                 }
-            });
-        }
+        });
     }
-    
-    
+}
 }
