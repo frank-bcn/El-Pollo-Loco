@@ -1,5 +1,5 @@
 class NoFullIcon extends DrawableObject {
-    x = 320;
+    x = 13;
     y = 10;
     height = 25;
     width = 25;

@@ -1,7 +1,7 @@
 class SoundIcon extends DrawableObject {
-    x = 370;
-    y = 10;
-    height = 25;
+    x = 50;
+    y = 8;
+    height = 30;
     width = 25;
 
 
