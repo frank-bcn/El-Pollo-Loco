@@ -256,7 +256,11 @@ class World {
                 this.canvas.style.cursor = "pointer";
                 this.canvas.addEventListener('click', (event) => {
                     if (Math.abs(event.clientX - this.canvas.offsetLeft - targetX1) <= distance && Math.abs(event.clientY - this.canvas.offsetTop - targetY) <= distance) {
-                        fullscreen(event);
+                        if (this.fullscreen) {
+                            closeFullscreen();
+                        } else {
+                            fullscreen(event);
+                        }
                     }
                 });
             } else {
