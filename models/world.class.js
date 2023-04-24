@@ -24,6 +24,7 @@ class World {
     arrowThrow = new ArrowTrowable();
     walkThrow = new WalkTrowable();
     sound = new SoundIcon();
+    soundMute = new SoundMuteIcon();
     throwableObject = [];
     fullscreen = false;
 
@@ -153,6 +154,15 @@ class World {
             this.addToMap(this.fullScreen);
         }
     }
+
+    /*drawsound() {
+        if (this.fullscreen) {
+            this.addToMap(this.sound);
+            
+        } else {
+            this.addToMap(this.fullScreen);
+        }
+    }*/
 
 
     drawFunctions() {

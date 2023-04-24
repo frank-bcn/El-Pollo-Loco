@@ -89,33 +89,12 @@ function closeFullscreen() {
     document.getElementById('canvas').style = "width:720px;height:480px";
     world.fullscreen = false;
 }
-/*function closeFullscreen() {
-    let canvas = document.getElementById('canvas');
-    if (document.exitFullscreen) {
-        document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) {
-        document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) {
-        document.msExitFullscreen();
-    }
-    canvas.style = "width:720px;height:480px";
-    closeFullscreenIconExchange();
-}*/
-
-/*function fullscreenIconExchange() {
-    document.getElementById('fullscreen').classList.add('d-none');
-    document.getElementById('nofullscreen').classList.remove('d-none');
-}
-
-function closeFullscreenIconExchange() {
-    document.getElementById('fullscreen').classList.remove('d-none');
-    document.getElementById('nofullscreen').classList.add('d-none');
-}
 
 function sound() {
     muteExchange();
 }
 
+/*
 function soundMute() {
     soundExchange();
 }
