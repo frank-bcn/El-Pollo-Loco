@@ -68,8 +68,8 @@ window.addEventListener("keyup", (event) => {
 
 function startGame() {
     initLevel();
-    audioFiles[0].play();
-    audioFiles[0].volume = 0.1;
+    /*audioFiles[0].play();
+    audioFiles[0].volume = 0.1;*/
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     document.getElementById('btnStart').style.display = 'none';

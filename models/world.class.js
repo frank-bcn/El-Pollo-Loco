@@ -138,6 +138,7 @@ class World {
         if (this.level.enemies[0].hp == 0) {
             this.addToMap(this.winGame);
             document.getElementById('btnStart').style.display = '';
+            /*clearInterval(intervalId);*/
         }
     }
     // spielt das GameOver Bild ein
@@ -145,6 +146,7 @@ class World {
         if (this.character.hp == 0) {
             this.addToMap(this.gameOver);
             document.getElementById('btnStart').style.display = '';
+           /*clearInterval(intervalId);*/
         }
     }
 
