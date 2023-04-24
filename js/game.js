@@ -65,6 +65,20 @@ window.addEventListener("keyup", (event) => {
     }
 });
 
+function startScreen(x, y) {
+    const canvas = document.getElementById('canvas');
+    canvas.addEventListener('mousemove', function (event) {
+        const rect = canvas.getBoundingClientRect();
+        const x = event.offsetX - canvas.width / 2;
+        const y = event.offsetY - canvas.height / 2;
+        if (Math.abs(x) <= 50 && Math.abs(y) <= 50) {
+            canvas.style.cursor = 'pointer';
+        } else {
+            canvas.style.cursor = 'default';
+        }
+        // Verwenden Sie die x- und y-Koordinaten für etwas anderes
+    });
+}
 
 function startGame() {
     initLevel();
@@ -81,7 +95,7 @@ function fullscreen() {
     document.getElementById('canvasFull').style = "width:100%;height:100%";
     document.getElementById('canvas').style = "width:100%;height:100%";
     world.fullscreen = true;
-    
+
 }
 
 function closeFullscreen() {
@@ -98,10 +112,7 @@ function soundMute() {
 function sound() {
     audioFiles.forEach((e => {
         e.muted = false;
-        e.volume = 0.1; 
+        e.volume = 0.1;
     }))
     world.soundIsMute = false;
 }
-
-
-

@@ -146,7 +146,7 @@ class World {
         if (this.character.hp == 0) {
             this.addToMap(this.gameOver);
             document.getElementById('btnStart').style.display = '';
-           /*clearInterval(intervalId);*/
+            /*clearInterval(intervalId);*/
         }
     }
 
@@ -332,9 +332,9 @@ class World {
         const targetCoords = this.fullscreen ? { x: 130, y: 40 } : { x: 62, y: 20 };
         const distance = 15;
         const isTarget = Math.abs(x - targetCoords.x) <= distance && Math.abs(y - targetCoords.y) <= distance;
-        
+
         if (isTarget) {
-          this.soundIsMute ? sound() : soundMute();
+            this.soundIsMute ? sound() : soundMute();
         }
-      }
+    }
 }

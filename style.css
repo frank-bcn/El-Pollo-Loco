@@ -27,6 +27,7 @@ canvas {
   background-size: cover;
   background-position: center center;
   background-size: 100% 100%;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .d-none {
@@ -42,7 +43,7 @@ canvas {
 /**************     button    **************/
 /*******************************************/
 
-.play-btn {
+/*.play-btn {
   position: absolute;
   top: 36%;
   right: 46%;
@@ -127,4 +128,4 @@ canvas {
     box-shadow: none;
 
   }
-}
+}*/
