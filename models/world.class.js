@@ -246,63 +246,93 @@ class World {
 
     curserClickFull() {
         this.canvas.addEventListener('mousemove', (event) => {
-            let x = event.clientX - this.canvas.offsetLeft;
-            let y = event.clientY - this.canvas.offsetTop;
-            let targetX1, targetY;
-            if (this.fullscreen) {
-                targetX1 = 44;
-                targetY = 40;
-            } else {
-                targetX1 = 26;
-                targetY = 20;
-            }
-            let distance = 15;
-            if ((Math.abs(x - targetX1) <= distance && Math.abs(y - targetY) <= distance)) {
-                this.canvas.style.cursor = "pointer";
-                this.canvas.addEventListener('click', (event) => {
-                    if (Math.abs(event.clientX - this.canvas.offsetLeft - targetX1) <= distance && Math.abs(event.clientY - this.canvas.offsetTop - targetY) <= distance) {
-                        if (this.fullscreen) {
-                            closeFullscreen();
-                        } else {
-                            fullscreen();
-                        }
-                    }
-                });
-            } else {
-                this.canvas.style.cursor = "default";
-                this.canvas.removeEventListener('click', fullscreen);
+            this.setCursor(event);
+        });
+    }
+
+    setCursor(event) {
+        let x = event.clientX - this.canvas.offsetLeft;
+        let y = event.clientY - this.canvas.offsetTop;
+        let [targetX1, targetX2, targetY] = this.checkFullscreen();
+        let distance = 15;
+        if ((Math.abs(x - targetX1) <= distance && Math.abs(y - targetY) <= distance) || (Math.abs(x - targetX2) <= distance && Math.abs(y - targetY) <= distance)) {
+            this.canvas.style.cursor = "pointer";
+            this.addFullscreenClickHandler(targetX1, targetY, distance);
+        } else {
+            this.canvas.style.cursor = "default";
+            this.removeFullscreenClickHandler();
+        }
+    }
+
+    addFullscreenClickHandler(targetX1, targetY, distance) {
+        this.canvas.addEventListener('click', (event) => {
+            if (Math.abs(event.clientX - this.canvas.offsetLeft - targetX1) <= distance && Math.abs(event.clientY - this.canvas.offsetTop - targetY) <= distance) {
+                if (this.fullscreen) {
+                    closeFullscreen();
+                } else {
+                    fullscreen();
+                }
             }
         });
+    }
+
+    removeFullscreenClickHandler() {
+        this.canvas.removeEventListener('click', this.addFullscreenClickHandler);
+    }
+
+    checkFullscreen() {
+        let targetX1, targetX2, targetY;
+        if (this.fullscreen) {
+            targetX1 = 44;
+            targetX2 = 130;
+            targetY = 40;
+        } else {
+            targetX1 = 26;
+            targetX2 = 62;
+            targetY = 20;
+        }
+        return [targetX1, targetX2, targetY];
     }
 
     curserClickSound() {
-        this.canvas.addEventListener('mousemove', (event) => {
-            let x = event.clientX - this.canvas.offsetLeft;
-            let y = event.clientY - this.canvas.offsetTop;
-            let targetX2, targetY;
-            if (this.fullscreen) {
-                targetX2 = 130;
-                targetY = 40;
-            } else {
-                targetX2 = 62;
-                targetY = 20;
-            }
-            let distance = 15;
-
-            if ((Math.abs(x - targetX2) <= distance && Math.abs(y - targetY) <= distance)) {
-                this.canvas.style.cursor = "pointer";
-                this.canvas.addEventListener('click', (event) => {
-                    if (Math.abs(event.clientX - this.canvas.offsetLeft - targetX2) <= distance && Math.abs(event.clientY - this.canvas.offsetTop - targetY) <= distance) {
-                        if (this.soundIsMute) {
-                            sound();
-                        } else
-                            soundMute();
-                    }
-                });
-            } else {
-                this.canvas.style.cursor = "default";
-                this.canvas.removeEventListener('click', soundMute);
-            }
-        });
+        this.canvas.addEventListener('mousemove', this.handleSoundMousemove);
     }
+
+    handleSoundMousemove = (event) => {
+        let x = event.clientX - this.canvas.offsetLeft;
+        let y = event.clientY - this.canvas.offsetTop;
+        let [targetX2, targetY] = this.getTargetCoords();
+        let distance = 15;
+
+        if ((Math.abs(x - targetX2) <= distance && Math.abs(y - targetY) <= distance)) {
+            this.canvas.addEventListener('click', this.toggleSound);
+        } else {
+            this.canvas.removeEventListener('click', this.toggleSound);
+        }
+    }
+
+    getTargetCoords = () => {
+        let targetX2, targetY;
+        if (this.fullscreen) {
+            targetX2 = 130;
+            targetY = 40;
+        } else {
+            targetX2 = 62;
+            targetY = 20;
+        }
+        return [targetX2, targetY];
+    }
+
+    toggleSound = (event) => {
+        const { clientX, clientY } = event;
+        const x = clientX - this.canvas.offsetLeft;
+        const y = clientY - this.canvas.offsetTop;
+        const targetCoords = this.fullscreen ? { x: 130, y: 40 } : { x: 62, y: 20 };
+        const distance = 15;
+        const isTarget = Math.abs(x - targetCoords.x) <= distance && Math.abs(y - targetCoords.y) <= distance;
+        
+        if (isTarget) {
+          this.soundIsMute ? sound() : soundMute();
+        }
+      }
 }
