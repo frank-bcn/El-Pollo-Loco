@@ -83,7 +83,6 @@ function fullscreen() {
     
 }
 
-
 function closeFullscreen() {
     document.getElementById('canvasFull').style = "width:720px;height:480px";
     document.getElementById('canvas').style = "width:720px;height:480px";
@@ -91,23 +90,13 @@ function closeFullscreen() {
 }
 
 function sound() {
-    muteExchange();
+    audioFiles.forEach((e => e.muted = true));
+    world.soundIsMute = false;
 }
 
-/*
 function soundMute() {
-    soundExchange();
-}
-
-function soundExchange() {
-    document.getElementById('mute').classList.add('d-none');
-    document.getElementById('speaker').classList.remove('d-none');
     audioFiles.forEach((e => e.muted = false));
     audioFiles.volume = 0;
+    world.soundIsMute = true;
 }
 
-function muteExchange() {
-    document.getElementById('speaker').classList.add('d-none');
-    document.getElementById('mute').classList.remove('d-none');
-    audioFiles.forEach((e => e.muted = true));
-}*/
