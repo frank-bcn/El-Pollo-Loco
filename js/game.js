@@ -67,8 +67,9 @@ window.addEventListener("keyup", (event) => {
 
 
 function startGame() {
-
     initLevel();
+    audioFiles[0].play();
+    audioFiles[0].volume = 0.1;
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     document.getElementById('btnStart').style.display = 'none';
@@ -89,14 +90,18 @@ function closeFullscreen() {
     world.fullscreen = false;
 }
 
-function sound() {
+function soundMute() {
     audioFiles.forEach((e => e.muted = true));
+    world.soundIsMute = true;
+}
+
+function sound() {
+    audioFiles.forEach((e => {
+        e.muted = false;
+        e.volume = 0.1; 
+    }))
     world.soundIsMute = false;
 }
 
-function soundMute() {
-    audioFiles.forEach((e => e.muted = false));
-    audioFiles.volume = 0;
-    world.soundIsMute = true;
-}
+
 
