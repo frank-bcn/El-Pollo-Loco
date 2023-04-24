@@ -78,7 +78,16 @@ function startScreen(x, y) {
         }
         // Verwenden Sie die x- und y-Koordinaten für etwas anderes
     });
+    canvas.addEventListener('click', function (event) {
+        const rect = canvas.getBoundingClientRect();
+        const x = event.offsetX - canvas.width / 2;
+        const y = event.offsetY - canvas.height / 2;
+        if (Math.abs(x) <= 50 && Math.abs(y) <= 50) {
+            startGame();
+        }
+    });
 }
+
 
 function startGame() {
     initLevel();
@@ -86,7 +95,6 @@ function startGame() {
     audioFiles[0].volume = 0.1;*/
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-    document.getElementById('btnStart').style.display = 'none';
 }
 
 
