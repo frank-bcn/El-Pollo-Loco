@@ -90,6 +90,7 @@ function startScreen() {
 
 function startGame() {
     initLevel();
+    intervalIds = [];
     /*audioFiles[0].play();
     audioFiles[0].volume = 0.1;*/
     canvas = document.getElementById('canvas');

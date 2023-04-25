@@ -7,6 +7,6 @@ class WinGame extends DrawableObject {
   
     constructor() {
       super();
-      this.loadImage('img/winImg.png');
+      this.loadImage('img/winGameText.png');
     }
   }

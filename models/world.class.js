@@ -144,7 +144,7 @@ class World {
     // spielt das GameOver Bild ein
     drawGameOverScreen() {
         if (this.character.hp == 0) {
-            this.addToMap(this.gameOver);
+            this.addToMap(this.gameOver);     
             stopGame();
             /*this.canvas.style.cursor = "pointer";*/
         }

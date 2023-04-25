@@ -7,6 +7,6 @@ class GameOver extends DrawableObject {
   
     constructor() {
       super();
-      this.loadImage('img/gameOver.png');
+      this.loadImage('img/newGameOverText.png');
     }
   }
