@@ -28,6 +28,7 @@ class World {
     throwableObject = [];
     fullscreen = false;
     soundIsMute = false;
+    endanimation = 0;
 
 
     constructor(canvas, keyboard) {
@@ -136,17 +137,21 @@ class World {
     // spielt das Win Bild ein
     drawWinGameScreen() {
         if (this.level.enemies[0].hp == 0) {
-            this.addToMap(this.winGame);
-            stopGame();
-            /*this.canvas.style.cursor = "pointer";*/
+            this.endanimation++;
+            if (this.endanimation > 150) {
+                this.addToMap(this.winGame);
+                stopGame();
+            }
         }
     }
     // spielt das GameOver Bild ein
     drawGameOverScreen() {
         if (this.character.hp == 0) {
-            this.addToMap(this.gameOver);     
-            stopGame();
-            /*this.canvas.style.cursor = "pointer";*/
+            this.endanimation++;
+            if (this.endanimation > 150) {
+                this.addToMap(this.gameOver);
+                stopGame();
+            }
         }
     }
 
