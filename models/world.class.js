@@ -10,7 +10,6 @@ class World {
     statusBarBottle = new StatusBar_Bottle();
     statusBarEndboss = new StatusBar_Endboss();
     statusBarEndbossImg = new StatusBar_Img_Endboss();
-    startButton = new StartButton();
     winGame = new WinGame();
     gameOver = new GameOver();
     fullScreen = new FullIcon();
@@ -139,8 +138,11 @@ class World {
         if (this.level.enemies[0].hp == 0) {
             this.endanimation++;
             if (this.endanimation > 150) {
+                const canvas = document.getElementById('canvas');
+                canvas.style.cursor = 'pointer'; 
+                canvas.addEventListener('click', startGame); 
                 this.addToMap(this.winGame);
-                stopGame();
+                stopGame();  
             }
         }
     }
@@ -149,11 +151,16 @@ class World {
         if (this.character.hp == 0) {
             this.endanimation++;
             if (this.endanimation > 150) {
+                const canvas = document.getElementById('canvas');
+                canvas.style.cursor = 'pointer'; 
+                canvas.addEventListener('click', restart); 
                 this.addToMap(this.gameOver);
-                stopGame();
+                stopGame();  
             }
         }
     }
+    
+    
 
     drawfullscreen() {
         if (this.fullscreen) {

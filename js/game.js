@@ -67,8 +67,15 @@ window.addEventListener("keyup", (event) => {
 
 function startScreen() {
     const canvas = document.getElementById('canvas');
+    const clickHandler = function (event) {
+        const x = event.offsetX - canvas.width / 2;
+        const y = event.offsetY - canvas.height / 2;
+        if (Math.abs(x) <= 50 && Math.abs(y) <= 50) {
+            startGame();
+            canvas.removeEventListener('click', clickHandler); // Entferne den Event-Listener
+        }
+    };
     canvas.addEventListener('mousemove', function (event) {
-        const rect = canvas.getBoundingClientRect();
         const x = event.offsetX - canvas.width / 2;
         const y = event.offsetY - canvas.height / 2;
         if (Math.abs(x) <= 50 && Math.abs(y) <= 50) {
@@ -77,15 +84,9 @@ function startScreen() {
             canvas.style.cursor = 'default';
         }
     });
-    canvas.addEventListener('click', function (event) {
-        const rect = canvas.getBoundingClientRect();
-        const x = event.offsetX - canvas.width / 2;
-        const y = event.offsetY - canvas.height / 2;
-        if (Math.abs(x) <= 50 && Math.abs(y) <= 50) {
-            startGame();
-        }
-    });
+    canvas.addEventListener('click', clickHandler);
 }
+
 
 
 function startGame() {
@@ -94,6 +95,7 @@ function startGame() {
     audioFiles[0].volume = 0.1;*/
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
+    intervalIds = [];
 }
 
 
@@ -125,10 +127,19 @@ function sound() {
 }
 
 function stopSetInterval(fn, time) {
-    let id = setInterval(fn, time); 
-        intervalIds.push(id);
+    let id = setInterval(fn, time);
+    intervalIds.push(id);
 }
 
 function stopGame() {
     intervalIds.forEach(clearInterval);
 }
+
+function restart() {
+    canvas = document.querySelector('canvas');
+    ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    intervalIds.forEach(clearInterval);
+    intervalIds = [];
+  }
+  
