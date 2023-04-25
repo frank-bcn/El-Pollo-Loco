@@ -88,7 +88,7 @@ class Character extends MovableObject {
 
     animate() {
 
-        setInterval(() => {
+        stopSetInterval(() => {
             if (this.world.keyboard.Right && this.x < this.world.level.level_end_x) {
                 this.moveRight();
             }
@@ -106,7 +106,7 @@ class Character extends MovableObject {
         }, 1000 / 60);
 
 
-        setInterval(() => {
+        stopSetInterval(() => {
             if (!this.world.keyboard.Right && !this.world.keyboard.Left && !this.world.keyboard.Space && !this.world.keyboard.Up) {
               if (this.longIdle > 100) {
                 this.playAnimation(this.IMAGES_Long_Idle);

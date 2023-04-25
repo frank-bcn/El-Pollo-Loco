@@ -46,11 +46,11 @@ class World {
     }
 
     run() {
-        setInterval(() => {
+        stopSetInterval(() => {
             this.checkThrowableObjects();
         }, 150);
 
-        setInterval(() => {
+        stopSetInterval(() => {
             this.checkCollisions();
             this.drawGameOverScreen();
         }, 60);
@@ -137,12 +137,16 @@ class World {
     drawWinGameScreen() {
         if (this.level.enemies[0].hp == 0) {
             this.addToMap(this.winGame);
+            stopGame();
+            /*this.canvas.style.cursor = "pointer";*/
         }
     }
     // spielt das GameOver Bild ein
     drawGameOverScreen() {
         if (this.character.hp == 0) {
             this.addToMap(this.gameOver);
+            stopGame();
+            /*this.canvas.style.cursor = "pointer";*/
         }
     }
 
@@ -165,13 +169,13 @@ class World {
 
 
     drawFunctions() {
-        this.drawStatusBars();
         this.drawfullscreen();
         this.drawsound();
         this.drawArrowsImg();
+        this.drawLevelItems();
+        this.drawStatusBars();
         this.drawGameOverScreen();
         this.drawWinGameScreen();
-        this.drawLevelItems();
     }
 
     drawStatusBars() {
@@ -196,12 +200,12 @@ class World {
 
     drawLevelItems() {
         this.ctx.translate(this.camera_x, 0);
-        this.addToMap(this.character);// fügt den Character zur Welt.
         this.addObjectsToMap(this.level.clouds);// fügt die Wolken zur Welt. 
         this.addObjectsToMap(this.level.enemies);// fügt die Hühner zur Welt.
         this.addObjectsToMap(this.level.bottle);// fügt die Flaschen zur Welt.
         this.addObjectsToMap(this.level.coin);// fügt die Coins zur Welt.
         this.addObjectsToMap(this.throwableObject);// fügt die Flaschen zur Welt.
+        this.addToMap(this.character);// fügt den Character zur Welt.
         this.ctx.translate(-this.camera_x, 0);
     }
 

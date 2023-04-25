@@ -37,7 +37,7 @@ class ThrowableObject extends MovableObject {
     throw() {
         this.speedY = 20; // Geschwindigkeit vertikal
         this.applyGravity();
-        setInterval(() => {
+        stopSetInterval(() => {
             audioFiles[5].pause();
             if(this.y < 340 && !this.isDead()) {// wenn die Flasche unterhalb der oberen Grenze befindet(340) wird die Rotation Bilder aufgerufen.
                 this.x += 20;

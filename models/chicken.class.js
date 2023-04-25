@@ -32,7 +32,7 @@ class Chicken extends MovableObject {
     
     animate() {
        
-        setInterval(() => {
+        stopSetInterval(() => {
             if(this.isDead()) {
                 this.offset = {top: 0, bottom: 0, left: 0, right: 0};
                 this.speed = 0;

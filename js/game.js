@@ -65,7 +65,7 @@ window.addEventListener("keyup", (event) => {
     }
 });
 
-function startScreen(x, y) {
+function startScreen() {
     const canvas = document.getElementById('canvas');
     canvas.addEventListener('mousemove', function (event) {
         const rect = canvas.getBoundingClientRect();
@@ -76,7 +76,6 @@ function startScreen(x, y) {
         } else {
             canvas.style.cursor = 'default';
         }
-        // Verwenden Sie die x- und y-Koordinaten für etwas anderes
     });
     canvas.addEventListener('click', function (event) {
         const rect = canvas.getBoundingClientRect();
@@ -123,4 +122,13 @@ function sound() {
         e.volume = 0.1;
     }))
     world.soundIsMute = false;
+}
+
+function stopSetInterval(fn, time) {
+    let id = setInterval(fn, time); 
+        intervalIds.push(id);
+}
+
+function stopGame() {
+    intervalIds.forEach(clearInterval)
 }
