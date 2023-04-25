@@ -140,7 +140,7 @@ class World {
             if (this.endanimation > 150) {
                 const canvas = document.getElementById('canvas');
                 canvas.style.cursor = 'pointer'; 
-                canvas.addEventListener('click', startGame); 
+                canvas.addEventListener('click', restart); 
                 this.addToMap(this.winGame);
                 stopGame();  
             }

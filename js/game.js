@@ -2,6 +2,7 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 let intervalIds = [];
+let ctx;
 
 let audioFiles = [
     music_sound = new Audio('audio/music.mp3'),
@@ -72,7 +73,7 @@ function startScreen() {
         const y = event.offsetY - canvas.height / 2;
         if (Math.abs(x) <= 50 && Math.abs(y) <= 50) {
             startGame();
-            canvas.removeEventListener('click', clickHandler); // Entferne den Event-Listener
+            canvas.removeEventListener('click', clickHandler);
         }
     };
     canvas.addEventListener('mousemove', function (event) {
@@ -87,18 +88,15 @@ function startScreen() {
     canvas.addEventListener('click', clickHandler);
 }
 
-
-
 function startGame() {
+    intervalIds = [];
     initLevel();
     /*audioFiles[0].play();
     audioFiles[0].volume = 0.1;*/
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-    intervalIds = [];
+
 }
-
-
 
 function fullscreen() {
     document.getElementById('canvasFull').style = "width:100%;height:100%";
@@ -136,10 +134,10 @@ function stopGame() {
 }
 
 function restart() {
-    canvas = document.querySelector('canvas');
+    initLevel();
+    world = new World(canvas, keyboard);
     ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    intervalIds.forEach(clearInterval);
     intervalIds = [];
-  }
-  
+    /*audioFiles[0].play();
+    audioFiles[0].volume = 0.1;*/  
+}
