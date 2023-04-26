@@ -28,6 +28,7 @@ class World {
     fullscreen = false;
     soundIsMute = false;
     endanimation = 0;
+    turnMobile = new TurnMobile();
 
 
     constructor(canvas, keyboard) {
@@ -133,8 +134,8 @@ class World {
         });
     }
 
-    checkGameEnd(){
-        if(this.endanimation >= 150) {
+    checkGameEnd() {
+        if (this.endanimation >= 150) {
             stopGame();
         }
     }

@@ -38,3 +38,19 @@ canvas {
   font-family: 'chillingsabrina';
   src: url('fonts/chillingsabrina.ttf');
 }
+
+@media only screen and (max-width: 720px) {
+
+  canvas,
+  .canvasFull {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-height: 480px) {
+
+  canvas,
+  .canvasFull {
+    height: 100vh;
+  }
+}

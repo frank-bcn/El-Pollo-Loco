@@ -3,6 +3,7 @@ let world;
 let keyboard = new Keyboard();
 let intervalIds = [];
 let ctx;
+let playIndikator = false;
 
 let audioFiles = [
     music_sound = new Audio('audio/music.mp3'),
@@ -85,6 +86,9 @@ function startScreen() {
             canvas.style.cursor = 'default';
         }
     });
+    stopSetInterval(() => {
+        yesMobil();
+    })
     canvas.addEventListener('click', clickHandler);
 }
 
@@ -95,7 +99,7 @@ function startGame() {
     audioFiles[0].volume = 0.1;*/
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-
+    playIndikator = true;
 }
 
 function fullscreen() {
@@ -139,7 +143,24 @@ function restart() {
     world = new World(canvas, keyboard);
     ctx = canvas.getContext('2d');
     endanimation = 0;
-    
     /*audioFiles[0].play();
-    audioFiles[0].volume = 0.1;*/  
+    audioFiles[0].volume = 0.1;*/
+}
+
+function yesMobil() {
+    if (this.playIndikator) {
+        (window.innerWidth > window.innerHeight) ? formatLandscape() : formatPortrait();
+    } else (window.innerWidth > window.innerHeight) 
+        this.addToMap(this.turnMobile());
+    
+}
+
+function formatLandscape() {
+    document.getElementById('canvasFull').style = "width:100%;height:100%";
+    document.getElementById('canvas').style = "width:100%;height:100%";
+}
+
+function formatPortrait() {
+    document.getElementById('canvasFull').style = "width:720px;height:480px";
+    document.getElementById('canvas').style = "width:720px;height:480px";
 }
