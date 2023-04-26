@@ -87,7 +87,6 @@ function startScreen() {
         }
     });
     stopSetInterval(() => {
-        yesMobil();
         viewportMobile();
     })
     canvas.addEventListener('click', clickHandler);
@@ -152,18 +151,15 @@ function viewportMobile() {
     requestAnimationFrame(() => {
         if (/Mobil/.test(navigator.userAgent)) {
             yesMobil();
-            // console.log('mobile');
         } else {
-            // console.log('desktop');
+            document.getElementById('canvasFull').style = "width:720px;height:480px";
+            document.getElementById('canvas').style = "width:720px;height:480px";
         }
-        /* else if (playIndikator) noMobil();
-         viewportMobile();
-         console.log('desktop');*/
     });
 }
 
 function yesMobil() {
-    if (!this.playIndikator && window.innerWidth > window.innerHeight) {
+    if (window.innerWidth > window.innerHeight) {
         console.log('querformat');
         formatLandscape();
     } else {
