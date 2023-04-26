@@ -131,13 +131,15 @@ function stopSetInterval(fn, time) {
 
 function stopGame() {
     intervalIds.forEach(clearInterval);
+    intervalIds = [];
 }
 
 function restart() {
     initLevel();
     world = new World(canvas, keyboard);
     ctx = canvas.getContext('2d');
-    intervalIds = [];
+    endanimation = 0;
+    
     /*audioFiles[0].play();
     audioFiles[0].volume = 0.1;*/  
 }

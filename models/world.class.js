@@ -52,7 +52,7 @@ class World {
 
         stopSetInterval(() => {
             this.checkCollisions();
-            this.drawGameOverScreen();
+            this.checkGameEnd();
         }, 60);
     }
 
@@ -133,16 +133,21 @@ class World {
         });
     }
 
+    checkGameEnd(){
+        if(this.endanimation >= 150) {
+            stopGame();
+        }
+    }
+
     // spielt das Win Bild ein
     drawWinGameScreen() {
         if (this.level.enemies[0].hp == 0) {
             this.endanimation++;
             if (this.endanimation > 150) {
                 const canvas = document.getElementById('canvas');
-                canvas.style.cursor = 'pointer'; 
-                canvas.addEventListener('click', restart); 
+                canvas.style.cursor = 'pointer';
                 this.addToMap(this.winGame);
-                stopGame();  
+                canvas.addEventListener('click', restart);
             }
         }
     }
@@ -152,15 +157,12 @@ class World {
             this.endanimation++;
             if (this.endanimation > 150) {
                 const canvas = document.getElementById('canvas');
-                canvas.style.cursor = 'pointer'; 
-                canvas.addEventListener('click', restart); 
+                canvas.style.cursor = 'pointer';
                 this.addToMap(this.gameOver);
-                stopGame();  
+                canvas.addEventListener('click', restart);
             }
         }
     }
-    
-    
 
     drawfullscreen() {
         if (this.fullscreen) {
@@ -178,7 +180,6 @@ class World {
             this.addToMap(this.sound);
         }
     }
-
 
     drawFunctions() {
         this.drawfullscreen();
