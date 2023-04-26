@@ -88,6 +88,7 @@ function startScreen() {
     });
     stopSetInterval(() => {
         yesMobil();
+        viewportMobile(); 
     })
     canvas.addEventListener('click', clickHandler);
 }
@@ -147,12 +148,33 @@ function restart() {
     audioFiles[0].volume = 0.1;*/
 }
 
+function viewportMobile() {
+    requestAnimationFrame(() => {
+      if (/Mobil/.test(navigator.userAgent)) {
+        yesMobil(); 
+        console.log('mobile');
+      } else {
+        console.log('desktop');
+      }
+
+
+      
+      
+      
+     /* else if (playIndikator) noMobil();
+      viewportMobile();
+      */
+    });
+  }
+
 function yesMobil() {
-    if (this.playIndikator) {
-        (window.innerWidth > window.innerHeight) ? formatLandscape() : formatPortrait();
-    } else (window.innerWidth > window.innerHeight) 
-        this.addToMap(this.turnMobile());
-    
+    if (!this.playIndikator && window.innerWidth > window.innerHeight) {
+    /*console.log('querformat');*/
+        formatLandscape();
+    } else {
+        formatPortrait();
+        /*console.log('hochformat');*/
+    }
 }
 
 function formatLandscape() {

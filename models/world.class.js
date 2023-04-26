@@ -340,15 +340,22 @@ class World {
     }
 
     toggleSound = (event) => {
-        const { clientX, clientY } = event;
-        const x = clientX - this.canvas.offsetLeft;
-        const y = clientY - this.canvas.offsetTop;
-        const targetCoords = this.fullscreen ? { x: 130, y: 40 } : { x: 62, y: 20 };
-        const distance = 15;
-        const isTarget = Math.abs(x - targetCoords.x) <= distance && Math.abs(y - targetCoords.y) <= distance;
+        let { clientX, clientY } = event;
+        let x = clientX - this.canvas.offsetLeft;
+        let y = clientY - this.canvas.offsetTop;
+        let targetCoords = this.fullscreen ? { x: 130, y: 40 } : { x: 62, y: 20 };
+        let distance = 15;
+        let isTarget = Math.abs(x - targetCoords.x) <= distance && Math.abs(y - targetCoords.y) <= distance;
 
         if (isTarget) {
             this.soundIsMute ? sound() : soundMute();
         }
     }
+
+    /*mobile() {
+        if ((!this.playIndikator) && (window.innerWidth > window.innerHeight)) {
+            this.addToMap(this.turnMobile);
+            console.log('Mobile');
+        }
+    }*/
 }
