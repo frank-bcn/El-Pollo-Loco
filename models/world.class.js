@@ -28,7 +28,6 @@ class World {
     fullscreen = false;
     soundIsMute = false;
     endanimation = 0;
-    turnMobile = new TurnMobile();
 
 
     constructor(canvas, keyboard) {
@@ -351,11 +350,4 @@ class World {
             this.soundIsMute ? sound() : soundMute();
         }
     }
-
-    /*mobile() {
-        if ((!this.playIndikator) && (window.innerWidth > window.innerHeight)) {
-            this.addToMap(this.turnMobile);
-            console.log('Mobile');
-        }
-    }*/
 }

@@ -88,7 +88,7 @@ function startScreen() {
     });
     stopSetInterval(() => {
         yesMobil();
-        viewportMobile(); 
+        viewportMobile();
     })
     canvas.addEventListener('click', clickHandler);
 }
@@ -150,39 +150,44 @@ function restart() {
 
 function viewportMobile() {
     requestAnimationFrame(() => {
-      if (/Mobil/.test(navigator.userAgent)) {
-        yesMobil(); 
-        console.log('mobile');
-      } else {
-        console.log('desktop');
-      }
-
-
-      
-      
-      
-     /* else if (playIndikator) noMobil();
-      viewportMobile();
-      */
+        if (/Mobil/.test(navigator.userAgent)) {
+            yesMobil();
+            // console.log('mobile');
+        } else {
+            // console.log('desktop');
+        }
+        /* else if (playIndikator) noMobil();
+         viewportMobile();
+         console.log('desktop');*/
     });
-  }
+}
 
 function yesMobil() {
     if (!this.playIndikator && window.innerWidth > window.innerHeight) {
-    /*console.log('querformat');*/
+        console.log('querformat');
         formatLandscape();
     } else {
         formatPortrait();
-        /*console.log('hochformat');*/
+        console.log('hochformat');
     }
 }
 
 function formatLandscape() {
-    document.getElementById('canvasFull').style = "width:100%;height:100%";
-    document.getElementById('canvas').style = "width:100%;height:100%";
+    document.getElementById('canvasFull').style = "width:100%;height:100vh";
+    document.getElementById('canvas').style = "width:100%;height:100vh";
+    document.getElementById('canvas').classList.remove('d-none');
 }
 
 function formatPortrait() {
-    document.getElementById('canvasFull').style = "width:720px;height:480px";
-    document.getElementById('canvas').style = "width:720px;height:480px";
+    let body = document.querySelector('body');
+    let newImg = new Image();
+    newImg.onload = function () {
+        body.style.backgroundImage = "url('img/turn-device.png')";
+        body.style.backgroundSize = "80%";
+    };
+    newImg.src = "img/turn-device.png";
+    console.log('1');
+    document.getElementById('canvas').classList.add('d-none');
+    document.getElementById('canvasFull').style = "width:100%;height:100vh";
+    document.getElementById('canvas').style = "width:100%;height:100vh";
 }

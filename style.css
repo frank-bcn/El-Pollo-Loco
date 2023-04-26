@@ -1,6 +1,7 @@
 body {
   display: flex;
   flex-direction: column;
+  user-select: none;
   align-items: center;
   justify-content: center;
   background-image: url(img/background1.png);
@@ -44,6 +45,8 @@ canvas {
   canvas,
   .canvasFull {
     width: 100%;
+    height: auto;
+    
   }
 }
 
