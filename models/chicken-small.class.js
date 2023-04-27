@@ -26,6 +26,10 @@ class Chicken_small extends MovableObject {
         this.animate();
     }
 
+    checkdistance() {
+        return (this.x - world.character.x);
+    }
+
     animate() {
        
         stopSetInterval(() => {
@@ -33,7 +37,13 @@ class Chicken_small extends MovableObject {
                 this.offset = {top: 0, bottom: 0, left: 0, right: 0};
                 this.speed = 0;
                 this.loadImage(this.IMAGE_DIE);
-            } else {
+            } 
+            else if(this.checkdistance() < -10) {
+                this.moveRight();
+                this.otherDirection = true;
+                this.speed = 5;
+            }
+            else {
                 this.moveLeft();
                 this.playAnimation(this.IMAGES_WALKING);
             }

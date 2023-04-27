@@ -41,6 +41,9 @@ class World {
         this.curserClickSound();
     }
 
+    /**
+    * comstyle
+    */
     setWorld() {
         this.character.world = this;
     }
@@ -120,6 +123,7 @@ class World {
             }
         });
     }
+
     // draw wird immer wieder aufgerufen.
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);

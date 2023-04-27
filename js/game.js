@@ -23,6 +23,7 @@ let audioFiles = [
     win_sound = new Audio('audio/win.mp3')
 ];
 
+
 window.addEventListener("keydown", (event) => {
     if (event.keyCode == 39) {
         keyboard.Right = true;
@@ -160,11 +161,11 @@ function viewportMobile() {
 
 function yesMobil() {
     if (window.innerWidth > window.innerHeight) {
-        console.log('querformat');
+        /*console.log('querformat');*/
         formatLandscape();
     } else {
         formatPortrait();
-        console.log('hochformat');
+        /*console.log('hochformat');*/
     }
 }
 
