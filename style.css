@@ -44,10 +44,10 @@ canvas {
 @media only screen and (max-width: 720px) {
   .canvasFull {
     width: 100% !important;
-    height: auto !important;
+    height: 100% !important;
   }
   canvas {
     width: 100% !important;
-    height: auto !important;
+    height: 100% !important;
   }
 }
