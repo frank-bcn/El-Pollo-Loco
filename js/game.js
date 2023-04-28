@@ -107,7 +107,6 @@ function fullscreen() {
     document.getElementById('canvasFull').style = "width:100%;height:100%";
     document.getElementById('canvas').style = "width:100%;height:100%";
     world.fullscreen = true;
-
 }
 
 function closeFullscreen() {
@@ -143,6 +142,7 @@ function restart() {
     initLevel();
     world = new World(canvas, keyboard);
     ctx = canvas.getContext('2d');
+    canvas = document.getElementById('canvas');
     endanimation = 0;
     /*audioFiles[0].play();
     audioFiles[0].volume = 0.1;*/
@@ -150,14 +150,24 @@ function restart() {
 
 function viewportMobile() {
     requestAnimationFrame(() => {
-        if (/Mobil/.test(navigator.userAgent)) {
+        const isMobile = /Mobil/.test(navigator.userAgent);
+        if (isMobile) {
             yesMobil();
+            this.checkmobile = true;
+
+            if (playIndikator) {
+                world.ctx.clearRect(13, 10, 25, 25);
+                console.log('mobile');
+            }
         } else {
-            document.getElementById('canvasFull').style = "width:720px;height:480px";
-            document.getElementById('canvas').style = "width:720px;height:480px";
+            this.checkmobile = false;
+            console.log('desktop');
+            //hier füge ich die touch buttons hinzu
         }
     });
 }
+
+
 
 function yesMobil() {
     if (window.innerWidth > window.innerHeight) {
@@ -166,6 +176,17 @@ function yesMobil() {
     } else {
         formatPortrait();
         /*console.log('hochformat');*/
+    }
+}
+
+
+function mobile() {
+    if (this.checkmobile) {
+        //add meine mobile buttons
+        console.log(this.checkmobile);
+    } else {
+        console.log(this.checkmobile);
+
     }
 }
 
@@ -183,7 +204,6 @@ function formatPortrait() {
         body.style.backgroundSize = "80%";
     };
     newImg.src = "img/turn-device.png";
-    console.log('1');
     document.getElementById('canvas').classList.add('d-none');
     document.getElementById('canvasFull').style = "width:100%;height:100vh";
     document.getElementById('canvas').style = "width:100%;height:100vh";

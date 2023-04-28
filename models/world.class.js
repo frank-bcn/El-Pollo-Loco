@@ -28,6 +28,7 @@ class World {
     fullscreen = false;
     soundIsMute = false;
     endanimation = 0;
+    checkmobile = false;
 
 
     constructor(canvas, keyboard) {
@@ -163,7 +164,7 @@ class World {
                 const canvas = document.getElementById('canvas');
                 canvas.style.cursor = 'pointer';
                 this.addToMap(this.gameOver);
-                canvas.addEventListener('click', restart);
+                canvas.addEventListener('click',restart);
             }
         }
     }
@@ -171,7 +172,6 @@ class World {
     drawfullscreen() {
         if (this.fullscreen) {
             this.addToMap(this.nofullScreen);
-
         } else {
             this.addToMap(this.fullScreen);
         }

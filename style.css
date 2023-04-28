@@ -12,6 +12,7 @@ body {
   width: 100%;
   font-family: 'chillingsabrina';
   margin: 0;
+  overflow: hidden;
 }
 
 .canvasFull {
@@ -43,11 +44,10 @@ canvas {
 
 @media only screen and (max-width: 720px) {
   .canvasFull {
-    width: 100% !important;
-    height: 100% !important;
+    width: 100%;
   }
+
   canvas {
-    width: 100% !important;
-    height: 100% !important;
+    width: 100%;
   }
 }
