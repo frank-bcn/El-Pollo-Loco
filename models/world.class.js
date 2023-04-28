@@ -28,7 +28,6 @@ class World {
     fullscreen = false;
     soundIsMute = false;
     endanimation = 0;
-    checkmobile = false;
 
 
     constructor(canvas, keyboard) {
@@ -132,10 +131,16 @@ class World {
         this.addObjectsToMap(this.level.backgroundObjects);// fügt die Hintergrundbilder zur Welt.
         this.ctx.translate(-this.camera_x, 0);
         this.drawFunctions();
+        this.clearFullscreenButton();
         let self = this;//let self = this; definiert eine lokale Variable namens self, die auf das this-Objekt verweist, das normalerweise das Objekt ist, in dem die Funktion aufgerufen wird.
         requestAnimationFrame(function () {//ruft eine Browser-API auf, um eine Animation zu starten. Das function () {...} wird als Rückruf-Funktion an die requestAnimationFrame-Funktion übergeben und wird ausgeführt, wenn die Animation bereit ist, ein neues Frame zu rendern.
             self.draw();
         });
+    }
+
+    clearFullscreenButton() {
+        if (checkmobile && playIndikator)
+            world.ctx.clearRect(13, 10, 25, 25);
     }
 
     checkGameEnd() {
@@ -164,7 +169,7 @@ class World {
                 const canvas = document.getElementById('canvas');
                 canvas.style.cursor = 'pointer';
                 this.addToMap(this.gameOver);
-                canvas.addEventListener('click',restart);
+                canvas.addEventListener('click', restart);
             }
         }
     }

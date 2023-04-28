@@ -4,6 +4,7 @@ let keyboard = new Keyboard();
 let intervalIds = [];
 let ctx;
 let playIndikator = false;
+let checkmobile = false;
 
 let audioFiles = [
     music_sound = new Audio('audio/music.mp3'),
@@ -89,7 +90,8 @@ function startScreen() {
     });
     stopSetInterval(() => {
         viewportMobile();
-    })
+    }, 10);
+
     canvas.addEventListener('click', clickHandler);
 }
 
@@ -110,8 +112,13 @@ function fullscreen() {
 }
 
 function closeFullscreen() {
-    document.getElementById('canvasFull').style = "width:720px;height:480px";
-    document.getElementById('canvas').style = "width:720px;height:480px";
+    if (window.innerWidth < 720) {
+        document.getElementById('canvasFull').style = "width:100%";
+        document.getElementById('canvas').style = "width:100%";
+    } else {
+        document.getElementById('canvasFull').style = "width:720px;height:480px";
+        document.getElementById('canvas').style = "width:720px;height:480px";
+    }
     world.fullscreen = false;
 }
 
@@ -153,40 +160,16 @@ function viewportMobile() {
         const isMobile = /Mobil/.test(navigator.userAgent);
         if (isMobile) {
             yesMobil();
-            this.checkmobile = true;
-
-            if (playIndikator) {
-                world.ctx.clearRect(13, 10, 25, 25);
-                console.log('mobile');
-            }
-        } else {
-            this.checkmobile = false;
-            console.log('desktop');
-            //hier füge ich die touch buttons hinzu
+            checkmobile = true;
         }
-    });
+    })
 }
-
-
 
 function yesMobil() {
     if (window.innerWidth > window.innerHeight) {
-        /*console.log('querformat');*/
         formatLandscape();
     } else {
         formatPortrait();
-        /*console.log('hochformat');*/
-    }
-}
-
-
-function mobile() {
-    if (this.checkmobile) {
-        //add meine mobile buttons
-        console.log(this.checkmobile);
-    } else {
-        console.log(this.checkmobile);
-
     }
 }
 
