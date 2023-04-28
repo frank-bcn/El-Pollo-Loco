@@ -151,6 +151,7 @@ function restart() {
     ctx = canvas.getContext('2d');
     canvas = document.getElementById('canvas');
     endanimation = 0;
+    canvas.removeEventListener('click', restart);
     /*audioFiles[0].play();
     audioFiles[0].volume = 0.1;*/
 }
