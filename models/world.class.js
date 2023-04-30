@@ -140,7 +140,7 @@ class World {
 
     clearFullscreenButton() {
         if (checkmobile && playIndikator)
-         world.ctx.clearRect(13, 10, 25, 25);
+            world.ctx.clearRect(13, 10, 25, 25);
     }
 
     checkGameEnd() {
@@ -170,6 +170,8 @@ class World {
                 canvas.style.cursor = 'pointer';
                 this.addToMap(this.gameOver);
                 canvas.addEventListener('click', restart);
+                console.log('click restart');
+
             }
         }
     }

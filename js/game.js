@@ -146,14 +146,16 @@ function stopGame() {
 }
 
 function restart() {
+    canvas = document.getElementById('canvas');
+    canvas.style.cursor = 'default';
+    canvas.removeEventListener('click', restart);
     initLevel();
     world = new World(canvas, keyboard);
     ctx = canvas.getContext('2d');
-    canvas = document.getElementById('canvas');
     endanimation = 0;
-    canvas.removeEventListener('click', restart);
     /*audioFiles[0].play();
     audioFiles[0].volume = 0.1;*/
+    console.log('ende restart');
 }
 
 function viewportMobile() {
