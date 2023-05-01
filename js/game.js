@@ -165,7 +165,7 @@ function viewportMobile() {
         const isMobile = /Mobil/.test(navigator.userAgent);
         if (isMobile) {
             yesMobil();
-            MobileTouch();
+            mobileTouch();
             checkmobile = true;
         }
     })
@@ -198,9 +198,9 @@ function formatPortrait() {
     document.getElementById('canvas').style = "width:100%;height:100vh";
 }
 
-function MobileTouch() {
+function mobileTouch() {
     const distance = 15;
-    canvas = document.getElementById('canvas');
+    const canvas = document.getElementById('canvas');
     canvas.addEventListener("touchstart", (event) => {
         if (event.touches.length === 1) {
             const touch = event.touches[0];
@@ -216,4 +216,17 @@ function MobileTouch() {
             }
         }
     });
+    mobileTouchEnd(canvas);
 }
+
+function mobileTouchEnd(canvas) {
+    canvas.addEventListener("touchend", (touchEndEvent) => {
+        keyboard.Left = false;
+        keyboard.Right = false;
+        keyboard.Up = false;
+        keyboard.Space = false;
+    });
+}
+
+
+
