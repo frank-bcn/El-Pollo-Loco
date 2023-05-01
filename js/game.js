@@ -69,6 +69,7 @@ window.addEventListener("keyup", (event) => {
     }
 });
 
+
 function startScreen() {
     const canvas = document.getElementById('canvas');
     const clickHandler = function (event) {
@@ -146,7 +147,7 @@ function stopGame() {
 }
 
 function restart() {
-    canvas = document.getElementById('canvas');
+    const canvas = document.getElementById('canvas');
     canvas.style.cursor = 'default';
     canvas.removeEventListener('click', restart);
     initLevel();
@@ -158,11 +159,13 @@ function restart() {
     console.log('ende restart');
 }
 
+
 function viewportMobile() {
     requestAnimationFrame(() => {
         const isMobile = /Mobil/.test(navigator.userAgent);
         if (isMobile) {
             yesMobil();
+            MobileTouch();
             checkmobile = true;
         }
     })
@@ -193,4 +196,24 @@ function formatPortrait() {
     document.getElementById('canvas').classList.add('d-none');
     document.getElementById('canvasFull').style = "width:100%;height:100vh";
     document.getElementById('canvas').style = "width:100%;height:100vh";
+}
+
+function MobileTouch() {
+    const distance = 15;
+    canvas = document.getElementById('canvas');
+    canvas.addEventListener("touchstart", (event) => {
+        if (event.touches.length === 1) {
+            const touch = event.touches[0];
+            console.log(`x: ${touch.clientX}, y: ${touch.clientY}`);
+            if ((touch.clientX >= (64 - distance) && touch.clientX <= (64 + distance) && touch.clientY >= (352 - distance) && touch.clientY <= (352 + distance))) {
+                keyboard.Left = true;
+            } else if ((touch.clientX >= (215 - distance) && touch.clientX <= (215 + distance) && touch.clientY >= (352 - distance) && touch.clientY <= (352 + distance))) {
+                keyboard.Right = true;
+            } else if ((touch.clientX >= (359 - distance) && touch.clientX <= (359 + distance) && touch.clientY >= (352 - distance) && touch.clientY <= (352 + distance))) {
+                keyboard.Up = true;
+            } else if ((touch.clientX >= (479 - distance) && touch.clientX <= (479 + distance) && touch.clientY >= (352 - distance) && touch.clientY <= (352 + distance))) {
+                keyboard.Space = true;
+            }
+        }
+    });
 }
