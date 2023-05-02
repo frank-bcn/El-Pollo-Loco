@@ -38,11 +38,6 @@ class Chicken_small extends MovableObject {
                 this.speed = 0;
                 this.loadImage(this.IMAGE_DIE);
             } 
-            else if(this.checkdistance() < -40) {
-                this.moveRight();
-                this.otherDirection = true;
-                this.speed = 5;
-            }
             else {
                 this.moveLeft();
                 this.playAnimation(this.IMAGES_WALKING);

@@ -69,7 +69,6 @@ window.addEventListener("keyup", (event) => {
     }
 });
 
-
 /**
 *startScreen()
 *This function sets up the start screen of the game. It gets the canvas element and adds a click event listener to it.
