@@ -109,8 +109,6 @@ function startScreen() {
 function startGame() {
     intervalIds = [];
     initLevel();
-    /*audioFiles[0].play();
-    audioFiles[0].volume = 0.1;*/
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     playIndikator = true;
@@ -183,6 +181,7 @@ function stopSetInterval(fn, time) {
 function stopGame() {
     intervalIds.forEach(clearInterval);
     intervalIds = [];
+    soundMute();
 }
 
 /**
@@ -199,9 +198,6 @@ function restart() {
     world = new World(canvas, keyboard);
     ctx = canvas.getContext('2d');
     endanimation = 0;
-    /*audioFiles[0].play();
-    audioFiles[0].volume = 0.1;*/
-    console.log('ende restart');
 }
 
 /**

@@ -4,7 +4,7 @@ class ThrowableObject extends MovableObject {
     speedY = 0;
     hp = 20;
 
-    
+
     IMAGES_ROTATION = [
         'img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
         'img/6_salsa_bottle/bottle_rotation/2_bottle_rotation.png',
@@ -21,7 +21,7 @@ class ThrowableObject extends MovableObject {
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png'
     ];
 
-    offset = {top: 15, bottom: 10, left: 5, right: 5}
+    offset = { top: 15, bottom: 10, left: 5, right: 5 }
 
     constructor(x, y) {
         super().loadImage(this.IMAGES_ROTATION[0]);
@@ -30,8 +30,8 @@ class ThrowableObject extends MovableObject {
 
         this.x = x;
         this.y = y;
-        
-        this.throw(); 
+
+        this.throw();
     }
 
     throw() {
@@ -39,12 +39,16 @@ class ThrowableObject extends MovableObject {
         this.applyGravity();
         stopSetInterval(() => {
             audioFiles[5].pause();
-            if(this.y < 340 && !this.isDead()) {// wenn die Flasche unterhalb der oberen Grenze befindet(340) wird die Rotation Bilder aufgerufen.
+            if (this.y < 340 && !this.isDead()) {// wenn die Flasche unterhalb der oberen Grenze befindet(340) wird die Rotation Bilder aufgerufen.
                 this.x += 20;
                 this.playAnimation(this.IMAGES_ROTATION);
+                audioFiles[5].play();
+                audioFiles[5].volume = 0.2;
             }
-            if(this.isDead() || this.y >= 370) {// wenn die Flasche tot ist oder die obere Grenze erreicht hat, wird die Splash Bilder aufgerufen. 
+            if (this.isDead() || this.y >= 370) {// wenn die Flasche tot ist oder die obere Grenze erreicht hat, wird die Splash Bilder aufgerufen. 
                 this.splash();
+                audioFiles[4].play();
+                audioFiles[4].volume = 0.2;
             }
         }, 40);
     }

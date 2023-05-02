@@ -99,7 +99,6 @@ class MovableObject extends DrawableObject {
     moveRight() {
         this.x += this.speed;
         this.otherDirection = false;
-        /*audioFiles[1].play();*/
     }
 
     /**
@@ -108,8 +107,7 @@ class MovableObject extends DrawableObject {
     */
     moveLeft() {
         this.x -= this.speed;
-        this.otherDirection = false;
-        /*audioFiles[1].play();*/
+        this.otherDirection = false; 
     }
 
     /**
@@ -118,6 +116,7 @@ class MovableObject extends DrawableObject {
     */
     jump() {
         this.speedY = 30;
-        /*audioFiles[2].play();*/
+        audioFiles[2].play();
+        audioFiles[2].volume = 0.2;
     }
 }
