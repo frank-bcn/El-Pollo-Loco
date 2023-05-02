@@ -109,6 +109,8 @@ function startScreen() {
 function startGame() {
     intervalIds = [];
     initLevel();
+    audioFiles[0].play();
+    audioFiles[0].volume = 0.2;
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     playIndikator = true;

@@ -97,8 +97,11 @@ class MovableObject extends DrawableObject {
     @returns {void}
     */
     moveRight() {
+        audioFiles[1].pause();
         this.x += this.speed;
         this.otherDirection = false;
+        audioFiles[1].play();
+        audioFiles[1].pause();
     }
 
     /**
@@ -108,6 +111,8 @@ class MovableObject extends DrawableObject {
     moveLeft() {
         this.x -= this.speed;
         this.otherDirection = false; 
+        audioFiles[1].play();
+        audioFiles[1].pause();
     }
 
     /**

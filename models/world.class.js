@@ -205,14 +205,16 @@ class World {
     */
     drawWinGameScreen() {
         if (this.level.enemies[0].hp == 0) {
+            audioFiles[0].pause();
+            audioFiles[14].play();
+            audioFiles[14].volume = 0.2;
             this.endanimation++;
             if (this.endanimation > 150) {
                 const canvas = document.getElementById('canvas');
                 canvas.style.cursor = 'pointer';
                 this.addToMap(this.winGame);
                 canvas.addEventListener('click', restart);
-                audioFiles[14].play();
-                audioFiles[14].volume = 0.2;
+
             }
         }
     }
@@ -223,15 +225,17 @@ class World {
     */
     drawGameOverScreen() {
         if (this.character.hp == 0) {
+            audioFiles[0].pause();
+            audioFiles[8].pause();
+            audioFiles[11].pause();
+            audioFiles[12].play();
+            audioFiles[12].volume = 0.2;
             this.endanimation++;
             if (this.endanimation > 150) {
                 const canvas = document.getElementById('canvas');
                 canvas.style.cursor = 'pointer';
                 this.addToMap(this.gameOver);
                 canvas.addEventListener('click', restart);
-                audioFiles[12].play();
-                audioFiles[12].volume = 0.2;
-
             }
         }
     }

@@ -127,6 +127,7 @@ class Character extends MovableObject {
         this.playAnimation(this.IMAGES_DEAD);
         audioFiles[8].play();
         audioFiles[8].volume = 0.2;
+        audioFiles[8].pause();
       } else if (this.isHurt()) {
         this.playAnimation(this.IMAGES_HURT);
       } else if (this.isAboveGround()) {
