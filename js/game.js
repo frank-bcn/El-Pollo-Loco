@@ -193,13 +193,12 @@ function stopGame() {
 * Initializes the game level, creates a new world, and resets the end animation.
 */
 function restart() {
-    const canvas = document.getElementById('canvas');
+    canvas.getContext("2d").clearRect(0, 0, 720, 480);
     canvas.style.cursor = 'default';
     canvas.removeEventListener('click', restart);
-    initLevel();
-    world = new World(canvas, keyboard);
-    ctx = canvas.getContext('2d');
     endanimation = 0;
+    world.character.hp = 100;
+    startGame();
 }
 
 /**

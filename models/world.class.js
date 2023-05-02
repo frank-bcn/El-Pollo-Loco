@@ -214,7 +214,6 @@ class World {
                 canvas.style.cursor = 'pointer';
                 this.addToMap(this.winGame);
                 canvas.addEventListener('click', restart);
-
             }
         }
     }
