@@ -103,7 +103,8 @@ class MovableObject extends DrawableObject {
     }
 
     /**
-    *The moveLeft() method moves the object to the left by updating its x position with the negative value of its speed property. The otherDirection property is set to false, indicating that the object is moving to the left. An optional audio playback feature is currently commented out.
+    *The moveLeft() 
+    *method moves the object to the left by updating its x position with the negative value of its speed property. The otherDirection property is set to false, indicating that the object is moving to the left. An optional audio playback feature is currently commented out.
     */
     moveLeft() {
         this.x -= this.speed;
@@ -113,7 +114,7 @@ class MovableObject extends DrawableObject {
 
     /**
     jump()
-    This method sets the vertical speed of the object to a positive value, causing it to move upwards on the screen as if it were jumping. It also triggers an audio sound effect.
+    *This method sets the vertical speed of the object to a positive value, causing it to move upwards on the screen as if it were jumping. It also triggers an audio sound effect.
     */
     jump() {
         this.speedY = 30;
