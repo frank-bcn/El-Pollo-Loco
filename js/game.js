@@ -198,6 +198,7 @@ function restart() {
     canvas.removeEventListener('click', restart);
     endanimation = 0;
     world.character.hp = 100;
+    world.soundIsMute = false;
     startGame();
 }
 
