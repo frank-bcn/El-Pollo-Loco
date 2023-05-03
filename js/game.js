@@ -193,14 +193,20 @@ function stopGame() {
 * Initializes the game level, creates a new world, and resets the end animation.
 */
 function restart() {
+    audioFiles.forEach(audio => {
+        audio.pause();
+        audio.currentTime = 0;
+    });
+    
     canvas.getContext("2d").clearRect(0, 0, 720, 480);
+    sound();
     canvas.style.cursor = 'default';
     canvas.removeEventListener('click', restart);
     endanimation = 0;
     world.character.hp = 100;
-    world.soundIsMute = false;
     startGame();
 }
+
 
 /**
 * viewportMovil()
