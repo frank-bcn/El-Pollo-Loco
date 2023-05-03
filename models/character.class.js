@@ -105,6 +105,8 @@ class Character extends MovableObject {
 
       if (world.endanimation >= 10 && this.isDead()) {
         this.loadImage(this.IMAGES_DEAD[6]);
+        audioFiles[12].play();
+        audioFiles[12].volume = 0.2;
       }
     }, 1000 / 60);
 

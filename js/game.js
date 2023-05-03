@@ -109,13 +109,11 @@ function startScreen() {
 function startGame() {
     intervalIds = [];
     initLevel();
-    audioFiles[0].play();
-    audioFiles[0].volume = 0.2;
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     playIndikator = true;
+    startSound();
 }
-
 
 /**
 *fullscreen()
@@ -183,7 +181,7 @@ function stopSetInterval(fn, time) {
 function stopGame() {
     intervalIds.forEach(clearInterval);
     intervalIds = [];
-    soundMute();
+    soundMute();  
 }
 
 /**
@@ -193,20 +191,16 @@ function stopGame() {
 * Initializes the game level, creates a new world, and resets the end animation.
 */
 function restart() {
-    audioFiles.forEach(audio => {
-        audio.pause();
-        audio.currentTime = 0;
-    });
-    
     canvas.getContext("2d").clearRect(0, 0, 720, 480);
+    resetSounds();
     sound();
     canvas.style.cursor = 'default';
     canvas.removeEventListener('click', restart);
     endanimation = 0;
     world.character.hp = 100;
     startGame();
+    startSound();
 }
-
 
 /**
 * viewportMovil()
@@ -304,6 +298,21 @@ function mobileTouchEnd(canvas) {
         keyboard.Space = false;
     });
 }
+
+function startSound() {
+    if (playIndikator) {
+        audioFiles[0].loop = true;
+        audioFiles[0].play();
+        audioFiles[0].volume = 0.2;
+    }
+}
+
+function resetSounds() {
+    audioFiles.forEach(function(sound) {
+      sound.pause();
+      sound.currentTime = 0;
+    });
+  }
 
 
 
