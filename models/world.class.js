@@ -94,11 +94,11 @@ class World {
     */
     checkCollisionsEnemy() {
         this.level.enemies.forEach((enemy, y) => {
-            if (this.character.isColliding(enemy)) {
+            if (!this.level.enemies[y].isDead() && this.character.isColliding(enemy)) {
                 if (this.character.speedY < 0 && this.character.isAboveGround()) {
                     this.level.enemies[y].hit(5);
                     audioFiles[8].play();
-                } else if (!this.level.enemies[y].isDead()) {
+                } else {
                     this.character.hit(5);
                     audioFiles[9].play();
                     this.statusBarHealth.setPercentage(this.character.hp)
@@ -106,7 +106,7 @@ class World {
             }
         });
     }
-
+    
     /**
     *checkCollisionsThrowable
     *This method checks for collisions between throwable objects (bottles) and enemy objects in the game. It first iterates through the "throwableObject" array to check if there are any bottles available to throw. For each bottle, it then iterates through the "enemies" array in the current level to check if the bottle is colliding with any enemies. If a collision is detected with the end boss, the method removes the bottle from the "throwableObject" array and inflicts damage to the end boss. If a collision is detected with a regular enemy, the method removes the bottle from the "throwableObject" array and inflicts damage to the enemy. The method updates the health percentage in the status bar to reflect any changes in the health of the end boss. By detecting and responding to collisions between bottles and enemies, this method enables the player to use bottles as a weapon and adds an element of strategy to the gameplay.
@@ -227,7 +227,7 @@ class World {
                 this.addToMap(this.gameOver);
                 audioFiles[10].play();
             }
-            if(this.endanimation > 330) {
+            if(this.endanimation > 340) {
                 audioFiles[10].pause();
                 canvas.addEventListener('click', restart);
                 canvas.style.cursor = 'pointer';
