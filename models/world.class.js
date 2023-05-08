@@ -203,12 +203,14 @@ class World {
         if (this.level.enemies[0].hp == 0) {
             this.endanimation++;
             if (this.endanimation > 150) {
-                const canvas = document.getElementById('canvas');
-                canvas.style.cursor = 'pointer';
+                const canvas = document.getElementById('canvas'); 
                 this.addToMap(this.winGame);
-                audioFiles[12].play();
+                audioFiles[12].play();   
+            }
+            if(this.endanimation > 300) {
+                canvas.style.cursor = 'pointer';
                 canvas.addEventListener('click', restart);
-                
+                audioFiles[12].pause();
             }
         }
     }
@@ -222,11 +224,13 @@ class World {
             this.endanimation++;
             if (this.endanimation > 150) {
                 const canvas = document.getElementById('canvas');
-                canvas.style.cursor = 'pointer';
                 this.addToMap(this.gameOver);
                 audioFiles[10].play();
+            }
+            if(this.endanimation > 330) {
+                audioFiles[10].pause();
                 canvas.addEventListener('click', restart);
-                
+                canvas.style.cursor = 'pointer';
             }
         }
     }
