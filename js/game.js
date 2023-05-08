@@ -117,6 +117,8 @@ function startGame() {
     world = new World(canvas, keyboard);
     playIndikator = true;
     sound();
+    audioFiles[0].loop = true; // Setzen Sie die loop-Eigenschaft auf true
+    audioFiles[0].play();
 }
 
 /**
@@ -185,6 +187,7 @@ function stopSetInterval(fn, time) {
 function stopGame() {
     intervalIds.forEach(clearInterval);
     intervalIds = [];  
+    audioFiles[0].pause();
 }
 
 /**
