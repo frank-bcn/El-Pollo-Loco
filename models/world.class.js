@@ -97,8 +97,10 @@ class World {
             if (this.character.isColliding(enemy)) {
                 if (this.character.speedY < 0 && this.character.isAboveGround()) {
                     this.level.enemies[y].hit(5);
+                    audioFiles[8].play();
                 } else if (!this.level.enemies[y].isDead()) {
                     this.character.hit(5);
+                    audioFiles[9].play();
                     this.statusBarHealth.setPercentage(this.character.hp)
                 }
             }
@@ -115,11 +117,13 @@ class World {
                 if (bottle.isColliding(world.level.enemies[0])) {
                     this.throwableObject.splice(bottle);
                     this.level.enemies[0].hit();
+                    audioFiles[7].play();
                     this.statusBarEndboss.setPercentage(world.level.enemies[0].hp)
 
                 } else if (bottle.isColliding(enemy)) {
                     this.throwableObject.splice(bottle);
                     this.level.enemies[y].hit();
+                    audioFiles[8].play();
                 }
             });
         });
@@ -132,6 +136,7 @@ class World {
     checkCollisionsBottle() {
         this.level.bottle.forEach((bottle) => {
             if (this.character.isColliding(bottle)) {
+                audioFiles[4].play();
                 this.character.bottle++;
                 this.statusBarBottle.setPercentage(this.character.bottle);
                 this.level.bottle.splice(this.level.bottle.indexOf(bottle), 1);
@@ -146,6 +151,7 @@ class World {
     checkCollisionsCoin() {
         this.level.coin.forEach((coin) => {
             if (this.character.isColliding(coin)) {
+                audioFiles[5].play();
                 this.character.coin++;
                 this.statusBarCoin.setPercentage(this.character.coin);
                 this.level.coin.splice(this.level.coin.indexOf(coin), 1);
@@ -200,10 +206,12 @@ class World {
                 const canvas = document.getElementById('canvas');
                 canvas.style.cursor = 'pointer';
                 this.addToMap(this.winGame);
+                audioFiles[12].play();
                 canvas.addEventListener('click', restart);
+                
             }
         }
-    } 
+    }
 
     /**
     *drawGameOverScreen
@@ -216,7 +224,9 @@ class World {
                 const canvas = document.getElementById('canvas');
                 canvas.style.cursor = 'pointer';
                 this.addToMap(this.gameOver);
+                audioFiles[10].play();
                 canvas.addEventListener('click', restart);
+                
             }
         }
     }

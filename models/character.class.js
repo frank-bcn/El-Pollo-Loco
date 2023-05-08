@@ -112,6 +112,7 @@ class Character extends MovableObject {
       if (!this.world.keyboard.Right && !this.world.keyboard.Left && !this.world.keyboard.Space && !this.world.keyboard.Up) {
         if (this.longIdle > 100) {
           this.playAnimation(this.IMAGES_Long_Idle);
+          audioFiles[11].play();
         } else {
           this.playAnimation(this.IMAGES_Idle);
           this.longIdle++;
@@ -122,6 +123,7 @@ class Character extends MovableObject {
 
       if (this.isDead()) {
         this.playAnimation(this.IMAGES_DEAD);
+        audioFiles[6].play();
       } else if (this.isHurt()) {
         this.playAnimation(this.IMAGES_HURT);
       } else if (this.isAboveGround()) {

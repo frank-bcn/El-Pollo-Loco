@@ -10,7 +10,6 @@ let audioFiles = [
     music_sound = new Audio('audio/music.mp3'),
     walking_sound = new Audio('audio/walking.mp3'),
     jump_sound = new Audio('audio/jump.mp3'),
-    broken_glas_sound = new Audio('audio/glas.mp3'),
     trow_sound = new Audio('audio/throw.mp3'),
     bottle_sound = new Audio('audio/bottles.mp3'),
     coin_sound = new Audio('audio/collect-coins.mp3'),
@@ -27,10 +26,12 @@ let audioFiles = [
 window.addEventListener("keydown", (event) => {
     if (event.keyCode == 39) {
         keyboard.Right = true;
+        audioFiles[1].play(); 
     }
 
     if (event.keyCode == 37) {
         keyboard.Left = true;
+        audioFiles[1].play(); 
     }
 
     if (event.keyCode == 38) {
@@ -43,16 +44,19 @@ window.addEventListener("keydown", (event) => {
 
     if (event.keyCode == 32) {
         keyboard.Space = true;
+        audioFiles[3].play();
     }
 });
 
 window.addEventListener("keyup", (event) => {
     if (event.keyCode == 39) {
         keyboard.Right = false;
+        audioFiles[1].pause(); 
     }
 
     if (event.keyCode == 37) {
         keyboard.Left = false;
+        audioFiles[1].pause(); 
     }
 
     if (event.keyCode == 38) {
@@ -65,6 +69,7 @@ window.addEventListener("keyup", (event) => {
 
     if (event.keyCode == 32) {
         keyboard.Space = false;
+        audioFiles[3].play();
     }
 });
 
@@ -111,6 +116,7 @@ function startGame() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     playIndikator = true;
+    sound();
 }
 
 /**
@@ -156,7 +162,7 @@ function soundMute() {
 function sound() {
     audioFiles.forEach((e => {
         e.muted = false;
-        e.volume = 0.1;
+        e.volume = 0.5;
     }))
     world.soundIsMute = false;
 }
@@ -178,8 +184,7 @@ function stopSetInterval(fn, time) {
 */
 function stopGame() {
     intervalIds.forEach(clearInterval);
-    intervalIds = [];
-    soundMute();  
+    intervalIds = [];  
 }
 
 /**
