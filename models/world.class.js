@@ -97,13 +97,9 @@ class World {
             if (this.character.isColliding(enemy)) {
                 if (this.character.speedY < 0 && this.character.isAboveGround()) {
                     this.level.enemies[y].hit(5);
-                    audioFiles[10].play();
-                    audioFiles[10].volume = 0.2;
                 } else if (!this.level.enemies[y].isDead()) {
                     this.character.hit(5);
                     this.statusBarHealth.setPercentage(this.character.hp)
-                    audioFiles[11].play();
-                    audioFiles[11].volume = 0.2;
                 }
             }
         });
@@ -119,8 +115,6 @@ class World {
                 if (bottle.isColliding(world.level.enemies[0])) {
                     this.throwableObject.splice(bottle);
                     this.level.enemies[0].hit();
-                    audioFiles[9].play();
-                    audioFiles[9].volume = 0.2;
                     this.statusBarEndboss.setPercentage(world.level.enemies[0].hp)
 
                 } else if (bottle.isColliding(enemy)) {
@@ -141,8 +135,6 @@ class World {
                 this.character.bottle++;
                 this.statusBarBottle.setPercentage(this.character.bottle);
                 this.level.bottle.splice(this.level.bottle.indexOf(bottle), 1);
-                audioFiles[6].play();
-                audioFiles[6].volume = 0.2;
             }
         });
     }
@@ -157,8 +149,6 @@ class World {
                 this.character.coin++;
                 this.statusBarCoin.setPercentage(this.character.coin);
                 this.level.coin.splice(this.level.coin.indexOf(coin), 1);
-                audioFiles[7].play();
-                audioFiles[7].volume = 0.2;
             }
         });
     }
@@ -205,19 +195,15 @@ class World {
     */
     drawWinGameScreen() {
         if (this.level.enemies[0].hp == 0) {
-            audioFiles[0].pause();
             this.endanimation++;
-            audioFiles[14].play();
             if (this.endanimation > 150) {
                 const canvas = document.getElementById('canvas');
                 canvas.style.cursor = 'pointer';
                 this.addToMap(this.winGame);
-                audioFiles[14].pause();
                 canvas.addEventListener('click', restart);
-                audioFiles[0].play();
             }
         }
-    }
+    } 
 
     /**
     *drawGameOverScreen
@@ -225,14 +211,12 @@ class World {
     */
     drawGameOverScreen() {
         if (this.character.hp == 0) {
-            audioFiles[0].pause();
             this.endanimation++;
             if (this.endanimation > 150) {
                 const canvas = document.getElementById('canvas');
                 canvas.style.cursor = 'pointer';
                 this.addToMap(this.gameOver);
                 canvas.addEventListener('click', restart);
-                audioFiles[0].play();
             }
         }
     }

@@ -87,7 +87,6 @@ class Character extends MovableObject {
   }
 
   animate() {
-
     stopSetInterval(() => {
       if (this.world.keyboard.Right && this.x < this.world.level.level_end_x) {
         this.moveRight();
@@ -105,8 +104,6 @@ class Character extends MovableObject {
 
       if (world.endanimation >= 10 && this.isDead()) {
         this.loadImage(this.IMAGES_DEAD[6]);
-        audioFiles[12].play();
-        audioFiles[12].volume = 0.2;
       }
     }, 1000 / 60);
 
@@ -115,8 +112,6 @@ class Character extends MovableObject {
       if (!this.world.keyboard.Right && !this.world.keyboard.Left && !this.world.keyboard.Space && !this.world.keyboard.Up) {
         if (this.longIdle > 100) {
           this.playAnimation(this.IMAGES_Long_Idle);
-          audioFiles[13].play();
-          audioFiles[13].volume = 0.2;
         } else {
           this.playAnimation(this.IMAGES_Idle);
           this.longIdle++;
@@ -127,15 +122,11 @@ class Character extends MovableObject {
 
       if (this.isDead()) {
         this.playAnimation(this.IMAGES_DEAD);
-        audioFiles[8].play();
-        audioFiles[8].volume = 0.2;
-        audioFiles[8].pause();
       } else if (this.isHurt()) {
         this.playAnimation(this.IMAGES_HURT);
       } else if (this.isAboveGround()) {
         this.playAnimation(this.IMAGES_JUMPING);
       }
-
       if (this.world.keyboard.Right || this.world.keyboard.Left) {
         this.playAnimation(this.IMAGES_WALKING);
       }

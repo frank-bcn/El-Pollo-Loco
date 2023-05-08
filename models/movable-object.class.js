@@ -97,10 +97,8 @@ class MovableObject extends DrawableObject {
     @returns {void}
     */
     moveRight() {
-        audioFiles[1].play();
         this.x += this.speed;
         this.otherDirection = false;
-        audioFiles[1].pause();
     }
 
     /**
@@ -108,10 +106,8 @@ class MovableObject extends DrawableObject {
     *method moves the object to the left by updating its x position with the negative value of its speed property. The otherDirection property is set to false, indicating that the object is moving to the left. An optional audio playback feature is currently commented out.
     */
     moveLeft() {
-        audioFiles[1].play();
         this.x -= this.speed;
         this.otherDirection = false; 
-        audioFiles[1].pause();
     }
 
     /**
@@ -120,7 +116,5 @@ class MovableObject extends DrawableObject {
     */
     jump() {
         this.speedY = 30;
-        audioFiles[2].play();
-        audioFiles[2].volume = 0.2;
     }
 }

@@ -10,7 +10,6 @@ let audioFiles = [
     music_sound = new Audio('audio/music.mp3'),
     walking_sound = new Audio('audio/walking.mp3'),
     jump_sound = new Audio('audio/jump.mp3'),
-    hit_enemies_sound = new Audio('audio/hitChicken.mp3'),
     broken_glas_sound = new Audio('audio/glas.mp3'),
     trow_sound = new Audio('audio/throw.mp3'),
     bottle_sound = new Audio('audio/bottles.mp3'),
@@ -112,7 +111,6 @@ function startGame() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     playIndikator = true;
-    startSound();
 }
 
 /**
@@ -192,14 +190,12 @@ function stopGame() {
 */
 function restart() {
     canvas.getContext("2d").clearRect(0, 0, 720, 480);
-    resetSounds();
-    sound();
     canvas.style.cursor = 'default';
     canvas.removeEventListener('click', restart);
-    endanimation = 0;
     world.character.hp = 100;
+    world.level.enemies[0].hp = 200;
+    endanimation = 0;
     startGame();
-    startSound();
 }
 
 /**
@@ -299,20 +295,6 @@ function mobileTouchEnd(canvas) {
     });
 }
 
-function startSound() {
-    if (playIndikator) {
-        audioFiles[0].loop = true;
-        audioFiles[0].play();
-        audioFiles[0].volume = 0.2;
-    }
-}
-
-function resetSounds() {
-    audioFiles.forEach(function(sound) {
-      sound.pause();
-      sound.currentTime = 0;
-    });
-  }
 
 
 
