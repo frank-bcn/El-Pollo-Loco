@@ -105,7 +105,7 @@ class Character extends MovableObject {
       if (world.endanimation >= 10 && this.isDead()) {
         this.loadImage(this.IMAGES_DEAD[6]);
       }
-    }, 1000 / 60);
+    }, 1000 / 40);
 
 
     stopSetInterval(() => {

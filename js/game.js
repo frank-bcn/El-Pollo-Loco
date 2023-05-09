@@ -101,7 +101,7 @@ function startScreen() {
     });
     stopSetInterval(() => {
         viewportMobile();
-    }, 10);
+    }, 50);
 
     canvas.addEventListener('click', clickHandler);
 }

@@ -118,8 +118,7 @@ class World {
                     this.throwableObject.splice(bottle);
                     this.level.enemies[0].hit();
                     audioFiles[7].play();
-                    this.statusBarEndboss.setPercentage(world.level.enemies[0].hp)
-
+                    this.statusBarEndboss.setPercentage(world.level.enemies[0].hp);
                 } else if (bottle.isColliding(enemy)) {
                     this.throwableObject.splice(bottle);
                     this.level.enemies[y].hit();
