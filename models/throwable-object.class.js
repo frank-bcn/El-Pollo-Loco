@@ -2,7 +2,7 @@ class ThrowableObject extends MovableObject {
     height = 60;
     width = 50;
     speedY = 0;
-    hp = 20;
+    hp = 5;
 
 
     IMAGES_ROTATION = [
@@ -35,15 +35,17 @@ class ThrowableObject extends MovableObject {
     }
 
     throw() {
-        this.speedY = 20; // Geschwindigkeit vertikal
+        this.speedY = 20; 
         this.applyGravity();
         stopSetInterval(() => {
-            if (this.y < 340 && !this.isDead()) {// wenn die Flasche unterhalb der oberen Grenze befindet(340) wird die Rotation Bilder aufgerufen.
+            if (this.y < 340 && !this.isDead()) {
                 this.x += 20;
                 this.playAnimation(this.IMAGES_ROTATION);
             }
-            if (this.isDead() || this.y >= 370) {// wenn die Flasche tot ist oder die obere Grenze erreicht hat, wird die Splash Bilder aufgerufen. 
+            if (this.isDead() || this.y >= 350 || world.bottleHit) {
                 this.splash();
+                console.log(world.bottleHit);
+                world.bottleHit = false;
             }
         }, 40);
     }

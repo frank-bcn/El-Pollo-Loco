@@ -28,6 +28,7 @@ class World {
     fullscreen = false;
     soundIsMute = false;
     endanimation = 0;
+    bottleHit = false;
 
 
     constructor(canvas, keyboard) {
@@ -116,12 +117,14 @@ class World {
             this.level.enemies.forEach((enemy, y) => {
                 if (bottle.isColliding(world.level.enemies[0])) {
                     this.throwableObject.splice(bottle);
+                    this.bottleHit = true;
                     this.level.enemies[0].hit();
                     audioFiles[7].play();
                     this.statusBarEndboss.setPercentage(world.level.enemies[0].hp);
                 } else if (bottle.isColliding(enemy)) {
-                    this.throwableObject.splice(bottle);
+                    this.bottleHit = true;
                     this.level.enemies[y].hit();
+                    this.throwableObject.splice(bottle);
                     audioFiles[8].play();
                 }
             });
@@ -308,10 +311,10 @@ class World {
     drawLevelItems() {
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.clouds);
-        this.addObjectsToMap(this.level.enemies);
-        this.addObjectsToMap(this.level.bottle);
         this.addObjectsToMap(this.level.coin);
+        this.addObjectsToMap(this.level.enemies); 
         this.addObjectsToMap(this.throwableObject);
+        this.addObjectsToMap(this.level.bottle);
         this.addToMap(this.character);
         this.ctx.translate(-this.camera_x, 0);
     }
