@@ -11,13 +11,13 @@ class Cloud extends MovableObject {
         this.animate();
     }
 
-
+    /**
+    *The animate() method updates the position of the character by moving it to the left at a consistent rate of 60 frames per second.
+    *It achieves this by calling the moveLeft() method of the character object within a setInterval() function, which repeats the function call at the specified interval of 1000ms / 60 frames per second.
+    */
     animate() {
         stopSetInterval(() => {
             this.moveLeft();
         }, 1000 / 60);
-    }
-
-
-    
+    }   
 }

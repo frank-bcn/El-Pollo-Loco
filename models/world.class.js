@@ -126,6 +126,7 @@ class World {
                     this.level.enemies[y].hit();
                     this.throwableObject.splice(bottle);
                     audioFiles[8].play();
+                    this.splash();
                 }
             });
         });

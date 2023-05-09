@@ -63,11 +63,25 @@ class Endboss extends MovableObject {
     this.animate();
   }
 
-
+  /**
+  * Checks the collision of the end boss with the character
+  * and returns the difference of their x-coordinates.
+  *
+  * @returns {number} The difference between the x-coordinate of the end boss and the character.
+  */
   checkCollisionEndboss() {
     return (this.x - world.character.x);
   }
 
+  /**
+  *This method defines the animation logic for a character in a game. It uses setInterval to update the character's state and animations.
+  *If the character is dead, it plays the dead animation.
+  *If the character is hurt, it plays the hurt animation.
+  *If the character is close to the end boss (within 200 pixels), it plays the attack animation, moves the character to the left, and sets the speed to 50.
+  *If the character is within 400 pixels of the end boss, it plays the alert animation and sets the speed to 0.
+  *If the character is farther than 400 pixels from the end boss, it plays the walking animation, moves the character to the left, and sets the speed to 5.
+  * The setInterval is set to 200 milliseconds.
+  */
   animate() {
     stopSetInterval(() => {
         if (this.isDead()) {

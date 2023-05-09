@@ -19,6 +19,10 @@ class Coin extends MovableObject {
         this.animate();
     }
 
+    /**
+    *This method is responsible for animating the coin sprite. It repeatedly plays the coin animation
+    *at an interval of 500 milliseconds.
+    */
     animate() {
         stopSetInterval(() => {
             this.playAnimation(this.IMAGES_COIN);

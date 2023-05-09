@@ -34,6 +34,12 @@ class ThrowableObject extends MovableObject {
         this.throw();
     }
 
+    /**
+    * throw()
+    * Sets the object's vertical speed to 20 and applies gravity, then starts a loop that 
+    * updates the object's position and animation every 40 milliseconds until it reaches 
+     * a certain height, dies, or collides with another object.
+     */
     throw() {
         this.speedY = 20; 
         this.applyGravity();
@@ -50,6 +56,11 @@ class ThrowableObject extends MovableObject {
         }, 40);
     }
 
+    /**
+    * splash()
+    * Stops the object's vertical motion, plays a splash animation, and sets the object's height 
+    * and width to 0 after a delay of 100 milliseconds.
+    */
     splash() {
         this.speedY = 0;
         this.playAnimation(this.IMAGES_SPLASH);

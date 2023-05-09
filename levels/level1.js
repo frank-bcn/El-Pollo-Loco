@@ -23,7 +23,7 @@ function initLevel() {
             new Cloud('img/5_background/layers/4_clouds/1.png'),
         ],
 
-        [ // fügt die Backgroundbilder ein. Reihenfolgen beachten, das das letzte bild als erstes erstellt wird!
+        [ 
             new BackgroundObject('img/5_background/layers/air.png', -719),
             new BackgroundObject('img/5_background/layers/3_third_layer/2.png', -719,),
             new BackgroundObject('img/5_background/layers/2_second_layer/2.png', -719),

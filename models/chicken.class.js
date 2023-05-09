@@ -26,12 +26,12 @@ class Chicken extends MovableObject {
         this.speed = 1 + Math.random() * 0.25;
         this.animate();
     }
-
-
-    checkdistance() {
-        return (this.x - world.character.x);
-    }
     
+    /**
+    *This method animates the character by repeatedly executing a callback function with a delay of 140 milliseconds.
+    *If the character is dead, it sets the offset and speed to 0, loads the dead image, and stops the animation.
+    *Otherwise, it moves the character to the left and plays the walking animation.
+    */
     animate() {
        
         stopSetInterval(() => {

@@ -26,10 +26,11 @@ class Chicken_small extends MovableObject {
         this.animate();
     }
 
-    checkdistance() {
-        return (this.x - world.character.x);
-    }
-
+    /**
+    * This function animates the character by moving it to the left and playing the walking animation. 
+    * If the character is dead, it sets the offset, speed, and image to represent the death animation.
+    * The animation interval is set to 140 milliseconds.
+    */
     animate() {
        
         stopSetInterval(() => {

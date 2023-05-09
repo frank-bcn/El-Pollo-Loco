@@ -86,17 +86,34 @@ class Character extends MovableObject {
     this.animate();
   }
 
+  /**
+  *animate()
+  *This function handles the animation of the character by calling the keyboardAnimation() function at a certain interval.
+  */
   animate() {
     stopSetInterval(() => {
       this.keyboardAnimation();
     }, 1000 / 40);
 
 
+  /**
+  *stopSetInterval()
+  *This function stops the character's animation by clearing the interval for the characterAnimation() function.
+  *The function is called at a set interval of 150 milliseconds.
+  */
     stopSetInterval(() => {
       this.characterAnimation();
     }, 150);
   }
 
+  /**
+  *Updates the player's animation and movement based on keyboard input.
+  *If the Right arrow key is pressed and the player is not at the end of the level, the player moves to the right.
+  *If the Left arrow key is pressed and the player is not at the beginning of the level, the player moves to the left.
+  *The camera is adjusted to follow the player's movement.
+  *If the Up arrow key is pressed and the player is not currently above ground, the player jumps.
+  *If the player is dead and the end animation has been played at least 10 times, the player's image is set to the final dead image.
+  */
   keyboardAnimation() {
     if (this.world.keyboard.Right && this.x < this.world.level.level_end_x) {
       this.moveRight();
@@ -117,6 +134,15 @@ class Character extends MovableObject {
     }
   }
 
+  /** 
+  *characterAnimation()
+  *This function handles the character's animation by checking if the keyboard keys are pressed or not.
+  *If no keys are pressed for a certain time, the character will play an idle animation.
+  *If the character is dead, the death animation will play along with an audio file.
+  *If the character is hurt, the hurt animation will play.
+  *If the character is jumping, the jumping animation will play.
+  *If the character is walking, the walking animation will play.
+  */
   characterAnimation() {
     if (!this.world.keyboard.Right && !this.world.keyboard.Left && !this.world.keyboard.Space && !this.world.keyboard.Up) {
       if (this.longIdle > 100) {
