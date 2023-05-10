@@ -41,9 +41,10 @@ class ThrowableObject extends MovableObject {
      * a certain height, dies, or collides with another object.
      */
     throw() {
-        this.speedY = 20; 
+        this.speedY = 20;
         this.applyGravity();
-        stopSetInterval(() => {
+    
+        const intervalId = setInterval(() => {
             if (this.y < 340 && !this.isDead()) {
                 this.x += 20;
                 this.playAnimation(this.IMAGES_ROTATION);
@@ -51,9 +52,11 @@ class ThrowableObject extends MovableObject {
             if (this.isDead() || this.y >= 350 || world.bottleHit) {
                 this.splash();
                 world.bottleHit = false;
+                clearInterval(intervalId); // Stop the interval
             }
         }, 50);
     }
+    
 
     /**
     * splash()

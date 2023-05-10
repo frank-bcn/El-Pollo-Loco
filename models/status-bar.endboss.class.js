@@ -9,14 +9,14 @@ class StatusBar_Endboss extends DrawableObject {
         'img/7_statusbars/1_statusbar/2_statusbar_health/orange/100.png'
     ];
 
-    percentage = 50;
+    percentage = 100;
 
 
     constructor() {
         super();
         this.loadImages(this.IMAGES_ENDBOSS);
         this.loadImage(this.IMAGE_ENDBOSS);
-        this.setPercentage(50);
+        this.setPercentage(100);
         this.x = 590;
         this.y = 0;
         this.height = 50;
@@ -44,15 +44,15 @@ class StatusBar_Endboss extends DrawableObject {
     *@return {number} The index of the image to display.
     */
     resolveImageIndex() {
-        if (this.percentage == 50) {
+        if (this.percentage == 100) {
             return 5;
-        } else if (this.percentage > 40) {
+        } else if (this.percentage > 90) {
             return 4;
-        } else if (this.percentage > 30) {
+        } else if (this.percentage > 50) {
             return 3;
-        } else if (this.percentage > 20) {
+        } else if (this.percentage > 30) {
             return 2;
-        } else if (this.percentage > 10) {
+        } else if (this.percentage > 20) {
             return 1;
         } else {
             return 0;

@@ -57,7 +57,7 @@ class World {
     run() {
         stopSetInterval(() => {
             this.checkThrowableObjects();
-        }, 150);
+        }, 60);
 
         stopSetInterval(() => {
             this.checkCollisions();
@@ -70,11 +70,17 @@ class World {
     *This method checks if the player has any bottles left and if the Space key is pressed. If both conditions are true, it creates a new "ThrowableObject" instance and adds it to the "throwableObject" array. The method also decrements the player's bottle count, updates the bottle percentage in the status bar, and updates the status bar display. By doing this, the method enables the player to throw bottles by pressing the Space key, and ensures that the game state is updated accordingly.
     */
     checkThrowableObjects() {
-        if (this.character.bottle > 0 && this.keyboard.Space) {
+        if (this.character.bottle > 0 && this.keyboard.Space && !this.isThrowing) {
+            this.isThrowing = true; // Setze den Wurfstatus auf true
             let bottle = new ThrowableObject(this.character.x + 50, this.character.y + 150);
             this.throwableObject.push(bottle);
             this.character.bottle--;
             this.statusBarBottle.setPercentage(this.character.bottle);
+    
+            // Setze eine Verzögerung, um den Wurfstatus zurückzusetzen
+            setTimeout(() => {
+                this.isThrowing = false;
+            }, 1000); // Passe die Verzögerungszeit nach Bedarf an
         }
     }
 
@@ -116,11 +122,11 @@ class World {
     this.throwableObject.forEach((bottle, i) => {
         this.level.enemies.forEach((enemy, y) => {
             if (bottle.isColliding(world.level.enemies[0])) {
-                this.statusBarEndboss.setPercentage(world.level.enemies[0].hp);
                 this.bottleHit = true;
                 this.level.enemies[0].hit();
                 this.statusBarEndboss.setPercentage(world.level.enemies[0].hp);
                 audioFiles[7].play();
+                
             } else if (bottle.isColliding(enemy)) {
                 this.bottleHit = true;
                 this.level.enemies[y].hit();
