@@ -7,7 +7,7 @@ class ArrowJump extends DrawableObject {
 
     constructor() {
         super();
-        this.loadImage('img/up.png');
+        this.loadImage('img/arrow-up-32.png');
     }
 
    

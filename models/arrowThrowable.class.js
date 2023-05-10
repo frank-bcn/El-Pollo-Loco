@@ -7,7 +7,7 @@ class ArrowTrowable extends DrawableObject {
 
     constructor() {
         super();
-        this.loadImage('img/space.png');
+        this.loadImage('img/myspace-32.png');
     }
 
    

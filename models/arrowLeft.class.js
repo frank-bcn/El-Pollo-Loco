@@ -7,7 +7,7 @@ class ArrowLeft extends DrawableObject {
 
     constructor() {
         super();
-        this.loadImage('img/left.png');
+        this.loadImage('img/arrow-left-32.png');
     }
 
    
