@@ -203,8 +203,22 @@ function restart() {
     world.character.hp = 100;
     world.level.enemies[0].hp = 200;
     endanimation = 0;
+    
+    const isMuted = world.soundIsMute;
+    
+    if (isMuted) {
+        soundMute();
+    } else {
+        sound();
+    }
+    
     startGame();
+    
+    if (isMuted) {
+        soundMute();
+    }
 }
+
 
 /**
 * viewportMovil()
