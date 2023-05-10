@@ -51,9 +51,8 @@ class ThrowableObject extends MovableObject {
             if (this.isDead() || this.y >= 350 || world.bottleHit) {
                 this.splash();
                 world.bottleHit = false;
-               /* world.throwableObject.splice(bottle);*/
             }
-        }, 40);
+        }, 50);
     }
 
     /**
