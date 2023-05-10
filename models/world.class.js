@@ -107,7 +107,7 @@ class World {
             }
         });
     }
-    
+
     /**
     *checkCollisionsThrowable
     *This method checks for collisions between throwable objects (bottles) and enemy objects in the game. It first iterates through the "throwableObject" array to check if there are any bottles available to throw. For each bottle, it then iterates through the "enemies" array in the current level to check if the bottle is colliding with any enemies. If a collision is detected with the end boss, the method removes the bottle from the "throwableObject" array and inflicts damage to the end boss. If a collision is detected with a regular enemy, the method removes the bottle from the "throwableObject" array and inflicts damage to the enemy. The method updates the health percentage in the status bar to reflect any changes in the health of the end boss. By detecting and responding to collisions between bottles and enemies, this method enables the player to use bottles as a weapon and adds an element of strategy to the gameplay.
@@ -116,21 +116,24 @@ class World {
         this.throwableObject.forEach((bottle, i) => {
             this.level.enemies.forEach((enemy, y) => {
                 if (bottle.isColliding(world.level.enemies[0])) {
-                    this.throwableObject.splice(bottle);
                     this.bottleHit = true;
                     this.level.enemies[0].hit();
                     audioFiles[7].play();
                     this.statusBarEndboss.setPercentage(world.level.enemies[0].hp);
+                    /*setTimeout(spliceTimeOut, 1, bottle);*/
+            
                 } else if (bottle.isColliding(enemy)) {
                     this.bottleHit = true;
                     this.level.enemies[y].hit();
-                    this.throwableObject.splice(bottle);
                     audioFiles[8].play();
-                    this.splash();
                 }
             });
         });
     }
+
+    /*spliceTimeOut(bottle) {
+        this.throwableObject.splice(bottle);
+    }*/
 
     /**
     *checkCollisionsBottle
@@ -206,11 +209,11 @@ class World {
         if (this.level.enemies[0].hp == 0) {
             this.endanimation++;
             if (this.endanimation > 150) {
-                const canvas = document.getElementById('canvas'); 
+                const canvas = document.getElementById('canvas');
                 this.addToMap(this.winGame);
-                audioFiles[12].play();   
+                audioFiles[12].play();
             }
-            if(this.endanimation > 300) {
+            if (this.endanimation > 300) {
                 canvas.style.cursor = 'pointer';
                 canvas.addEventListener('click', restart);
                 audioFiles[12].pause();
@@ -230,7 +233,7 @@ class World {
                 this.addToMap(this.gameOver);
                 audioFiles[10].play();
             }
-            if(this.endanimation > 340) {
+            if (this.endanimation > 340) {
                 audioFiles[10].pause();
                 canvas.addEventListener('click', restart);
                 canvas.style.cursor = 'pointer';
@@ -313,7 +316,7 @@ class World {
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.coin);
-        this.addObjectsToMap(this.level.enemies); 
+        this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.throwableObject);
         this.addObjectsToMap(this.level.bottle);
         this.addToMap(this.character);
