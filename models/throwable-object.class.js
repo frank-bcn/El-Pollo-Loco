@@ -58,8 +58,6 @@ class ThrowableObject extends MovableObject {
         }, 50);
     }
     
-    
-
     /**
     * splash()
     * Stops the object's vertical motion, plays a splash animation, and sets the object's height 
