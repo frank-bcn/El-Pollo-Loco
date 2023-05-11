@@ -71,16 +71,16 @@ class World {
     */
     checkThrowableObjects() {
         if (this.character.bottle > 0 && this.keyboard.Space && !this.isThrowing) {
-            this.isThrowing = true; // Setze den Wurfstatus auf true
+            this.isThrowing = true; 
             let bottle = new ThrowableObject(this.character.x + 50, this.character.y + 150);
             this.throwableObject.push(bottle);
             this.character.bottle--;
             this.statusBarBottle.setPercentage(this.character.bottle);
     
-            // Setze eine Verzögerung, um den Wurfstatus zurückzusetzen
+            
             setTimeout(() => {
                 this.isThrowing = false;
-            }, 1000); // Passe die Verzögerungszeit nach Bedarf an
+            }, 500);
         }
     }
 

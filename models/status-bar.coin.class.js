@@ -18,7 +18,7 @@ constructor() {
     this.loadImages(this.IMAGES_COIN);
     this.setPercentage(0);
     this.x = 10;
-    this.y = 70;
+    this.y = 75;
     this.height = 50;
 }
 

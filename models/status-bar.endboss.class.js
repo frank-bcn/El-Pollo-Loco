@@ -19,7 +19,7 @@ class StatusBar_Endboss extends DrawableObject {
         this.setPercentage(100);
         this.x = 590;
         this.y = 0;
-        this.height = 50;
+        this.height = 60;
         this.otherDirection = true;
     }
 
