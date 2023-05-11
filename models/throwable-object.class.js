@@ -2,7 +2,7 @@ class ThrowableObject extends MovableObject {
     height = 60;
     width = 50;
     speedY = 0;
-    hp = 5;
+    
 
 
     IMAGES_ROTATION = [

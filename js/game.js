@@ -5,6 +5,7 @@ let intervalIds = [];
 let ctx;
 let playIndikator = false;
 let checkmobile = false;
+let isObjectFired = false;
 
 let audioFiles = [
     music_sound = new Audio('audio/music.mp3'),
@@ -42,9 +43,10 @@ window.addEventListener("keydown", (event) => {
         keyboard.Down = true;
     }
 
-    if (event.keyCode == 32) {
+    if (event.keyCode == 32 && !isObjectFired) {
         keyboard.Space = true;
         audioFiles[3].play();
+        isObjectFired = true;
     }
 });
 
@@ -69,7 +71,8 @@ window.addEventListener("keyup", (event) => {
 
     if (event.keyCode == 32) {
         keyboard.Space = false;
-        audioFiles[3].play();
+        audioFiles[3].pause();
+        isObjectFired = false;
     }
 });
 

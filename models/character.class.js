@@ -103,7 +103,7 @@ class Character extends MovableObject {
   */
     stopSetInterval(() => {
       this.characterAnimation();
-    }, 250);
+    }, 150);
   }
 
   /**
@@ -129,9 +129,9 @@ class Character extends MovableObject {
       this.jump();
     }
 
-    if (world.endanimation >= 10 && this.isDead()) {
+   /*if (world.endanimation >= 50 && this.isDead()) {
       this.loadImage(this.IMAGES_DEAD[6]);
-    }
+    }*/
   }
 
   /** 
