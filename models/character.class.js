@@ -96,12 +96,13 @@ class Character extends MovableObject {
     }, 1000 / 40);
 
 
-  /**
-  *stopSetInterval()
-  *This function stops the character's animation by clearing the interval for the characterAnimation() function.
-  *The function is called at a set interval of 150 milliseconds.
-  */
+    /**
+    *stopSetInterval()
+    *This function stops the character's animation by clearing the interval for the characterAnimation() function.
+    *The function is called at a set interval of 150 milliseconds.
+    */
     stopSetInterval(() => {
+      this.characterIdleAnimation();
       this.characterAnimation();
     }, 150);
   }
@@ -129,12 +130,30 @@ class Character extends MovableObject {
       this.jump();
     }
 
-   /*if (world.endanimation >= 50 && this.isDead()) {
-      this.loadImage(this.IMAGES_DEAD[6]);
-    }*/
+    /*if (world.endanimation >= 50 && this.isDead()) {
+       this.loadImage(this.IMAGES_DEAD[6]);
+     }*/
   }
 
-  /** 
+  /**
+  * characterIdleAnimation()
+  * Controls the idle animation of a character based on keyboard inputs.
+  */
+  characterIdleAnimation() {
+    if (!this.world.keyboard.Right && !this.world.keyboard.Left && !this.world.keyboard.Space && !this.world.keyboard.Up) {
+      if (this.longIdle > 80) {
+        this.playAnimation(this.IMAGES_Long_Idle);
+        audioFiles[11].play();
+      } else {
+        this.playAnimation(this.IMAGES_Idle);
+        this.longIdle++;
+      }
+    } else {
+      this.longIdle = 0;
+    }
+  }
+
+/** 
   *characterAnimation()
   *This function handles the character's animation by checking if the keyboard keys are pressed or not.
   *If no keys are pressed for a certain time, the character will play an idle animation.
@@ -144,18 +163,7 @@ class Character extends MovableObject {
   *If the character is walking, the walking animation will play.
   */
   characterAnimation() {
-    if (!this.world.keyboard.Right && !this.world.keyboard.Left && !this.world.keyboard.Space && !this.world.keyboard.Up) {
-      if (this.longIdle > 100) {
-        this.playAnimation(this.IMAGES_Long_Idle);
-        audioFiles[11].play();
-      } else {
-        this.playAnimation(this.IMAGES_Idle);
-        this.longIdle++;
-      }
-    } else {
-      this.longIdle = 0;
-    } 
-     if (this.isDead()) {
+    if (this.isDead()) {
       this.playAnimation(this.IMAGES_DEAD);
       audioFiles[6].play();
     } else if (this.isHurt() && !this.isDead()) {

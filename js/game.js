@@ -76,7 +76,10 @@ window.addEventListener("keyup", (event) => {
     }
 });
 
-
+/**
+ * Sets up the start screen by retrieving the canvas element, creating a 2D rendering context,
+ * and initializing variables for the button and animation.
+ */
 function startScreen() {
     const canvas = document.getElementById('canvas');
     const context = canvas.getContext('2d');
@@ -86,67 +89,83 @@ function startScreen() {
     let scale = 1;
     let animationId;
 
-    function drawButton() {
-        const scaledRadius = buttonRadius * scale;
+/**
+ * Draws a button on a canvas element.
+ */
+function drawButton() {
+    const scaledRadius = buttonRadius * scale;
     
-        context.fillStyle = 'rgb(255, 206, 20)';
-        context.strokeStyle = 'rgb(255, 159, 0)';
-        context.lineWidth = 4;
+    context.fillStyle = 'rgb(255, 206, 20)';
+    context.strokeStyle = 'rgb(255, 159, 0)';
+    context.lineWidth = 4;
     
-        context.beginPath();
-        context.arc(centerX, centerY, scaledRadius, 0, 2 * Math.PI);
-        context.fill();
-        context.stroke();
+    context.beginPath();
+    context.arc(centerX, centerY, scaledRadius, 0, 2 * Math.PI);
+    context.fill();
+    context.stroke();
     
-        const fontSize = 30;
-        context.font = `${fontSize}px chillingsabrina`;
-        context.fillStyle = 'black';
-        context.textAlign = 'center';
-        context.textBaseline = 'middle';
-        context.fillText('Play', centerX, centerY);
+    const fontSize = 30;
+    context.font = `${fontSize}px chillingsabrina`;
+    context.fillStyle = 'black';
+    context.textAlign = 'center';
+    context.textBaseline = 'middle';
+    context.fillText('Play', centerX, centerY + 5);
+}
+
+/**
+ * Animates the button by continuously redrawing it on the canvas.
+ */
+
+function animate() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    
+    drawButton();
+    
+    scale += 0.01;
+    
+    if (scale >= 1.2) {
+    scale = 1;
     }
     
-    function animate() {
-        context.clearRect(0, 0, canvas.width, canvas.height);
+    animationId = requestAnimationFrame(animate);
+}
     
-        drawButton();
-    
-        scale += 0.01;
-    
-        if (scale >= 1.2) {
-            scale = 1;
-        }
-    
-        animationId = requestAnimationFrame(animate);
+/**
+ * Handles the click event on the canvas and checks if the click is within the button area.
+ * If so, it cancels the animation frame, starts the game, and removes the click event listener.
+ * @param {Event} event - The click event object.
+ */
+function handleClick(event) {
+    cancelAnimationFrame(animationId);
+    const x = event.offsetX;
+    const y = event.offsetY;
+    const distance = Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2);
+    if (distance <= buttonRadius) {
+        startGame();
+        canvas.removeEventListener('click', handleClick);
     }
-    
+}
 
-    function handleClick(event) {
-        cancelAnimationFrame(animationId);
-        const x = event.offsetX;
-        const y = event.offsetY;
-        const distance = Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2);
-        if (distance <= buttonRadius) {
-            startGame();
-            canvas.removeEventListener('click', handleClick);
-        }
+/**
+ * Handles the mouse move event on the canvas and changes the cursor style based on the mouse position.
+ * If the mouse is within the button area, the cursor style is set to 'pointer', otherwise it is set to 'default'.
+ * @param {Event} event - The mouse move event object.
+ */
+function handleMouseMove(event) {
+    const x = event.offsetX;
+    const y = event.offsetY;
+    const distance = Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2);
+    if (distance <= buttonRadius) {
+        canvas.style.cursor = 'pointer';
+    } else {
+        canvas.style.cursor = 'default';
     }
+}
 
-    function handleMouseMove(event) {
-        const x = event.offsetX;
-        const y = event.offsetY;
-        const distance = Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2);
-        if (distance <= buttonRadius) {
-            canvas.style.cursor = 'pointer';
-        } else {
-            canvas.style.cursor = 'default';
-        }
-    }
+animate();
 
-    animate();
-
-    canvas.addEventListener('click', handleClick);
-    canvas.addEventListener('mousemove', handleMouseMove);
+canvas.addEventListener('click', handleClick);
+canvas.addEventListener('mousemove', handleMouseMove);
 }
 
 /**
