@@ -26,12 +26,12 @@ let audioFiles = [
 window.addEventListener("keydown", (event) => {
     if (event.keyCode == 39) {
         keyboard.Right = true;
-        audioFiles[1].play();
+        audioFiles[1].play(); 
     }
 
     if (event.keyCode == 37) {
         keyboard.Left = true;
-        audioFiles[1].play();
+        audioFiles[1].play(); 
     }
 
     if (event.keyCode == 38) {
@@ -51,12 +51,12 @@ window.addEventListener("keydown", (event) => {
 window.addEventListener("keyup", (event) => {
     if (event.keyCode == 39) {
         keyboard.Right = false;
-        audioFiles[1].pause();
+        audioFiles[1].pause(); 
     }
 
     if (event.keyCode == 37) {
         keyboard.Left = false;
-        audioFiles[1].pause();
+        audioFiles[1].pause(); 
     }
 
     if (event.keyCode == 38) {
@@ -221,7 +221,7 @@ function stopSetInterval(fn, time) {
 */
 function stopGame() {
     intervalIds.forEach(clearInterval);
-    intervalIds = [];
+    intervalIds = [];  
     audioFiles[0].pause();
 }
 
@@ -238,17 +238,17 @@ function restart() {
     world.character.hp = 100;
     world.level.enemies[0].hp = 200;
     endanimation = 0;
-
+    
     const isMuted = world.soundIsMute;
-
+    
     if (isMuted) {
         soundMute();
     } else {
         sound();
     }
-
+    
     startGame();
-
+    
     if (isMuted) {
         soundMute();
     }
