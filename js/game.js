@@ -85,33 +85,38 @@ function startScreen() {
 
     function drawButton() {
         const scaledRadius = buttonRadius * scale;
-
-        context.fillStyle = 'black';
+    
+        context.fillStyle = 'rgb(255, 206, 20)';
+        context.strokeStyle = 'rgb(255, 159, 0)';
+        context.lineWidth = 4;
+    
         context.beginPath();
         context.arc(centerX, centerY, scaledRadius, 0, 2 * Math.PI);
         context.fill();
-
-        const fontSize = 24;
-        context.font = `${fontSize}px Arial`;
-        context.fillStyle = 'white';
+        context.stroke();
+    
+        const fontSize = 30;
+        context.font = `${fontSize}px chillingsabrina`;
+        context.fillStyle = 'black';
         context.textAlign = 'center';
         context.textBaseline = 'middle';
         context.fillText('Play', centerX, centerY);
     }
-
+    
     function animate() {
         context.clearRect(0, 0, canvas.width, canvas.height);
-
+    
         drawButton();
-
+    
         scale += 0.01;
-
+    
         if (scale >= 1.2) {
             scale = 1;
         }
-
+    
         animationId = requestAnimationFrame(animate);
     }
+    
 
     function handleClick(event) {
         cancelAnimationFrame(animationId);
