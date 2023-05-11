@@ -82,26 +82,59 @@ window.addEventListener("keyup", (event) => {
 */
 function startScreen() {
     const canvas = document.getElementById('canvas');
+    const context = canvas.getContext('2d');
+    const buttonRadius = 40;
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    let scale = 1;
+    let animationId;
+
+    function animate() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+
+        const scaledRadius = buttonRadius * scale;
+
+        context.fillStyle = 'black';
+        context.beginPath();
+        context.arc(centerX, centerY, scaledRadius, 0, 2 * Math.PI);
+        context.fill();
+        const fontSize = 24;
+        context.font = `${fontSize}px Arial`;
+        context.fillStyle = 'white';
+        context.textAlign = 'center';
+        context.textBaseline = 'middle';
+        context.fillText('Play', centerX, centerY);
+        scale += 0.01;
+        if (scale >= 1.2) {
+            scale = 1;
+        }
+
+        animationId = requestAnimationFrame(animate);
+    }
+
     const clickHandler = function (event) {
-        const x = event.offsetX - canvas.width / 2;
-        const y = event.offsetY - canvas.height / 2;
-        if (Math.abs(x) <= 50 && Math.abs(y) <= 50) {
+        cancelAnimationFrame(animationId);
+        const x = event.offsetX;
+        const y = event.offsetY;
+        const distance = Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2);
+        if (distance <= buttonRadius) {
             startGame();
             canvas.removeEventListener('click', clickHandler);
         }
     };
+
     canvas.addEventListener('mousemove', function (event) {
-        const x = event.offsetX - canvas.width / 2;
-        const y = event.offsetY - canvas.height / 2;
-        if (Math.abs(x) <= 50 && Math.abs(y) <= 50) {
+        const x = event.offsetX;
+        const y = event.offsetY;
+        const distance = Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2);
+        if (distance <= buttonRadius) {
             canvas.style.cursor = 'pointer';
         } else {
             canvas.style.cursor = 'default';
         }
     });
-    stopSetInterval(() => {
-        viewportMobile();
-    }, 50);
+
+    animate();
 
     canvas.addEventListener('click', clickHandler);
 }
