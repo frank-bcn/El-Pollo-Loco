@@ -240,7 +240,7 @@ spliceTimeOut(bottle) {
                 audioFiles[10].play();
             }
             if (this.endanimation > 340) {
-                audioFiles[10].pause();
+                /*audioFiles[10].pause();*/
                 canvas.addEventListener('click', restart);
                 canvas.style.cursor = 'pointer';
             }

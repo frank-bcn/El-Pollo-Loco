@@ -47,15 +47,17 @@ class ThrowableObject extends MovableObject {
         const intervalId = setInterval(() => {
             if (this.y < 340 && !this.isDead()) {
                 this.x += 20;
+                this.y -= 10; 
                 this.playAnimation(this.IMAGES_ROTATION);
             }
             if (this.isDead() || this.y >= 350 || world.bottleHit) {
                 this.splash();
                 world.bottleHit = false;
-                clearInterval(intervalId); // Stop the interval
+                clearInterval(intervalId);
             }
         }, 50);
     }
+    
     
 
     /**

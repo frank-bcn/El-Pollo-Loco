@@ -103,7 +103,7 @@ class Character extends MovableObject {
   */
     stopSetInterval(() => {
       this.characterAnimation();
-    }, 150);
+    }, 250);
   }
 
   /**
@@ -154,16 +154,16 @@ class Character extends MovableObject {
       }
     } else {
       this.longIdle = 0;
-    }
-    if (this.isDead()) {
+    } 
+     if (this.isDead()) {
       this.playAnimation(this.IMAGES_DEAD);
       audioFiles[6].play();
-    } else if (this.isHurt()) {
+    } else if (this.isHurt() && !this.isDead()) {
       this.playAnimation(this.IMAGES_HURT);
     } else if (this.isAboveGround()) {
       this.playAnimation(this.IMAGES_JUMPING);
     }
-    if (this.world.keyboard.Right || this.world.keyboard.Left) {
+    if (this.world.keyboard.Right && !this.isAboveGround() || this.world.keyboard.Left && !this.isAboveGround()) {
       this.playAnimation(this.IMAGES_WALKING);
     }
   }
