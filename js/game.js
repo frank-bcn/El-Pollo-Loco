@@ -26,12 +26,12 @@ let audioFiles = [
 window.addEventListener("keydown", (event) => {
     if (event.keyCode == 39) {
         keyboard.Right = true;
-        audioFiles[1].play(); 
+        audioFiles[1].play();
     }
 
     if (event.keyCode == 37) {
         keyboard.Left = true;
-        audioFiles[1].play(); 
+        audioFiles[1].play();
     }
 
     if (event.keyCode == 38) {
@@ -51,12 +51,12 @@ window.addEventListener("keydown", (event) => {
 window.addEventListener("keyup", (event) => {
     if (event.keyCode == 39) {
         keyboard.Right = false;
-        audioFiles[1].pause(); 
+        audioFiles[1].pause();
     }
 
     if (event.keyCode == 37) {
         keyboard.Left = false;
-        audioFiles[1].pause(); 
+        audioFiles[1].pause();
     }
 
     if (event.keyCode == 38) {
@@ -73,13 +73,7 @@ window.addEventListener("keyup", (event) => {
     }
 });
 
-/**
-*startScreen()
-*This function sets up the start screen of the game. It gets the canvas element and adds a click event listener to it.
-*When the canvas is clicked, it checks if the click was within a certain area, and if it was, it starts the game.
-*It also adds a mousemove event listener to change the cursor when the mouse is hovering over the clickable area.
-*Finally, it calls the viewportMobile() function every 10 milliseconds to adjust the game viewport on mobile devices.
-*/
+
 function startScreen() {
     const canvas = document.getElementById('canvas');
     const context = canvas.getContext('2d');
@@ -89,22 +83,29 @@ function startScreen() {
     let scale = 1;
     let animationId;
 
-    function animate() {
-        context.clearRect(0, 0, canvas.width, canvas.height);
-
+    function drawButton() {
         const scaledRadius = buttonRadius * scale;
 
         context.fillStyle = 'black';
         context.beginPath();
         context.arc(centerX, centerY, scaledRadius, 0, 2 * Math.PI);
         context.fill();
+
         const fontSize = 24;
         context.font = `${fontSize}px Arial`;
         context.fillStyle = 'white';
         context.textAlign = 'center';
         context.textBaseline = 'middle';
         context.fillText('Play', centerX, centerY);
+    }
+
+    function animate() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+
+        drawButton();
+
         scale += 0.01;
+
         if (scale >= 1.2) {
             scale = 1;
         }
@@ -112,18 +113,18 @@ function startScreen() {
         animationId = requestAnimationFrame(animate);
     }
 
-    const clickHandler = function (event) {
+    function handleClick(event) {
         cancelAnimationFrame(animationId);
         const x = event.offsetX;
         const y = event.offsetY;
         const distance = Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2);
         if (distance <= buttonRadius) {
             startGame();
-            canvas.removeEventListener('click', clickHandler);
+            canvas.removeEventListener('click', handleClick);
         }
-    };
+    }
 
-    canvas.addEventListener('mousemove', function (event) {
+    function handleMouseMove(event) {
         const x = event.offsetX;
         const y = event.offsetY;
         const distance = Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2);
@@ -132,11 +133,12 @@ function startScreen() {
         } else {
             canvas.style.cursor = 'default';
         }
-    });
+    }
 
     animate();
 
-    canvas.addEventListener('click', clickHandler);
+    canvas.addEventListener('click', handleClick);
+    canvas.addEventListener('mousemove', handleMouseMove);
 }
 
 /**
@@ -219,7 +221,7 @@ function stopSetInterval(fn, time) {
 */
 function stopGame() {
     intervalIds.forEach(clearInterval);
-    intervalIds = [];  
+    intervalIds = [];
     audioFiles[0].pause();
 }
 
@@ -236,17 +238,17 @@ function restart() {
     world.character.hp = 100;
     world.level.enemies[0].hp = 200;
     endanimation = 0;
-    
+
     const isMuted = world.soundIsMute;
-    
+
     if (isMuted) {
         soundMute();
     } else {
         sound();
     }
-    
+
     startGame();
-    
+
     if (isMuted) {
         soundMute();
     }
