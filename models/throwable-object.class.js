@@ -2,6 +2,7 @@ class ThrowableObject extends MovableObject {
     height = 60;
     width = 50;
     speedY = 0;
+    hp = 10;
     
 
 
@@ -43,7 +44,6 @@ class ThrowableObject extends MovableObject {
     throw() {
         this.speedY = 20;
         this.applyGravity();
-    
         const intervalId = setInterval(() => {
             if (this.y < 340 && !this.isDead()) {
                 this.x += 20;
@@ -52,10 +52,12 @@ class ThrowableObject extends MovableObject {
             }
             if (this.isDead() || this.y >= 350 || world.bottleHit) {
                 this.splash();
-                world.bottleHit = false;
                 clearInterval(intervalId);
+                
             }
         }, 50);
+        world.bottleHit = false;
+        console.log(world.bottleHit);
     }
     
     /**
