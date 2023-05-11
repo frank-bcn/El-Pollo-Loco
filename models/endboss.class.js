@@ -77,32 +77,37 @@ class Endboss extends MovableObject {
   *This method defines the animation logic for a character in a game. It uses setInterval to update the character's state and animations.
   *If the character is dead, it plays the dead animation.
   *If the character is hurt, it plays the hurt animation.
-  *If the character is close to the end boss (within 200 pixels), it plays the attack animation, moves the character to the left, and sets the speed to 50.
-  *If the character is within 400 pixels of the end boss, it plays the alert animation and sets the speed to 0.
-  *If the character is farther than 400 pixels from the end boss, it plays the walking animation, moves the character to the left, and sets the speed to 5.
   * The setInterval is set to 200 milliseconds.
   */
   animate() {
     stopSetInterval(() => {
-        if (this.isDead()) {
-          this.playAnimation(this.IMAGES_DEAD);
-        } else if (this.isHurt()) {
-          this.playAnimation(this.IMAGES_HURT);
-        } else {
-           if (this.checkCollisionEndboss() < 350) {
-            this.playAnimation(this.IMAGES_ATTACK);
-            this.moveLeft();
-            this.speed = 50;
-           }else if (this.checkCollisionEndboss() < 400) {
-            this.playAnimation(this.IMAGES_ALERT);
-            this.speed = 0;
-          }
-           else if (this.checkCollisionEndboss() < 1000) {
-            this.playAnimation(this.IMAGES_WALKING);
-            this.moveLeft();
-            this.speed = 5;
-          }
-        }
-    }, 200);
+      if (this.isDead()) {
+        this.playAnimation(this.IMAGES_DEAD);
+      } else if (this.isHurt()) {
+        this.playAnimation(this.IMAGES_HURT);
+      } else 
+        this.checkDistance();
+      }, 200);
+  }
+  /**
+  * checkDistance()
+  *If the character is close to the end boss (within 350 pixels), it plays the attack animation, moves the character to the left, and sets the speed to 50.
+  *If the character is within 400 pixels of the end boss, it plays the alert animation and sets the speed to 0.
+  *If the character is farther than 1000 pixels from the end boss, it plays the walking animation, moves the character to the left, and sets the speed to 5.
+  */
+  checkDistance() {
+    if (this.checkCollisionEndboss() < 350) {
+      this.playAnimation(this.IMAGES_ATTACK);
+      this.moveLeft();
+      this.speed = 50;
+    } else if (this.checkCollisionEndboss() < 400) {
+      this.playAnimation(this.IMAGES_ALERT);
+      this.speed = 0;
+    }
+    else if (this.checkCollisionEndboss() < 1000) {
+      this.playAnimation(this.IMAGES_WALKING);
+      this.moveLeft();
+      this.speed = 5;
+    }
   }
 }

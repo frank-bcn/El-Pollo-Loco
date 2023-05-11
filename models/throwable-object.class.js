@@ -57,7 +57,6 @@ class ThrowableObject extends MovableObject {
             }
         }, 50);
         world.bottleHit = false;
-        console.log(world.bottleHit);
     }
     
     /**

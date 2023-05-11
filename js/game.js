@@ -120,9 +120,9 @@ function animate() {
     
     drawButton();
     
-    scale += 0.01;
+    scale += 0.005;
     
-    if (scale >= 1.2) {
+    if (scale >= 1.4) {
     scale = 1;
     }
     
@@ -160,9 +160,10 @@ function handleMouseMove(event) {
         canvas.style.cursor = 'default';
     }
 }
-
+stopSetInterval(() => {
+    viewportMobile();
+}, 10);
 animate();
-
 canvas.addEventListener('click', handleClick);
 canvas.addEventListener('mousemove', handleMouseMove);
 }
@@ -349,7 +350,6 @@ function mobileTouch() {
     canvas.addEventListener("touchstart", (event) => {
         if (event.touches.length === 1) {
             const touch = event.touches[0];
-            /*console.log(`x: ${touch.clientX}, y: ${touch.clientY}`);*/
             if ((touch.clientX >= (64 - distance) && touch.clientX <= (64 + distance) && touch.clientY >= (352 - distance) && touch.clientY <= (352 + distance))) {
                 keyboard.Left = true;
             } else if ((touch.clientX >= (215 - distance) && touch.clientX <= (215 + distance) && touch.clientY >= (352 - distance) && touch.clientY <= (352 + distance))) {

@@ -126,12 +126,10 @@ class World {
                     this.level.enemies[0].hit();
                     this.statusBarEndboss.setPercentage(world.level.enemies[0].hp);
                     audioFiles[7].play();
-                    console.log(this.bottleHit);
                 } else if (bottle.isColliding(enemy)) {
                     this.bottleHit = true;
                     this.level.enemies[y].hit();
                     audioFiles[8].play();
-                    console.log(this.bottleHit);
                 }
             });
         });
