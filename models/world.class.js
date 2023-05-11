@@ -71,13 +71,13 @@ class World {
     */
     checkThrowableObjects() {
         if (this.character.bottle > 0 && this.keyboard.Space && !this.isThrowing) {
-            this.isThrowing = true; 
+            this.isThrowing = true;
             let bottle = new ThrowableObject(this.character.x + 50, this.character.y + 150);
             this.throwableObject.push(bottle);
             this.character.bottle--;
             this.statusBarBottle.setPercentage(this.character.bottle);
-    
-            
+
+
             setTimeout(() => {
                 this.isThrowing = false;
             }, 500);
@@ -118,28 +118,23 @@ class World {
     *checkCollisionsThrowable
     *This method checks for collisions between throwable objects (bottles) and enemy objects in the game. It first iterates through the "throwableObject" array to check if there are any bottles available to throw. For each bottle, it then iterates through the "enemies" array in the current level to check if the bottle is colliding with any enemies. If a collision is detected with the end boss, the method removes the bottle from the "throwableObject" array and inflicts damage to the end boss. If a collision is detected with a regular enemy, the method removes the bottle from the "throwableObject" array and inflicts damage to the enemy. The method updates the health percentage in the status bar to reflect any changes in the health of the end boss. By detecting and responding to collisions between bottles and enemies, this method enables the player to use bottles as a weapon and adds an element of strategy to the gameplay.
     */
-   checkCollisionsThrowable() {
-    this.throwableObject.forEach((bottle, i) => {
-        this.level.enemies.forEach((enemy, y) => {
-            if (bottle.isColliding(world.level.enemies[0])) {
-                this.bottleHit = true;
-                this.level.enemies[0].hit();
-                this.statusBarEndboss.setPercentage(world.level.enemies[0].hp);
-                audioFiles[7].play();
-                
-            } else if (bottle.isColliding(enemy)) {
-                this.bottleHit = true;
-                this.level.enemies[y].hit();
-                audioFiles[8].play();
-            }
+    checkCollisionsThrowable() {
+        this.throwableObject.forEach((bottle, i) => {
+            this.level.enemies.forEach((enemy, y) => {
+                if (bottle.isColliding(world.level.enemies[0])) {
+                    this.bottleHit = true;
+                    this.level.enemies[0].hit();
+                    this.statusBarEndboss.setPercentage(world.level.enemies[0].hp);
+                    audioFiles[7].play();
+
+                } else if (bottle.isColliding(enemy)) {
+                    this.bottleHit = true;
+                    this.level.enemies[y].hit();
+                    audioFiles[8].play();
+                }
+            });
         });
-    });
-}
-
-spliceTimeOut(bottle) {
-    this.throwableObject.splice(this.throwableObject.indexOf(bottle), 1);
-}
-
+    }
 
     /**
     *checkCollisionsBottle
