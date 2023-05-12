@@ -78,7 +78,7 @@ class World {
             this.statusBarBottle.setPercentage(this.character.bottle);
             setTimeout(() => {
                 this.isThrowing = false;
-            }, 200);
+            }, 2000);
         }
     }
 
@@ -198,7 +198,7 @@ class World {
     *This method checks if the end animation has played for the required duration. If the end animation has played for 150 frames, the method stops the game by calling the "stopGame" function. This method is used to determine when the game has ended and to trigger the appropriate actions, such as displaying the end screen or returning to the main menu.
     */
     checkGameEnd() {
-        if (this.endanimation >= 150) {
+        if (this.endanimation >= 350) {
             stopGame();
         }
     }

@@ -93,7 +93,7 @@ class Character extends MovableObject {
   animate() {
     stopSetInterval(() => {
       this.keyboardAnimation();
-    }, 1000 / 30);
+    }, 1200 / 30);
 
 
     /**
@@ -129,10 +129,12 @@ class Character extends MovableObject {
     if (this.world.keyboard.Up && !this.isAboveGround()) {
       this.jump();
     }
-
-    /*if (world.endanimation >= 50 && this.isDead()) {
-       this.loadImage(this.IMAGES_DEAD[6]);
-     }*/
+    stopSetInterval(() => {
+      if (world.endanimation >= 150 && this.isDead()) {
+        this.loadImage(this.IMAGES_DEAD[6]);
+       }
+    }, 10);
+    
   }
 
   /**
