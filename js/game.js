@@ -96,6 +96,16 @@ function drawButton(context, centerX, centerY, buttonRadius, scale) {
     context.fillText('Play', centerX, centerY + 5);
 }
 
+/**
+ * Animate the button by continuously scaling it up and down.
+ * 
+ * @param {HTMLCanvasElement} canvas - The canvas element.
+ * @param {CanvasRenderingContext2D} context - The 2D rendering context.
+ * @param {number} centerX - The x-coordinate of the center of the button.
+ * @param {number} centerY - The y-coordinate of the center of the button.
+ * @param {number} buttonRadius - The radius of the button.
+ * @returns {number} - The animation ID for cancelling the animation if needed.
+ */
 function animate(canvas, context, centerX, centerY, buttonRadius) {
     let scale = 1;
     let animationId;
@@ -129,6 +139,18 @@ function handleClick(canvas, centerX, centerY, buttonRadius, animationId, startG
     return handleEvent;
 }
 
+/**
+ * Handle the click event on the canvas by checking if the click is within the button area.
+ * If the click is within the button, execute the startGame function.
+ *
+ * @param {HTMLCanvasElement} canvas - The canvas element.
+ * @param {number} centerX - The x-coordinate of the center of the button.
+ * @param {number} centerY - The y-coordinate of the center of the button.
+ * @param {number} buttonRadius - The radius of the button.
+ * @param {number} animationId - The animation ID for cancelling the animation if needed.
+ * @param {Function} startGame - The function to execute when the button is clicked.
+ * @returns {Function} - The event handler function for the click event.
+ */
 function handleMouseMove(canvas, centerX, centerY, buttonRadius) {
     function handleEvent(event) {
         const x = event.offsetX;
@@ -143,6 +165,10 @@ function handleMouseMove(canvas, centerX, centerY, buttonRadius) {
     return handleEvent;
 }
 
+/**
+ * Set up the start screen by retrieving the canvas element, creating a 2D rendering context,
+ * initializing variables for the button and animation, and setting up event listeners.
+ */
 function startScreen() {
     canvas = document.getElementById('canvas');
     context = canvas.getContext('2d');

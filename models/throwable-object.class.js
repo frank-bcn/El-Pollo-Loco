@@ -66,6 +66,9 @@ class ThrowableObject extends MovableObject {
         setTimeout(() => {
             this.height = 0;
             this.width = 0;
+            if (this.onSplashCallback) {
+                this.onSplashCallback(); // Aufrufen der Callback-Funktion
+            }
         }, 100);
     }
 }
