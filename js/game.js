@@ -144,9 +144,9 @@ function handleMouseMove(canvas, centerX, centerY, buttonRadius) {
 }
 
 function startScreen() {
-    const canvas = document.getElementById('canvas');
-    const context = canvas.getContext('2d');
-    const buttonRadius = 40;
+    canvas = document.getElementById('canvas');
+    context = canvas.getContext('2d');
+    const buttonRadius = 50;
     const centerX = canvas.width / 2;
     const centerY = canvas.height / 2;
     let animationId;
