@@ -57,7 +57,7 @@ class World {
     run() {
         stopSetInterval(() => {
             this.checkThrowableObjects();
-        }, 20);
+        }, 150);
 
         stopSetInterval(() => {
             this.checkCollisions();
@@ -80,7 +80,7 @@ class World {
 
             setTimeout(() => {
                 this.isThrowing = false;
-            }, 500);
+            }, 200);
         }
     }
 

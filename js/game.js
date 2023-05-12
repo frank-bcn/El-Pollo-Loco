@@ -79,30 +79,15 @@ window.addEventListener("keyup", (event) => {
  * Sets up the start screen by retrieving the canvas element, creating a 2D rendering context,
  * and initializing variables for the button and animation.
  */
-function startScreen() {
-    const canvas = document.getElementById('canvas');
-    const context = canvas.getContext('2d');
-    const buttonRadius = 40;
-    const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
-    let scale = 1;
-    let animationId;
-
-/**
- * Draws a button on a canvas element.
- */
-function drawButton() {
+function drawButton(context, centerX, centerY, buttonRadius, scale) {
     const scaledRadius = buttonRadius * scale;
-    
     context.fillStyle = 'rgb(255, 206, 20)';
     context.strokeStyle = 'rgb(255, 159, 0)';
     context.lineWidth = 4;
-    
     context.beginPath();
     context.arc(centerX, centerY, scaledRadius, 0, 2 * Math.PI);
     context.fill();
     context.stroke();
-    
     const fontSize = 30;
     context.font = `${fontSize}px chillingsabrina`;
     context.fillStyle = 'black';
@@ -111,58 +96,68 @@ function drawButton() {
     context.fillText('Play', centerX, centerY + 5);
 }
 
-/**
- * Animates the button by continuously redrawing it on the canvas.
- */
+function animate(canvas, context, centerX, centerY, buttonRadius) {
+    let scale = 1;
+    let animationId;
 
-function animate() {
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    
-    drawButton();
-    
-    scale += 0.005;
-    
-    if (scale >= 1.4) {
-    scale = 1;
+    function animateFrame() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        drawButton(context, centerX, centerY, buttonRadius, scale);
+        scale += 0.005;
+        if (scale >= 1.4) {
+            scale = 1;
+        }
+        animationId = requestAnimationFrame(animateFrame);
     }
-    
-    animationId = requestAnimationFrame(animate);
-}
-    
-/**
- * Handles the click event on the canvas and checks if the click is within the button area.
- * If so, it cancels the animation frame, starts the game, and removes the click event listener.
- * @param {Event} event - The click event object.
- */
-function handleClick(event) {
-    cancelAnimationFrame(animationId);
-    const x = event.offsetX;
-    const y = event.offsetY;
-    const distance = Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2);
-    if (distance <= buttonRadius) {
-        startGame();
-        canvas.removeEventListener('click', handleClick);
-    }
+
+    animateFrame();
+
+    return animationId;
 }
 
-/**
- * Handles the mouse move event on the canvas and changes the cursor style based on the mouse position.
- * If the mouse is within the button area, the cursor style is set to 'pointer', otherwise it is set to 'default'.
- * @param {Event} event - The mouse move event object.
- */
-function handleMouseMove(event) {
-    const x = event.offsetX;
-    const y = event.offsetY;
-    const distance = Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2);
-    if (distance <= buttonRadius) {
-        canvas.style.cursor = 'pointer';
-    } else {
-        canvas.style.cursor = 'default';
+function handleClick(canvas, centerX, centerY, buttonRadius, animationId, startGame) {
+    function handleEvent(event) {
+        cancelAnimationFrame(animationId);
+        const x = event.offsetX;
+        const y = event.offsetY;
+        const distance = Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2);
+        if (distance <= buttonRadius) {
+            startGame();
+            canvas.removeEventListener('click', handleEvent);
+        }
     }
+    return handleEvent;
 }
-animate();
-canvas.addEventListener('click', handleClick);
-canvas.addEventListener('mousemove', handleMouseMove);
+
+function handleMouseMove(canvas, centerX, centerY, buttonRadius) {
+    function handleEvent(event) {
+        const x = event.offsetX;
+        const y = event.offsetY;
+        const distance = Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2);
+        if (distance <= buttonRadius) {
+            canvas.style.cursor = 'pointer';
+        } else {
+            canvas.style.cursor = 'default';
+        }
+    }
+    return handleEvent;
+}
+
+function startScreen() {
+    const canvas = document.getElementById('canvas');
+    const context = canvas.getContext('2d');
+    const buttonRadius = 40;
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    let animationId;
+
+    animationId = animate(canvas, context, centerX, centerY, buttonRadius);
+    const handleEvent = handleClick(canvas, centerX, centerY, buttonRadius, animationId, startGame);
+    canvas.addEventListener('click', handleEvent);
+    canvas.addEventListener('mousemove', handleMouseMove(canvas, centerX, centerY, buttonRadius));
+    stopSetInterval(() => {
+        viewportMobile();
+    }, 100);
 }
 
 /**
@@ -170,9 +165,6 @@ canvas.addEventListener('mousemove', handleMouseMove);
 *This function is called when the user clicks on the start button and starts the game. It initializes the level, sets up the canvas and keyboard controls, creates a new world object, and sets the play indicator to true. It also plays the background music and sets its volume to 0.1.
 */
 function startGame() {
-    stopSetInterval(() => {
-        viewportMobile();
-    }, 10);
     intervalIds = [];
     initLevel();
     canvas = document.getElementById('canvas');

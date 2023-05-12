@@ -28,10 +28,8 @@ class ThrowableObject extends MovableObject {
         super().loadImage(this.IMAGES_ROTATION[0]);
         this.loadImages(this.IMAGES_ROTATION);
         this.loadImages(this.IMAGES_SPLASH);
-
         this.x = x;
         this.y = y;
-
         this.throw();
     }
 
@@ -52,8 +50,9 @@ class ThrowableObject extends MovableObject {
             }
             if (this.isDead() || this.y >= 350 || world.bottleHit) {
                 this.splash();
+                const bottleIndex = world.throwableObject.indexOf(this); // Index der Flasche ermitteln
+                world.throwableObject.splice(bottleIndex, 1); // Flasche entfernen
                 clearInterval(intervalId);
-                
             }
         }, 50);
         world.bottleHit = false;
