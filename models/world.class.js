@@ -123,13 +123,8 @@ class World {
                 if (bottle.isColliding(world.level.enemies[0])) {
                     collisionDetected = true;
                     this.level.enemies[0].hit();
-                    /*this.statusBarEndboss.setPercentage(world.level.enemies[0].hp);*/
+                    this.statusBarEndboss.setPercentage(world.level.enemies[0].hp);
                     audioFiles[7].play();
-                    this.counter++;
-                    console.log(this.counter);
-                    /*setTimeout(() => {
-                        this.throwableObject.splice(i, 1);
-                    }, 500);*/
                 } else if (bottle.isColliding(enemy)) {
                     collisionDetected = true;
                     this.level.enemies[y].hit();

@@ -69,5 +69,3 @@ class ThrowableObject extends MovableObject {
         }, 100);
     }
 }
-
-/*world.throwableObject.splice(bottle, 1);*/

@@ -171,7 +171,7 @@ function startGame() {
     world = new World(canvas, keyboard);
     playIndikator = true;
     sound();
-    audioFiles[0].loop = true; // Setzen Sie die loop-Eigenschaft auf true
+    audioFiles[0].loop = true; 
     audioFiles[0].play();
 }
 
