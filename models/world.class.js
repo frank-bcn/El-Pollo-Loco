@@ -70,7 +70,7 @@ class World {
     *This method checks if the player has any bottles left and if the Space key is pressed. If both conditions are true, it creates a new "ThrowableObject" instance and adds it to the "throwableObject" array. The method also decrements the player's bottle count, updates the bottle percentage in the status bar, and updates the status bar display. By doing this, the method enables the player to throw bottles by pressing the Space key, and ensures that the game state is updated accordingly.
     */
     checkThrowableObjects() {
-        if (this.character.bottle > 0 && this.keyboard.Space && !this.isThrowing && !this.character.otherDirection) {
+        if (this.character.bottle > 0 && this.keyboard.Space && !this.isThrowing) {
             this.isThrowing = true;
             let bottle = new ThrowableObject(this.character.x + 50, this.character.y + 150);
             this.throwableObject.push(bottle);
@@ -198,7 +198,7 @@ class World {
     *This method checks if the end animation has played for the required duration. If the end animation has played for 150 frames, the method stops the game by calling the "stopGame" function. This method is used to determine when the game has ended and to trigger the appropriate actions, such as displaying the end screen or returning to the main menu.
     */
     checkGameEnd() {
-        if (this.endanimation >= 350) {
+        if (this.endanimation >= 250) {
             stopGame();
         }
     }

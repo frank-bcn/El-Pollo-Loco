@@ -115,7 +115,7 @@ class MovableObject extends DrawableObject {
     *This method sets the vertical speed of the object to a positive value, causing it to move upwards on the screen as if it were jumping. It also triggers an audio sound effect.
     */
     jump() {
-        this.speedY = 30;
+        this.speedY = 25;
         audioFiles[2].play();
     }
 }
