@@ -160,9 +160,6 @@ function handleMouseMove(event) {
         canvas.style.cursor = 'default';
     }
 }
-stopSetInterval(() => {
-    viewportMobile();
-}, 10);
 animate();
 canvas.addEventListener('click', handleClick);
 canvas.addEventListener('mousemove', handleMouseMove);
@@ -173,6 +170,9 @@ canvas.addEventListener('mousemove', handleMouseMove);
 *This function is called when the user clicks on the start button and starts the game. It initializes the level, sets up the canvas and keyboard controls, creates a new world object, and sets the play indicator to true. It also plays the background music and sets its volume to 0.1.
 */
 function startGame() {
+    stopSetInterval(() => {
+        viewportMobile();
+    }, 10);
     intervalIds = [];
     initLevel();
     canvas = document.getElementById('canvas');

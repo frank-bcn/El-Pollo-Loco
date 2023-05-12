@@ -93,7 +93,7 @@ class Character extends MovableObject {
   animate() {
     stopSetInterval(() => {
       this.keyboardAnimation();
-    }, 1000 / 40);
+    }, 1000 / 30);
 
 
     /**
