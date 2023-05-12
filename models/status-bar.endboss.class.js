@@ -1,5 +1,5 @@
 class StatusBar_Endboss extends DrawableObject {
-
+    
     IMAGES_ENDBOSS = [
         'img/7_statusbars/1_statusbar/2_statusbar_health/orange/0.png',
         'img/7_statusbars/1_statusbar/2_statusbar_health/orange/20.png',
@@ -14,8 +14,8 @@ class StatusBar_Endboss extends DrawableObject {
 
     constructor() {
         super();
-        this.loadImages(this.IMAGES_ENDBOSS);       
-        this.setPercentage(100);
+        this.loadImages(this.IMAGES_ENDBOSS);
+        /*this.setPercentage(100);*/
         this.x = 590;
         this.y = 0;
         this.height = 60;
@@ -26,8 +26,8 @@ class StatusBar_Endboss extends DrawableObject {
     *Sets the percentage of the Endboss's health and updates the image accordingly.
     *@param {number} percentage - The percentage of the Endboss's health, from 0 to 100.
     */
-    setPercentage(percentage) {
-        this.percentage = percentage;
+   setPercentage() {
+        /*this.percentage = percentage;*/
         let path = this.IMAGES_ENDBOSS[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     }
@@ -42,18 +42,34 @@ class StatusBar_Endboss extends DrawableObject {
     *Otherwise, index 0 is returned.
     *@return {number} The index of the image to display.
     */
-    resolveImageIndex() {
+    /*resolveImageIndex() {
         if (this.percentage == 100) {
             return 5;
-        } else if (this.percentage > 99) {
+        } else if (this.percentage > 90) {
             return 4;
-        } else if (this.percentage > 50) {
+        } else if (this.percentage > 0) {
             return 3;
-        } else if (this.percentage > 20) {
+        } else if (this.percentage > 30) {
             return 2;
         } else if (this.percentage > 10) {
             return 1;
         } else {
+            return 0;
+        }
+    }*/
+
+    resolveImageIndex() {
+        if (world.counter === 0) {
+            return 5;
+        } else if (world.counter === 33) {
+            return 4;
+        } else if (world.counter === 66) {
+            return 3;
+        } else if (world.counter === 99) {
+            return 2;
+        } else if (world.counter === 132) {
+            return 1;
+        } else if (world.counter === 133) {
             return 0;
         }
     }

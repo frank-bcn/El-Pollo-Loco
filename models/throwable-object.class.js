@@ -48,14 +48,11 @@ class ThrowableObject extends MovableObject {
                 this.y -= 10; 
                 this.playAnimation(this.IMAGES_ROTATION);
             }
-            if (this.isDead() || this.y >= 350 || world.bottleHit) {
+            if (this.isDead() || this.y >= 350 || world.checkCollisionsThrowable()) {
                 this.splash();
-                const bottleIndex = world.throwableObject.indexOf(this); // Index der Flasche ermitteln
-                world.throwableObject.splice(bottleIndex, 1); // Flasche entfernen
                 clearInterval(intervalId);
             }
         }, 50);
-        world.bottleHit = false;
     }
     
     /**
@@ -72,3 +69,5 @@ class ThrowableObject extends MovableObject {
         }, 100);
     }
 }
+
+/*world.throwableObject.splice(bottle, 1);*/

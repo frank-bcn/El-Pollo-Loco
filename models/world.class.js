@@ -29,7 +29,7 @@ class World {
     soundIsMute = false;
     endanimation = 0;
     bottleHit = false;
-
+    counter = 0;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -76,8 +76,6 @@ class World {
             this.throwableObject.push(bottle);
             this.character.bottle--;
             this.statusBarBottle.setPercentage(this.character.bottle);
-
-
             setTimeout(() => {
                 this.isThrowing = false;
             }, 200);
@@ -119,21 +117,30 @@ class World {
     *This method checks for collisions between throwable objects (bottles) and enemy objects in the game. It first iterates through the "throwableObject" array to check if there are any bottles available to throw. For each bottle, it then iterates through the "enemies" array in the current level to check if the bottle is colliding with any enemies. If a collision is detected with the end boss, the method removes the bottle from the "throwableObject" array and inflicts damage to the end boss. If a collision is detected with a regular enemy, the method removes the bottle from the "throwableObject" array and inflicts damage to the enemy. The method updates the health percentage in the status bar to reflect any changes in the health of the end boss. By detecting and responding to collisions between bottles and enemies, this method enables the player to use bottles as a weapon and adds an element of strategy to the gameplay.
     */
     checkCollisionsThrowable() {
+        let collisionDetected = false;
         this.throwableObject.forEach((bottle, i) => {
             this.level.enemies.forEach((enemy, y) => {
                 if (bottle.isColliding(world.level.enemies[0])) {
-                    this.bottleHit = true;
+                    collisionDetected = true;
                     this.level.enemies[0].hit();
-                    this.statusBarEndboss.setPercentage(world.level.enemies[0].hp);
+                    /*this.statusBarEndboss.setPercentage(world.level.enemies[0].hp);*/
                     audioFiles[7].play();
+                    this.counter++;
+                    console.log(this.counter);
+                    /*setTimeout(() => {
+                        this.throwableObject.splice(i, 1);
+                    }, 500);*/
                 } else if (bottle.isColliding(enemy)) {
-                    this.bottleHit = true;
+                    collisionDetected = true;
                     this.level.enemies[y].hit();
                     audioFiles[8].play();
                 }
             });
         });
+        return collisionDetected;
     }
+    
+    
 
     /**
     *checkCollisionsBottle
