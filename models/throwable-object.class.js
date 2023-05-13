@@ -3,7 +3,7 @@ class ThrowableObject extends MovableObject {
     width = 50;
     speedY = 0;
     hp = 10;
-    
+
 
 
     IMAGES_ROTATION = [
@@ -35,33 +35,27 @@ class ThrowableObject extends MovableObject {
 
     /**
     * throw()
-    * Sets the object's vertical speed to 20 and applies gravity, then starts a loop that 
-    * updates the object's position and animation every 40 milliseconds until it reaches 
-     * a certain height, dies, or collides with another object.
-     */
+    * Perform the throw action.
+    */
     throw() {
         this.speedY = 20;
         this.applyGravity();
         const intervalId = setInterval(() => {
-          if (!this.isDead()) {
-            console.log(`Blickrichtung: ${world.otherDirection ? 'links' : 'rechts'}`);
-            if (world.otherDirection) {
-              this.x -= 20;
-            } else {
-              this.x += 20;
-            }
+            if (!this.isDead())
+                if (world.character.otherDirection) {
+                    this.x -= 20;
+                } else {
+                    this.x += 20;
+                }
             this.y -= 10;
             this.playAnimation(this.IMAGES_ROTATION);
-          }
-          if (this.isDead() || this.y >= 350 || world.checkCollisionsThrowable()) {
-            this.splash();
-            clearInterval(intervalId);
-          }
+            if (this.isDead() || this.y >= 370 || world.checkCollisionsThrowable()) {
+                this.splash();
+                clearInterval(intervalId);
+            }
         }, 50);
-      }
-      
-      
-    
+    }
+
     /**
     * splash()
     * Stops the object's vertical motion, plays a splash animation, and sets the object's height 

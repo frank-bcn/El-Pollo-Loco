@@ -118,6 +118,7 @@ class Character extends MovableObject {
   keyboardAnimation() {
     if (this.world.keyboard.Right && this.x < this.world.level.level_end_x) {
       this.moveRight();
+      this.otherDirection = false;
     }
 
     if (this.world.keyboard.Left && this.x > 0) {

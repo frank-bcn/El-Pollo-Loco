@@ -66,13 +66,41 @@ class World {
     }
 
     /**
-    *checkThrowableObjects
-    *This method checks if the player has any bottles left and if the Space key is pressed. If both conditions are true, it creates a new "ThrowableObject" instance and adds it to the "throwableObject" array. The method also decrements the player's bottle count, updates the bottle percentage in the status bar, and updates the status bar display. By doing this, the method enables the player to throw bottles by pressing the Space key, and ensures that the game state is updated accordingly.
+    * checkThrowableObjects()
+    * Check the direction of the character and call the appropriate throwing method.
     */
     checkThrowableObjects() {
+        if (!this.character.otherDirection) {
+            this.throwingRight();
+        } else
+            this.throwingLeft();
+    }
+
+    /**
+    * throwingRight()
+    * Perform the throwing action to the right direction.
+    */
+    throwingRight() {
         if (this.character.bottle > 0 && this.keyboard.Space && !this.isThrowing) {
             this.isThrowing = true;
             let bottle = new ThrowableObject(this.character.x + 50, this.character.y + 150);
+            this.throwableObject.push(bottle);
+            this.character.bottle--;
+            this.statusBarBottle.setPercentage(this.character.bottle);
+            setTimeout(() => {
+                this.isThrowing = false;
+            }, 2000);
+        }
+    }
+
+    /**
+    * throwingLeft()
+    * Perform the throwing action to the left direction.
+    */
+    throwingLeft() {
+        if (this.character.otherDirection && this.keyboard.Space) {
+            this.isThrowing = true;
+            let bottle = new ThrowableObject(this.character.x - 20, this.character.y + 150);
             this.throwableObject.push(bottle);
             this.character.bottle--;
             this.statusBarBottle.setPercentage(this.character.bottle);
@@ -134,8 +162,8 @@ class World {
         });
         return collisionDetected;
     }
-    
-    
+
+
 
     /**
     *checkCollisionsBottle
