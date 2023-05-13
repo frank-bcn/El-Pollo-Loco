@@ -58,7 +58,7 @@ class ThrowableObject extends MovableObject {
             this.y -= 10;
             this.playAnimation(this.IMAGES_ROTATION);
             
-            if (this.isDead() || this.y >= 370 || world.checkCollisionsThrowable()) {
+            if (this.isDead() || this.y >= 380 || world.checkCollisionsThrowable()) {
                 this.splash();
                 clearInterval(intervalId);
             }
