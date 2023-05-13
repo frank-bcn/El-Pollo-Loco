@@ -90,7 +90,7 @@ class World {
             this.statusBarBottle.setPercentage(this.character.bottle);
             setTimeout(() => {
                 this.isThrowing = false;
-            }, 2000);
+            }, 1000);
         }
     }
 
@@ -107,7 +107,7 @@ class World {
             this.statusBarBottle.setPercentage(this.character.bottle);
             setTimeout(() => {
                 this.isThrowing = false;
-            }, 2000);
+            }, 1100);
         }
     }
 
