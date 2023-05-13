@@ -90,7 +90,7 @@ class World {
             this.statusBarBottle.setPercentage(this.character.bottle);
             setTimeout(() => {
                 this.isThrowing = false;
-            }, 1000);
+            }, 1200);
         }
     }
 
@@ -99,7 +99,7 @@ class World {
     * Perform the throwing action to the left direction.
     */
     throwingLeft() {
-        if (this.character.otherDirection && this.keyboard.Space) {
+        if (this.character.otherDirection && this.keyboard.Space && this.character.bottle && !this.isThrowing) {
             this.isThrowing = true;
             let bottle = new ThrowableObject(this.character.x - 20, this.character.y + 150);
             this.throwableObject.push(bottle);
@@ -107,7 +107,7 @@ class World {
             this.statusBarBottle.setPercentage(this.character.bottle);
             setTimeout(() => {
                 this.isThrowing = false;
-            }, 1100);
+            }, 1200);
         }
     }
 
@@ -163,8 +163,6 @@ class World {
         });
         return collisionDetected;
     }
-
-
 
     /**
     *checkCollisionsBottle
