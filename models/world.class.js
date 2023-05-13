@@ -172,12 +172,15 @@ class World {
         this.level.bottle.forEach((bottle) => {
             if (this.character.isColliding(bottle)) {
                 audioFiles[4].play();
-                this.character.bottle++;
-                this.statusBarBottle.setPercentage(this.character.bottle);
-                this.level.bottle.splice(this.level.bottle.indexOf(bottle), 1);
+                if (this.character.bottle < 5) {
+                    this.character.bottle++;
+                    this.statusBarBottle.setPercentage(this.character.bottle);
+                    this.level.bottle.splice(this.level.bottle.indexOf(bottle), 1);
+                }
             }
         });
     }
+    
 
     /**
     *checkCollisionsCoin
