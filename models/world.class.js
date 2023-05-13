@@ -30,6 +30,7 @@ class World {
     endanimation = 0;
     bottleHit = false;
     counter = 0;
+    canThrow = false;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');

@@ -40,21 +40,31 @@ class ThrowableObject extends MovableObject {
     throw() {
         this.speedY = 20;
         this.applyGravity();
+        
+        if (!this.isThrown) {
+            if (world.character.otherDirection) {
+                this.speedX = -20;
+            } else {
+                this.speedX = 20;
+            }
+            
+            this.isThrown = true;
+        }
+        
         const intervalId = setInterval(() => {
-            if (!this.isDead())
-                if (world.character.otherDirection) {
-                    this.x -= 20;
-                } else {
-                    this.x += 20;
-                }
+            if (!this.isDead()) {
+                this.x += this.speedX;
+            }
             this.y -= 10;
             this.playAnimation(this.IMAGES_ROTATION);
+            
             if (this.isDead() || this.y >= 370 || world.checkCollisionsThrowable()) {
                 this.splash();
                 clearInterval(intervalId);
             }
         }, 50);
     }
+    
 
     /**
     * splash()
